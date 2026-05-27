@@ -734,6 +734,8 @@ export default function DrillPage() {
               value={locale}
               onChange={e => setLocale(e.target.value)}
               style={{
+                appearance: 'none',
+                WebkitAppearance: 'none',
                 background: 'rgba(255,255,255,0.07)',
                 border: '1px solid rgba(255,255,255,0.18)',
                 borderRadius: 6,
@@ -742,6 +744,8 @@ export default function DrillPage() {
                 fontFamily: 'inherit',
                 padding: '5px 10px',
                 cursor: 'pointer',
+                minWidth: 90,
+                lineHeight: '1.4',
               }}
             >
               {availableLocales.map(l => (
