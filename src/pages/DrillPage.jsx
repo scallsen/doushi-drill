@@ -470,8 +470,9 @@ export default function DrillPage() {
   const [optionsHovered,     setOptionsHovered]     = useState(false)
   const [chevronHovered,     setChevronHovered]     = useState(false)
   const [showMobileMenuHint, setShowMobileMenuHint] = useState(false)
-  const isMobile  = useIsMobile()
-  const isNarrow  = useIsMobile(412)
+  const isMobile       = useIsMobile()
+  const isNarrow       = useIsMobile(412)
+  const hideWordmark   = useIsMobile(560)
   const jaVoices = useJaVoices()
 
   useEffect(() => { localStorage.setItem('audio-enabled', audioEnabled) }, [audioEnabled])
@@ -851,7 +852,7 @@ export default function DrillPage() {
           }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
               <img src={logoMain} alt="" width={36} height={32} style={{ display: 'block' }} />
-              <Wordmark height={17} />
+              {!hideWordmark && <Wordmark height={17} />}
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginLeft: 'auto' }}>
               {!isNarrow && <ModeToggle value={inputMode} onChange={setInputMode} />}
