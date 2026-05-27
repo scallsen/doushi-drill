@@ -727,7 +727,7 @@ export default function DrillPage() {
             </>
           )}
         </div>
-        <div style={{ ...hairline, margin: '18px 0 6px' }} />
+        <div style={{ ...hairline, margin: '18px 0' }} />
         <div style={{ display: 'flex', alignItems: 'center', gap: 10, paddingLeft: 6 }}>
           <span style={{ color: 'rgba(255,255,255,0.65)', fontSize: 13, fontFamily: 'inherit', flex: 1 }}>
             {t('ui.language')}
