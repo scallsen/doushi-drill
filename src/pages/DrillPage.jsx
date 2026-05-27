@@ -398,7 +398,7 @@ export default function DrillPage() {
   })
   const [ttsEnabled,         setTtsEnabled]         = useState(() => {
     const stored = localStorage.getItem('tts-enabled')
-    return stored === null ? true : stored === 'true'
+    return stored === null ? false : stored === 'true'
   })
   const [sfxEnabled,         setSfxEnabled]         = useState(() => {
     const stored = localStorage.getItem('sfx-enabled')
@@ -411,7 +411,7 @@ export default function DrillPage() {
   })
   const [showFurigana,       setShowFurigana]       = useState(() => {
     const stored = localStorage.getItem('show-furigana')
-    return stored === null ? false : stored === 'true'
+    return stored === null ? true : stored === 'true'
   })
   const [showVisualEffects,  setShowVisualEffects]  = useState(() => {
     const stored = localStorage.getItem('show-visual-effects')
@@ -422,7 +422,7 @@ export default function DrillPage() {
     return stored === null ? true : stored === 'true'
   })
   const [showTranslation,    setShowTranslation]    = useState(() => {
-    return localStorage.getItem('show-translation') ?? 'off'
+    return localStorage.getItem('show-translation') ?? 'both'
   })
   const [pulseColor,         setPulseColor]         = useState(null)
   const [audioHovered,       setAudioHovered]       = useState(false)
