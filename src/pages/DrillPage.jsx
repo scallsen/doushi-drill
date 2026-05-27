@@ -861,7 +861,7 @@ export default function DrillPage() {
         <div ref={headerRef} style={{ position: 'absolute', top: 0, left: 0, right: 0, zIndex: 10 }}>
           <div style={{
             display: 'flex', alignItems: 'flex-start', flexWrap: 'wrap',
-            padding: '20px 24px', gap: '8px 0',
+            padding: `${isNarrow ? 12 : 20}px ${isNarrow ? 12 : 24}px`, gap: '8px 0',
           }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
               <img src={logoMain} alt="" width={36} height={32} style={{ display: 'block' }} />
