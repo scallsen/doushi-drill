@@ -462,6 +462,10 @@ export default function DrillPage() {
   const effectiveShowTranslation = locale === 'ja' ? 'off' : showTranslation
   const [inputMode,          setInputMode]          = useState(() => localStorage.getItem('input-mode') ?? 'speed')
   const [pulseColor,         setPulseColor]         = useState(null)
+  const [headerHeight,       setHeaderHeight]       = useState(72)
+  const [footerHeight,       setFooterHeight]       = useState(80)
+  const headerRef = useRef(null)
+  const footerRef = useRef(null)
   const [audioHovered,       setAudioHovered]       = useState(false)
   const [optionsHovered,     setOptionsHovered]     = useState(false)
   const [chevronHovered,     setChevronHovered]     = useState(false)
@@ -480,6 +484,22 @@ export default function DrillPage() {
   useEffect(() => { localStorage.setItem('show-translation', showTranslation) }, [showTranslation])
   useEffect(() => { localStorage.setItem('selected-jlpt', JSON.stringify(selectedJlpt)) }, [selectedJlpt])
   useEffect(() => { localStorage.setItem('input-mode', inputMode) }, [inputMode])
+
+  useEffect(() => {
+    const el = headerRef.current
+    if (!el) return
+    const ro = new ResizeObserver(() => setHeaderHeight(el.offsetHeight))
+    ro.observe(el)
+    return () => ro.disconnect()
+  }, [])
+
+  useEffect(() => {
+    const el = footerRef.current
+    if (!el) return
+    const ro = new ResizeObserver(() => setFooterHeight(el.offsetHeight))
+    ro.observe(el)
+    return () => ro.disconnect()
+  }, [])
 
   function seek(newWordTypes, newForms, newRegs, newTenses, newPols, axis, value, newJlpt) {
     const newPool = buildPool({
@@ -823,16 +843,16 @@ export default function DrillPage() {
         />
 
         {/* Header */}
-        <div style={{
+        <div ref={headerRef} style={{
           position: 'absolute', top: 0, left: 0, right: 0,
-          display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-          padding: '20px 24px', zIndex: 10,
+          display: 'flex', alignItems: 'flex-start', flexWrap: 'wrap',
+          padding: '20px 24px', gap: '8px 0', zIndex: 10,
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
             <img src={logoMain} alt="" width={36} height={32} style={{ display: 'block' }} />
             <Wordmark height={17} />
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginLeft: 'auto' }}>
             <ModeToggle value={inputMode} onChange={setInputMode} />
             <button
               onClick={() => setAudioEnabled(v => !v)}
@@ -902,7 +922,7 @@ export default function DrillPage() {
 
         {/* Center */}
         <div style={{
-          position: 'absolute', inset: 0,
+          position: 'absolute', top: headerHeight, left: 0, right: 0, bottom: footerHeight,
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           zIndex: 2,
         }}>
@@ -918,7 +938,7 @@ export default function DrillPage() {
         </div>
 
         {/* Footer */}
-        <div style={{
+        <div ref={footerRef} style={{
           position: 'absolute', bottom: 0, left: 0, right: 0,
           display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16,
           padding: '12px 24px',
