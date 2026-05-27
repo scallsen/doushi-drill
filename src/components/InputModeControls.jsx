@@ -1,7 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { useTranslation } from '../i18n/index.jsx'
-// TODO: npm install wanakana
-// import * as wanakana from 'wanakana'
+import * as wanakana from 'wanakana'
 
 export default function InputModeControls({ card, isFlipped, onVerdict, onFlipToReveal, transitioning }) {
   const { t } = useTranslation()
@@ -39,20 +38,13 @@ export default function InputModeControls({ card, isFlipped, onVerdict, onFlipTo
     }
   }, [isFlipped])
 
-  // TODO: bind wanakana once installed
-  // useEffect(() => {
-  //   const el = inputRef.current
-  //   if (!el) return
-  //   wanakana.bind(el, { IMEMode: 'toHiragana' })
-  //   return () => wanakana.unbind(el)
-  // }, [])
-
   function handleKeyDown(e) {
     if (e.key !== 'Enter') return
     const trimmed = value.trim()
     if (!trimmed) return
-    // TODO: normalize trimmed through wanakana.toHiragana before comparison
-    const correct = card.acceptedAnswers.includes(trimmed)
+    // toHiragana without IMEMode forces any trailing partial romaji (e.g. 'r') to convert
+    const normalized = wanakana.toHiragana(trimmed)
+    const correct = card.acceptedAnswers.includes(normalized)
     if (correct) {
       onVerdict(true)
     } else {
@@ -114,7 +106,7 @@ export default function InputModeControls({ card, isFlipped, onVerdict, onFlipTo
         ref={inputRef}
         type="text"
         value={value}
-        onChange={e => setValue(e.target.value)}
+        onChange={e => setValue(wanakana.toHiragana(e.target.value, { IMEMode: true }))}
         onKeyDown={handleKeyDown}
         disabled={transitioning}
         placeholder={`${t('card.input_placeholder_prefix')} ${formLabel} ${t('card.input_placeholder_suffix')}`}
