@@ -5,7 +5,7 @@ import FlipCard from '../../FlipCard.jsx'
 import { FORMS } from '../../data/forms.js'
 import { useTranslation } from '../../i18n/index.jsx'
 
-export default function ConjugationCard({ variant = 'plain', word = '', kana = null, showFurigana = false, pixelFont = true, answer = null, negative = false, past = false, bgComponent = null, registerLabel = null, flipped = false, onFlip = null, animate = true, translation = null, showTranslation = 'off' }) {
+export default function ConjugationCard({ variant = 'plain', word = '', kana = null, showFurigana = false, pixelFont = true, answer = null, negative = false, past = false, bgComponent = null, registerLabel = null, flipped = false, onFlip = null, animate = true, showAnts = true, translation = null, showTranslation = 'off' }) {
   const { t } = useTranslation()
   const config = VARIANTS[variant] ?? VARIANTS.plain
   const FrontBg = bgComponent ?? config.BgComponent
@@ -26,7 +26,7 @@ export default function ConjugationCard({ variant = 'plain', word = '', kana = n
     </CardShell>
   )
 
-  const ants = flipped && animate ? (
+  const ants = flipped && animate && showAnts ? (
     <svg viewBox="0 0 380 280" className="mc-overlay" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', pointerEvents: 'none', zIndex: 10, overflow: 'visible' }} aria-hidden="true">
       <rect className="mc-ants" x="-4" y="-4" width="388" height="288" fill="none" stroke="rgba(255,255,255,0.45)" strokeWidth="2" strokeDasharray="6 6" />
       <rect className="mc-ants--offset" x="-4" y="-4" width="388" height="288" fill="none" stroke="rgba(0,0,0,0.2)" strokeWidth="2" strokeDasharray="6 6" />

@@ -27,7 +27,7 @@ function WaveText({ text, color }) {
   ))
 }
 
-export default function DrillHUD({ streak, bestStreak, totalCorrect, totalWrong, canUndo, onUndo, showStreak, showVisualEffects = true, onboardingHint, children }) {
+export default function DrillHUD({ streak, bestStreak, totalCorrect, totalWrong, canUndo, onUndo, showStreak, showVisualEffects = true, onboardingHint, errorMessage, children }) {
   const { t } = useTranslation()
   const [streakLost, setStreakLost] = useState(null)
   const [popCount,   setPopCount]   = useState(0)
@@ -95,6 +95,10 @@ export default function DrillHUD({ streak, bestStreak, totalCorrect, totalWrong,
         {onboardingHint != null ? (
           <span style={{ fontSize: 20, fontWeight: 700, fontFamily: FONT, color: '#fff', letterSpacing: '0.05em', lineHeight: 1.3, textAlign: 'center', maxWidth: 'calc(100vw - 48px)', whiteSpace: 'pre-line' }}>
             {onboardingHint}
+          </span>
+        ) : errorMessage != null ? (
+          <span style={{ fontSize: 20, fontWeight: 700, fontFamily: FONT, color: '#f87171', letterSpacing: '0.05em', lineHeight: 1.3 }}>
+            {errorMessage}
           </span>
         ) : streakLost ? (
           <span style={{ color: '#f87171', fontSize: 16, fontWeight: 700, fontFamily: FONT, opacity: streakLost === 'fading' ? 0 : 1, transition: 'opacity 0.3s ease' }}>

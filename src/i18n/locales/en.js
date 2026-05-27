@@ -119,6 +119,10 @@ const en = {
     skip:            'Skip',
     conjugate_hint:  'Conjugate the verb below,\nthen flip to check.',
     mark_hint:       'Did you get it right?\nMark your answer.',
+    input_hint:      'Conjugate the word below,\nthen type your answer.',
+    input_placeholder_prefix: 'Type in',
+    input_placeholder_suffix: 'form',
+    next_card:       'Next card (Space/Enter)',
   },
 
   // ── General UI ────────────────────────────────────────────────────────────
@@ -148,6 +152,8 @@ const en = {
     best_streak_label: 'BEST STREAK',
     vocabulary_from: 'Use vocabulary from',
     explore_hint:    'Tap to explore conjugations ↑',
+    mode_speed:      'Speed',
+    mode_input:      'Input',
   },
 
   // ── Settings drawer ───────────────────────────────────────────────────────

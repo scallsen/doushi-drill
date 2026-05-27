@@ -22,6 +22,9 @@ import VolumeOnIcon from '../icons/volume-on.svg?react'
 import VolumeOffIcon from '../icons/volume-off.svg?react'
 import logoMain from '../icons/logo-main.png'
 import Wordmark from '../icons/wordmark.svg?react'
+import ModeToggle from '../components/ModeToggle.jsx'
+import SpeedModeControls from '../components/SpeedModeControls.jsx'
+import InputModeControls from '../components/InputModeControls.jsx'
 
 const PANEL_W = 420
 const CHEVRON_W = 28
@@ -96,12 +99,13 @@ function findSeekCard(newPool, currentCard, axis, value) {
 
 // ── Sub-views ────────────────────────────────────────────────────────────────
 
-function ActiveDrill({ drill, ttsEnabled, sfxEnabled, ttsVoice, showStreak, showFurigana, pixelFont, showVisualEffects, showTranslation, onPulse, onFirstVerdict }) {
+function ActiveDrill({ drill, ttsEnabled, sfxEnabled, ttsVoice, showStreak, showFurigana, pixelFont, showVisualEffects, showTranslation, onPulse, onFirstVerdict, inputMode }) {
   const { t } = useTranslation()
   const [flippedCardId, setFlippedCardId] = useState(null)
   const [transitioning, setTransitioning] = useState(false)
   const [exitDir, setExitDir] = useState(null)
   const [undoEntering, setUndoEntering] = useState(false)
+  const [inputIncorrect, setInputIncorrect] = useState(false)
   const { currentCard, streak, bestStreak, totalCorrect, totalWrong, remaining, canUndo, onUndo } = drill
   const isFlipped = flippedCardId === currentCard.id
   const tts = useTTS(ttsVoice)
@@ -134,11 +138,14 @@ function ActiveDrill({ drill, ttsEnabled, sfxEnabled, ttsVoice, showStreak, show
   }
 
   useEffect(() => {
-    runTypewriter(t('card.conjugate_hint'), 55)
+    // TODO: skip hint restart if hintPhase is already 'done' (user has given at least one verdict)
+    setHintPhase('pre-flip')
+    runTypewriter(inputMode === 'input' ? t('card.input_hint') : t('card.conjugate_hint'), 55)
     return () => clearInterval(typewriterTimer.current)
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [inputMode]) // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
+    if (inputMode === 'input') return
     if (hintPhase !== 'pre-flip' || !isFlipped) return
     setHintPhase('post-flip')
     runTypewriter(t('card.mark_hint'), 55)
@@ -191,9 +198,16 @@ function ActiveDrill({ drill, ttsEnabled, sfxEnabled, ttsVoice, showStreak, show
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isFlipped, currentCard.id, ttsEnabled])
 
+  useEffect(() => { setInputIncorrect(false) }, [currentCard.id])
+
   function handleFlip(next) {
     if (sfxEnabled) sfx.play('flip_card')
     setFlippedCardId(next ? currentCard.id : null)
+  }
+
+  function handleFlipToReveal() {
+    handleFlip(true)
+    setInputIncorrect(true)
   }
 
   function handleUndo() {
@@ -218,6 +232,7 @@ function ActiveDrill({ drill, ttsEnabled, sfxEnabled, ttsVoice, showStreak, show
   useEffect(() => {
     function onKey(e) {
       if (transitioningRef.current) return
+      if (inputMode === 'input') return
       const t = e.target
       const focusedInteractive = t.tagName === 'BUTTON' || t.tagName === 'INPUT' || t.tagName === 'SELECT' || t.tagName === 'TEXTAREA' || t.getAttribute?.('role') === 'checkbox'
       if (focusedInteractive) return
@@ -235,7 +250,7 @@ function ActiveDrill({ drill, ttsEnabled, sfxEnabled, ttsVoice, showStreak, show
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
-  }, [currentCard.id, drill])
+  }, [currentCard.id, drill, inputMode])
 
   const bgComponent   = currentCard.register === 'plain' ? PlainBg : null
   const registerLabel = currentCard.register ? (VARIANTS[currentCard.register] ? t(VARIANTS[currentCard.register].labelKey) : null) : null
@@ -255,11 +270,12 @@ function ActiveDrill({ drill, ttsEnabled, sfxEnabled, ttsVoice, showStreak, show
       bestStreak={localBestStreak}
       totalCorrect={totalCorrect}
       totalWrong={totalWrong}
-      canUndo={canUndo}
+      canUndo={inputMode !== 'input' && canUndo}
       onUndo={handleUndo}
       showStreak={showStreak}
       showVisualEffects={showVisualEffects}
       onboardingHint={hintPhase !== 'done' ? displayedHint : null}
+      errorMessage={inputMode === 'input' && inputIncorrect ? t('card.incorrect') : null}
     >
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 15 }}>
         <div key={currentCard.id} className={cardClass}>
@@ -275,6 +291,7 @@ function ActiveDrill({ drill, ttsEnabled, sfxEnabled, ttsVoice, showStreak, show
             bgComponent={bgComponent}
             registerLabel={registerLabel}
             flipped={isFlipped}
+            showAnts={inputMode !== 'input'}
             onFlip={handleFlip}
             animate={showVisualEffects}
             translation={currentCard.word.english ?? null}
@@ -283,52 +300,21 @@ function ActiveDrill({ drill, ttsEnabled, sfxEnabled, ttsVoice, showStreak, show
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10 }}>
-          <div style={{ height: 52, width: 'min(380px, calc(100vw - 32px))', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            {isFlipped ? (
-              <div style={{ display: 'flex', width: '100%', gap: 12 }}>
-                <button
-                  onClick={() => handleVerdictRef.current(false)}
-                  disabled={transitioning}
-                  className="verdict-btn"
-                  style={{
-                    flex: 1,
-                    padding: '10px 0',
-                    fontSize: 14,
-                    fontFamily: 'inherit',
-                    background: 'rgba(192, 57, 43, 0.85)',
-                    color: '#fff',
-                    border: 'none',
-                    borderRadius: 8,
-                    cursor: 'pointer',
-                    letterSpacing: '0.05em',
-                  }}
-                >
-                  {t('card.incorrect')} [Z]
-                </button>
-                <button
-                  onClick={() => handleVerdictRef.current(true)}
-                  disabled={transitioning}
-                  className="verdict-btn"
-                  style={{
-                    flex: 1,
-                    padding: '10px 0',
-                    fontSize: 14,
-                    fontFamily: 'inherit',
-                    background: 'rgba(39, 174, 96, 0.85)',
-                    color: '#fff',
-                    border: 'none',
-                    borderRadius: 8,
-                    cursor: 'pointer',
-                    letterSpacing: '0.05em',
-                  }}
-                >
-                  {t('card.correct')} [X]
-                </button>
-              </div>
-            ) : (
-              <div style={{ color: 'rgba(255,255,255,0.5)', fontSize: 13 }}>{navigator.maxTouchPoints > 0 ? t('card.tap_to_flip') : t('card.click_to_flip')}</div>
-            )}
-          </div>
+          {inputMode === 'input' ? (
+            <InputModeControls
+              card={currentCard}
+              isFlipped={isFlipped}
+              onVerdict={v => handleVerdictRef.current(v)}
+              onFlipToReveal={handleFlipToReveal}
+              transitioning={transitioning}
+            />
+          ) : (
+            <SpeedModeControls
+              isFlipped={isFlipped}
+              transitioning={transitioning}
+              onVerdict={v => handleVerdictRef.current(v)}
+            />
+          )}
         </div>
       </div>
     </DrillHUD>
@@ -430,6 +416,7 @@ export default function DrillPage() {
     return localStorage.getItem('show-translation') ?? 'both'
   })
   const effectiveShowTranslation = locale === 'ja' ? 'off' : showTranslation
+  const [inputMode,          setInputMode]          = useState(() => localStorage.getItem('input-mode') ?? 'speed')
   const [pulseColor,         setPulseColor]         = useState(null)
   const [audioHovered,       setAudioHovered]       = useState(false)
   const [optionsHovered,     setOptionsHovered]     = useState(false)
@@ -448,6 +435,7 @@ export default function DrillPage() {
   useEffect(() => { localStorage.setItem('pixel-font', pixelFont) }, [pixelFont])
   useEffect(() => { localStorage.setItem('show-translation', showTranslation) }, [showTranslation])
   useEffect(() => { localStorage.setItem('selected-jlpt', JSON.stringify(selectedJlpt)) }, [selectedJlpt])
+  useEffect(() => { localStorage.setItem('input-mode', inputMode) }, [inputMode])
 
   function seek(newWordTypes, newForms, newRegs, newTenses, newPols, axis, value, newJlpt) {
     const newPool = buildPool({
@@ -801,6 +789,7 @@ export default function DrillPage() {
             <Wordmark height={17} />
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <ModeToggle value={inputMode} onChange={setInputMode} />
             <button
               onClick={() => setAudioEnabled(v => !v)}
               onMouseEnter={() => setAudioHovered(true)}
@@ -880,7 +869,7 @@ export default function DrillPage() {
           ) : drill.done ? (
             <DoneScreen totalCorrect={drill.totalCorrect} totalWrong={drill.totalWrong} onRestart={drill.restart} />
           ) : (
-            <ActiveDrill drill={drill} ttsEnabled={audioEnabled && ttsEnabled} sfxEnabled={audioEnabled && sfxEnabled} ttsVoice={ttsVoice} showStreak={showStreak} showFurigana={showFurigana} pixelFont={pixelFont} showVisualEffects={showVisualEffects} showTranslation={effectiveShowTranslation} onPulse={setPulseColor} onFirstVerdict={handleFirstVerdict} />
+            <ActiveDrill drill={drill} ttsEnabled={audioEnabled && ttsEnabled} sfxEnabled={audioEnabled && sfxEnabled} ttsVoice={ttsVoice} showStreak={showStreak} showFurigana={showFurigana} pixelFont={pixelFont} showVisualEffects={showVisualEffects} showTranslation={effectiveShowTranslation} onPulse={setPulseColor} onFirstVerdict={handleFirstVerdict} inputMode={inputMode} />
           )}
         </div>
 
