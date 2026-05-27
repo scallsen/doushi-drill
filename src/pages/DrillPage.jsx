@@ -726,40 +726,40 @@ export default function DrillPage() {
               />
             </>
           )}
-          <div style={{ ...hairline, margin: 0 }} />
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10, paddingLeft: 6 }}>
-            <span style={{ color: 'rgba(255,255,255,0.65)', fontSize: 13, fontFamily: 'inherit', flex: 1 }}>
-              {t('ui.language')}
-            </span>
-            <div style={{ position: 'relative', display: 'inline-flex', alignItems: 'center' }}>
-              <select
-                value={locale}
-                onChange={e => setLocale(e.target.value)}
-                style={{
-                  appearance: 'none',
-                  WebkitAppearance: 'none',
-                  background: 'rgba(255,255,255,0.07)',
-                  border: '1px solid rgba(255,255,255,0.18)',
-                  borderRadius: 6,
-                  color: 'rgba(255,255,255,0.65)',
-                  fontSize: 13,
-                  fontFamily: 'inherit',
-                  padding: '5px 28px 5px 10px',
-                  cursor: 'pointer',
-                  minWidth: 90,
-                  lineHeight: '1.4',
-                }}
-              >
-                {availableLocales.map(l => (
-                  <option key={l.code} value={l.code} style={{ background: '#2E2E2E', color: '#fff' }}>
-                    {l.name}
-                  </option>
-                ))}
-              </select>
-              <svg style={{ position: 'absolute', right: 8, pointerEvents: 'none' }} width="10" height="6" viewBox="0 0 10 6" fill="none">
-                <path d="M1 1L5 5L9 1" stroke="rgba(255,255,255,0.5)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </div>
+        </div>
+        <div style={{ ...hairline, margin: '12px 0' }} />
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10, paddingLeft: 6 }}>
+          <span style={{ color: 'rgba(255,255,255,0.65)', fontSize: 13, fontFamily: 'inherit', flex: 1 }}>
+            {t('ui.language')}
+          </span>
+          <div style={{ position: 'relative', display: 'inline-flex', alignItems: 'center' }}>
+            <select
+              value={locale}
+              onChange={e => setLocale(e.target.value)}
+              style={{
+                appearance: 'none',
+                WebkitAppearance: 'none',
+                background: 'rgba(255,255,255,0.07)',
+                border: '1px solid rgba(255,255,255,0.18)',
+                borderRadius: 6,
+                color: 'rgba(255,255,255,0.65)',
+                fontSize: 13,
+                fontFamily: 'inherit',
+                padding: '5px 28px 5px 10px',
+                cursor: 'pointer',
+                minWidth: 90,
+                lineHeight: '1.4',
+              }}
+            >
+              {availableLocales.map(l => (
+                <option key={l.code} value={l.code} style={{ background: '#2E2E2E', color: '#fff' }}>
+                  {l.name}
+                </option>
+              ))}
+            </select>
+            <svg style={{ position: 'absolute', right: 8, pointerEvents: 'none' }} width="10" height="6" viewBox="0 0 10 6" fill="none">
+              <path d="M1 1L5 5L9 1" stroke="rgba(255,255,255,0.5)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
           </div>
         </div>
 
