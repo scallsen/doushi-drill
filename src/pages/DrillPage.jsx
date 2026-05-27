@@ -470,7 +470,8 @@ export default function DrillPage() {
   const [optionsHovered,     setOptionsHovered]     = useState(false)
   const [chevronHovered,     setChevronHovered]     = useState(false)
   const [showMobileMenuHint, setShowMobileMenuHint] = useState(false)
-  const isMobile = useIsMobile()
+  const isMobile  = useIsMobile()
+  const isNarrow  = useIsMobile(412)
   const jaVoices = useJaVoices()
 
   useEffect(() => { localStorage.setItem('audio-enabled', audioEnabled) }, [audioEnabled])
@@ -843,18 +844,18 @@ export default function DrillPage() {
         />
 
         {/* Header */}
-        <div ref={headerRef} style={{
-          position: 'absolute', top: 0, left: 0, right: 0,
-          display: 'flex', alignItems: 'flex-start', flexWrap: 'wrap',
-          padding: '20px 24px', gap: '8px 0', zIndex: 10,
-        }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-            <img src={logoMain} alt="" width={36} height={32} style={{ display: 'block' }} />
-            <Wordmark height={17} />
-          </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginLeft: 'auto' }}>
-            <ModeToggle value={inputMode} onChange={setInputMode} />
-            <button
+        <div ref={headerRef} style={{ position: 'absolute', top: 0, left: 0, right: 0, zIndex: 10 }}>
+          <div style={{
+            display: 'flex', alignItems: 'flex-start', flexWrap: 'wrap',
+            padding: '20px 24px', gap: '8px 0',
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+              <img src={logoMain} alt="" width={36} height={32} style={{ display: 'block' }} />
+              <Wordmark height={17} />
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginLeft: 'auto' }}>
+              {!isNarrow && <ModeToggle value={inputMode} onChange={setInputMode} />}
+              <button
               onClick={() => setAudioEnabled(v => !v)}
               onMouseEnter={() => setAudioHovered(true)}
               onMouseLeave={() => setAudioHovered(false)}
@@ -902,7 +903,9 @@ export default function DrillPage() {
             >
               {showOptions ? t('ui.hide_options') : t('ui.show_options')}
             </button>
+            </div>
           </div>
+          {isNarrow && <ModeToggle value={inputMode} onChange={setInputMode} fullWidth />}
         </div>
 
         {/* Mobile menu hint */}
