@@ -156,8 +156,9 @@ export default function DrillHUD({ streak, bestStreak, totalCorrect, totalWrong,
         </button>
       </div>
 
-      <div style={{ display: 'flex', gap: 20, color: 'rgba(255,255,255,0.5)', fontSize: 13, fontFamily: FONT, alignItems: 'center', visibility: showStreak && (totalCorrect > 0 || totalWrong > 0) ? 'visible' : 'hidden' }}>
+      <div style={{ display: 'flex', gap: 8, color: 'rgba(255,255,255,0.5)', fontSize: 13, fontFamily: FONT, alignItems: 'center', visibility: showStreak && (totalCorrect > 0 || totalWrong > 0) ? 'visible' : 'hidden' }}>
         <span>{totalCorrect} {t('summary.correct')}</span>
+        <span style={{ color: 'rgba(255,255,255,0.55)' }}>·</span>
         <span>{totalWrong} {t('summary.incorrect')}</span>
       </div>
 

@@ -30,7 +30,7 @@ const en = {
   // ── Conjugation form names ────────────────────────────────────────────────
   // These appear on form selector chips, card badges, and answer labels.
   forms: {
-    default:          'Dictionary form',
+    default:          'Basic forms',
     te:               'Te-form',
     potential:        'Potential',
     passive:          'Passive',

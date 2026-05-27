@@ -894,7 +894,7 @@ export default function DrillPage() {
             href="mailto:hello@scallsen.ca?subject=Katsuyou%20Drill%20-%20Issue%20Report"
             style={{
               color: 'rgba(255,255,255,0.55)',
-              fontSize: 12,
+              fontSize: 13,
               textDecoration: 'none',
               border: '1px solid rgba(255,255,255,0.28)',
               borderRadius: 6,
