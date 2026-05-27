@@ -29,9 +29,14 @@ function WaveText({ text, color }) {
 
 export default function DrillHUD({ streak, bestStreak, totalCorrect, totalWrong, canUndo, onUndo, showStreak, showVisualEffects = true, onboardingHint, errorMessage, actionSlot, children }) {
   const { t } = useTranslation()
-  const [streakLost, setStreakLost] = useState(null)
-  const [popCount,   setPopCount]   = useState(0)
+  const [streakLost,  setStreakLost]  = useState(null)
+  const [popCount,    setPopCount]    = useState(0)
+  const [errorCount,  setErrorCount]  = useState(0)
   const prevStreakRef = useRef(streak)
+
+  useEffect(() => {
+    if (errorMessage != null) setErrorCount(c => c + 1)
+  }, [errorMessage])
 
   useEffect(() => {
     if (!document.getElementById(KEYFRAMES_ID)) {
@@ -41,6 +46,7 @@ export default function DrillHUD({ streak, bestStreak, totalCorrect, totalWrong,
         '@keyframes streak-pop     { 0% { transform: scale(1) } 40% { transform: scale(1.18) } 100% { transform: scale(1) } }',
         '@keyframes streak-wiggle  { 0%, 100% { transform: rotate(-0.8deg) } 50% { transform: rotate(0.8deg) } }',
         '@keyframes streak-wave    { 0%, 100% { transform: translateY(0) } 50% { transform: translateY(-5px) } }',
+        '@keyframes error-in       { 0% { transform: scale(0.7); opacity: 0 } 65% { transform: scale(1.08); opacity: 1 } 100% { transform: scale(1) } }',
       ].join(' ')
       document.head.appendChild(style)
     }
@@ -97,7 +103,7 @@ export default function DrillHUD({ streak, bestStreak, totalCorrect, totalWrong,
             {onboardingHint}
           </span>
         ) : errorMessage != null ? (
-          <span style={{ fontSize: 20, fontWeight: 700, fontFamily: FONT, color: '#f87171', letterSpacing: '0.05em', lineHeight: 1.3 }}>
+          <span key={errorCount} style={{ display: 'inline-block', fontSize: 20, fontWeight: 700, fontFamily: FONT, color: '#f87171', letterSpacing: '0.05em', lineHeight: 1.3, animation: 'error-in 0.22s ease-out' }}>
             {errorMessage}
           </span>
         ) : streakLost ? (
