@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useTranslation } from '../i18n/index.jsx'
 
 const labelStyle = {
   width: 60,
@@ -39,6 +40,7 @@ function Chip({ active, onClick, children }) {
 }
 
 export default function ChipRow({ label, options, selected, axis, onChange }) {
+  const { t } = useTranslation()
   const allSelected = options.every(o => selected.includes(o.key))
 
   return (
@@ -46,7 +48,7 @@ export default function ChipRow({ label, options, selected, axis, onChange }) {
       <span style={labelStyle}>{label}</span>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 6, flex: 1 }}>
         <Chip active={allSelected} onClick={() => onChange(options.map(o => o.key), null, null)}>
-          All
+          {t('ui.all')}
         </Chip>
         {options.map(({ key, label: optLabel }) => (
           <Chip

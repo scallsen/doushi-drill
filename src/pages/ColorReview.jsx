@@ -4,6 +4,7 @@ import VARIANTS from '../components/ConjugationCard/variants.js'
 import PlainBg from '../components/ConjugationCard/backgrounds/PlainBg.jsx'
 import { FORMS } from '../data/forms.js'
 import { FONT } from '../data/theme.js'
+import { useTranslation } from '../i18n/index.jsx'
 
 const CARD_W = 380
 const CARD_H = 280
@@ -14,20 +15,22 @@ const GAP = 10
 const LABEL_COL_W = 72
 
 function StaticCard({ variantKey, bgComponent, bgComponentColor, flipped, negative, past, word, answer, registerLabel }) {
+  const { t } = useTranslation()
   const config = VARIANTS[variantKey]
   const FrontBg = bgComponent ?? config.BgComponent
   const frontBgColor = bgComponentColor ?? config.keyColor
   const answerLabel = FORMS[variantKey]?.axes?.includes('register') ? registerLabel : null
+  const label = t(config.labelKey)
 
   const shell = flipped
     ? (
       <CardShell bgColor={answer ? config.backColor : config.bgColor} border={config.border} BgComponent={FrontBg} color={config.backColor} bgTransparent>
-        {answer && <CardContent label={config.label} n={negative} past={past} word={answer} answerLabel={answerLabel} answerBg={config.backColor} />}
+        {answer && <CardContent label={label} n={negative} past={past} word={answer} answerLabel={answerLabel} answerBg={config.backColor} />}
       </CardShell>
     )
     : (
       <CardShell bgColor={config.bgColor} border={config.border} BgComponent={FrontBg} color={frontBgColor}>
-        <CardContent label={config.label} n={negative} past={past} word={word} answerLabel={answerLabel} answerBg={config.bgColor} />
+        <CardContent label={label} n={negative} past={past} word={word} answerLabel={answerLabel} answerBg={config.bgColor} />
       </CardShell>
     )
 
@@ -59,6 +62,7 @@ const ROW_LABEL_STYLE = {
 }
 
 export default function ColorReview() {
+  const { t } = useTranslation()
   const variantKeys = Object.keys(VARIANTS)
 
   return (
@@ -89,7 +93,7 @@ export default function ColorReview() {
             <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
               <span style={{ width: 8, height: 8, borderRadius: 2, background: formColor, display: 'inline-block', flexShrink: 0 }} />
               <span style={{ color: 'rgba(255,255,255,0.6)', fontSize: 11, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
-                {VARIANTS[key].label}
+                {t(VARIANTS[key].labelKey)}
               </span>
             </div>
 

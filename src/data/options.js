@@ -1,12 +1,12 @@
 import { FORMS } from './forms.js'
 
 export const WORD_TYPES = [
-  { key: 'u-verb',    label: 'う Verbs',        line1: 'う',     line2: 'Verbs' },
-  { key: 'ru-verb',   label: 'る Verbs',        line1: 'る',     line2: 'Verbs' },
-  { key: 'irregular', label: 'Irregular Verbs', line1: 'Irreg.', line2: 'Verbs' },
-  { key: 'i-adj',     label: 'い Adjectives',   line1: 'い',     line2: 'Adj.' },
-  { key: 'na-adj',    label: 'な Adjectives',   line1: 'な',     line2: 'Adj.' },
-  { key: 'noun',      label: 'Nouns',           line1: 'Nouns',  line2: null },
+  { key: 'u-verb',    line1: 'う',  line2Key: 'wordTypes.verbs' },
+  { key: 'ru-verb',   line1: 'る',  line2Key: 'wordTypes.verbs' },
+  { key: 'irregular', line1Key: 'wordTypes.group3_short', line2Key: 'wordTypes.verbs' },
+  { key: 'i-adj',     line1: 'い',  line2Key: 'wordTypes.adj_short' },
+  { key: 'na-adj',    line1: 'な',  line2Key: 'wordTypes.adj_short' },
+  { key: 'noun',      line1Key: 'wordTypes.noun' },
 ]
 
 export const REGISTERS = [
@@ -32,18 +32,18 @@ export const GRAMMAR_FORMS = Object.entries(FORMS)
   .filter(([key]) => !REGISTER_KEYS.includes(key))
   .map(([key, form]) => ({
     key,
-    label:          form.label,
+    labelKey:       form.labelKey,
     keyColor:       form.color,
     subtext:        FORM_SUBTEXTS[key] ?? null,
     validWordTypes: form.validWordTypes,
   }))
 
 export const TENSES = [
-  { key: 'present', label: 'Present', subtext: '今' },
-  { key: 'past',    label: 'Past',    subtext: '先' },
+  { key: 'present', labelKey: 'tense.present', subtext: '今' },
+  { key: 'past',    labelKey: 'tense.past',    subtext: '先' },
 ]
 
 export const POLARITIES = [
-  { key: 'positive', label: 'Positive', subtext: '+' },
-  { key: 'negative', label: 'Negative', subtext: '–' },
+  { key: 'positive', labelKey: 'polarity.positive', subtext: '+' },
+  { key: 'negative', labelKey: 'polarity.negative', subtext: '–' },
 ]

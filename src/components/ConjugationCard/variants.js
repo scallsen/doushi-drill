@@ -9,7 +9,7 @@ const NEUTRAL_FORMS = new Set(['plain', 'polite'])
 
 const VARIANTS = Object.fromEntries(
   VARIANT_KEYS.map(key => [key, {
-    label:       FORMS[key].label,
+    labelKey:    FORMS[key].labelKey,
     keyColor:    FORMS[key].color,
     bgColor:     NEUTRAL_FORMS.has(key) ? FORMS[key].bgColor : '#FFFFFF',
     border:      `5px solid ${FORMS[key].color}`,

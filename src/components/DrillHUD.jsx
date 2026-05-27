@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { FONT } from '../data/theme.js'
+import { useTranslation } from '../i18n/index.jsx'
 
 const KEYFRAMES_ID     = 'streak-keyframes'
 const WIGGLE_THRESHOLD = 10
@@ -27,6 +28,7 @@ function WaveText({ text, color }) {
 }
 
 export default function DrillHUD({ streak, bestStreak, totalCorrect, totalWrong, canUndo, onUndo, showStreak, showVisualEffects = true, onboardingHint, children }) {
+  const { t } = useTranslation()
   const [streakLost, setStreakLost] = useState(null)
   const [popCount,   setPopCount]   = useState(0)
   const prevStreakRef = useRef(streak)
@@ -79,11 +81,11 @@ export default function DrillHUD({ streak, bestStreak, totalCorrect, totalWrong,
   )
 
   const atBest   = streak > 0 && streak === bestStreak
-  const subLabel = bestStreak === 0 ? null : atBest ? 'BEST STREAK' : `Best streak: ${bestStreak}`
+  const subLabel = bestStreak === 0 ? null : atBest ? t('ui.best_streak_label') : t('ui.best_streak', { count: bestStreak })
 
   const showWiggle  = showVisualEffects && streak >= WIGGLE_THRESHOLD
   const showWave    = showVisualEffects && streak >= WAVE_THRESHOLD
-  const streakText  = streak > 0 ? `Streak: ${streak}` : 'Streak: 0'
+  const streakText  = t('ui.streak', { count: streak })
   const streakColor = streak > 0 ? '#fff' : 'transparent'
 
   return (
@@ -96,7 +98,7 @@ export default function DrillHUD({ streak, bestStreak, totalCorrect, totalWrong,
           </span>
         ) : streakLost ? (
           <span style={{ color: '#f87171', fontSize: 16, fontWeight: 700, fontFamily: FONT, opacity: streakLost === 'fading' ? 0 : 1, transition: 'opacity 0.3s ease' }}>
-            Streak lost
+            {t('ui.streak_lost')}
           </span>
         ) : (
           <>
@@ -125,7 +127,7 @@ export default function DrillHUD({ streak, bestStreak, totalCorrect, totalWrong,
               </span>
             </span>
             <span style={{ color: subLabel ? 'rgba(255,255,255,0.5)' : 'transparent', fontSize: 13, fontFamily: FONT, userSelect: 'none', lineHeight: 1 }}>
-              {subLabel ?? 'Best streak: 0'}
+              {subLabel ?? t('ui.best_streak', { count: 0 })}
             </span>
           </>
         )}
@@ -150,13 +152,13 @@ export default function DrillHUD({ streak, bestStreak, totalCorrect, totalWrong,
             cursor: 'pointer',
           }}
         >
-          Undo
+          {t('ui.undo')}
         </button>
       </div>
 
       <div style={{ display: 'flex', gap: 20, color: 'rgba(255,255,255,0.5)', fontSize: 13, fontFamily: FONT, alignItems: 'center', visibility: showStreak && (totalCorrect > 0 || totalWrong > 0) ? 'visible' : 'hidden' }}>
-        <span>{totalCorrect} correct</span>
-        <span>{totalWrong} wrong</span>
+        <span>{totalCorrect} {t('summary.correct')}</span>
+        <span>{totalWrong} {t('summary.incorrect')}</span>
       </div>
 
     </div>

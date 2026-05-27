@@ -3,23 +3,26 @@ import CardShell from './CardShell.jsx'
 import CardContent from './CardContent.jsx'
 import FlipCard from '../../FlipCard.jsx'
 import { FORMS } from '../../data/forms.js'
+import { useTranslation } from '../../i18n/index.jsx'
 
 export default function ConjugationCard({ variant = 'plain', word = '', kana = null, showFurigana = false, pixelFont = true, answer = null, negative = false, past = false, bgComponent = null, registerLabel = null, flipped = false, onFlip = null, animate = true, translation = null, showTranslation = 'off' }) {
+  const { t } = useTranslation()
   const config = VARIANTS[variant] ?? VARIANTS.plain
   const FrontBg = bgComponent ?? config.BgComponent
   const answerLabel = FORMS[variant]?.axes?.includes('register') ? registerLabel : null
   const frontTranslation = showTranslation === 'both' ? translation : null
   const backTranslation  = showTranslation === 'both' || showTranslation === 'back' ? translation : null
+  const label = t(config.labelKey)
 
   const front = (
     <CardShell bgColor={config.bgColor} border={config.border} BgComponent={FrontBg}>
-      <CardContent label={config.label} n={negative} past={past} word={word} kana={kana} showFurigana={showFurigana} pixelFont={pixelFont} answerLabel={answerLabel} translation={frontTranslation} />
+      <CardContent label={label} n={negative} past={past} word={word} kana={kana} showFurigana={showFurigana} pixelFont={pixelFont} answerLabel={answerLabel} translation={frontTranslation} />
     </CardShell>
   )
 
   const back = (
     <CardShell bgColor={config.bgColor} border={config.border} BgComponent={FrontBg}>
-      {answer && <CardContent label={config.label} n={negative} past={past} word={answer} kana={kana} wordKanji={word} showFurigana={showFurigana} pixelFont={pixelFont} answerLabel={answerLabel} translation={backTranslation} />}
+      {answer && <CardContent label={label} n={negative} past={past} word={answer} kana={kana} wordKanji={word} showFurigana={showFurigana} pixelFont={pixelFont} answerLabel={answerLabel} translation={backTranslation} />}
     </CardShell>
   )
 
@@ -32,7 +35,7 @@ export default function ConjugationCard({ variant = 'plain', word = '', kana = n
 
   return (
     <div style={{ width: 'min(380px, calc(100vw - 32px))', aspectRatio: '380 / 280', containerType: 'size' }}>
-      <FlipCard front={front} back={back} width="100%" height="100%" flipped={flipped} onFlip={onFlip} animate={animate} overlay={ants} />
+      <FlipCard front={front} back={back} width="100%" height="100%" flipped={flipped} onFlip={onFlip} animate={animate} overlay={ants} focusHint={t('card.flip')} />
     </div>
   )
 }
