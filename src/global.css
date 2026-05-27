@@ -80,3 +80,8 @@ button, input, select, textarea {
   outline-offset: 3px;
   border-radius: 2px;
 }
+
+.verdict-btn:not(:disabled):hover {
+  background: rgba(255, 255, 255, 0.20) !important;
+  border-color: rgba(255, 255, 255, 0.35) !important;
+}

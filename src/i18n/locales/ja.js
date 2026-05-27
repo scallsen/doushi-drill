@@ -117,6 +117,12 @@ const ja = {
     skip:           'スキップ',
     conjugate_hint: '以下の動詞を活用させ、\nカードをめくって確認しよう',
     mark_hint:      '正解でしたか？\n答えをマークしてください',
+    input_hint:     '以下の言葉を活用させ、\n答えをタイプしてください',
+    input_placeholder: '答えを入力',
+    submit_answer:     '答えを送信 (Enter)',
+    next_card:         '次のカード (Space/Enter)',
+    focus_input:       '↵ 答えを入力',
+    next_card_hint:    '↵ 次のカード',
   },
 
   // ── 一般UI ────────────────────────────────────────────────────────────────
@@ -146,6 +152,8 @@ const ja = {
     best_streak_label:     'ベストストリーク',
     vocabulary_from:       '使用語彙:',
     explore_hint:          '活用を見るにはタップ ↑',
+    mode_speed:            'カードをめくる',
+    mode_input:            '答えを入力',
   },
 
   // ── 設定ドロワー ──────────────────────────────────────────────────────────

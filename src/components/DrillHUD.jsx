@@ -27,11 +27,16 @@ function WaveText({ text, color }) {
   ))
 }
 
-export default function DrillHUD({ streak, bestStreak, totalCorrect, totalWrong, canUndo, onUndo, showStreak, showVisualEffects = true, onboardingHint, children }) {
+export default function DrillHUD({ streak, bestStreak, totalCorrect, totalWrong, canUndo, onUndo, showStreak, showVisualEffects = true, onboardingHint, errorMessage, actionSlot, children }) {
   const { t } = useTranslation()
-  const [streakLost, setStreakLost] = useState(null)
-  const [popCount,   setPopCount]   = useState(0)
+  const [streakLost,  setStreakLost]  = useState(null)
+  const [popCount,    setPopCount]    = useState(0)
+  const [errorCount,  setErrorCount]  = useState(0)
   const prevStreakRef = useRef(streak)
+
+  useEffect(() => {
+    if (errorMessage != null) setErrorCount(c => c + 1)
+  }, [errorMessage])
 
   useEffect(() => {
     if (!document.getElementById(KEYFRAMES_ID)) {
@@ -41,6 +46,7 @@ export default function DrillHUD({ streak, bestStreak, totalCorrect, totalWrong,
         '@keyframes streak-pop     { 0% { transform: scale(1) } 40% { transform: scale(1.18) } 100% { transform: scale(1) } }',
         '@keyframes streak-wiggle  { 0%, 100% { transform: rotate(-0.8deg) } 50% { transform: rotate(0.8deg) } }',
         '@keyframes streak-wave    { 0%, 100% { transform: translateY(0) } 50% { transform: translateY(-5px) } }',
+        '@keyframes error-in       { 0% { transform: scale(0.7); opacity: 0 } 65% { transform: scale(1.08); opacity: 1 } 100% { transform: scale(1) } }',
       ].join(' ')
       document.head.appendChild(style)
     }
@@ -96,6 +102,10 @@ export default function DrillHUD({ streak, bestStreak, totalCorrect, totalWrong,
           <span style={{ fontSize: 20, fontWeight: 700, fontFamily: FONT, color: '#fff', letterSpacing: '0.05em', lineHeight: 1.3, textAlign: 'center', maxWidth: 'calc(100vw - 48px)', whiteSpace: 'pre-line' }}>
             {onboardingHint}
           </span>
+        ) : errorMessage != null ? (
+          <span key={errorCount} style={{ display: 'inline-block', fontSize: 20, fontWeight: 700, fontFamily: FONT, color: '#f87171', letterSpacing: '0.05em', lineHeight: 1.3, animation: 'error-in 0.22s ease-out' }}>
+            {errorMessage}
+          </span>
         ) : streakLost ? (
           <span style={{ color: '#f87171', fontSize: 16, fontWeight: 700, fontFamily: FONT, opacity: streakLost === 'fading' ? 0 : 1, transition: 'opacity 0.3s ease' }}>
             {t('ui.streak_lost')}
@@ -135,25 +145,28 @@ export default function DrillHUD({ streak, bestStreak, totalCorrect, totalWrong,
 
       <div>{children}</div>
 
-      <div style={{ width: 'min(380px, calc(100vw - 32px))', visibility: canUndo ? 'visible' : 'hidden', marginTop: -5 }}>
-        <button
-          onClick={onUndo}
-          className="undo-btn"
-          style={{
-            width: '100%',
-            padding: '10px 0',
-            background: 'none',
-            border: 'none',
-            borderRadius: 8,
-            color: 'rgba(255,255,255,0.55)',
-            fontSize: 14,
-            fontFamily: 'inherit',
-            letterSpacing: '0.05em',
-            cursor: 'pointer',
-          }}
-        >
-          {t('ui.undo')}
-        </button>
+      <div style={{ width: 'min(380px, calc(100vw - 32px))', marginTop: -5 }}>
+        {actionSlot != null ? actionSlot : (
+          <button
+            onClick={canUndo ? onUndo : undefined}
+            className="undo-btn"
+            style={{
+              width: '100%',
+              padding: '10px 0',
+              background: 'none',
+              border: 'none',
+              borderRadius: 8,
+              color: 'rgba(255,255,255,0.55)',
+              fontSize: 14,
+              fontFamily: 'inherit',
+              letterSpacing: '0.05em',
+              cursor: 'pointer',
+              visibility: canUndo ? 'visible' : 'hidden',
+            }}
+          >
+            {t('ui.undo')}
+          </button>
+        )}
       </div>
 
       <div style={{ display: 'flex', gap: 8, color: 'rgba(255,255,255,0.5)', fontSize: 13, fontFamily: FONT, alignItems: 'center', visibility: showStreak && (totalCorrect > 0 || totalWrong > 0) ? 'visible' : 'hidden' }}>
