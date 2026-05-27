@@ -10,6 +10,7 @@ export default function DrawerSectionHeader({ title, hasSelections, onClearAll, 
       {hasSelections && (
         <button
           onClick={onClearAll}
+          className="drawer-deselect"
           style={{ background: 'none', border: 'none', color: 'rgba(255,255,255,0.5)', fontSize, fontFamily: 'inherit', cursor: 'pointer', padding: 0 }}
         >
           {t('ui.deselect_all')}

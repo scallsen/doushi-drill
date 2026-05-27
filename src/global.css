@@ -44,6 +44,10 @@ button, input, select, textarea {
   border-radius: 4px;
 }
 
+.drawer-deselect:hover {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
 .drawer-radio-option {
   padding: 3px 6px;
   margin: -3px -6px;
