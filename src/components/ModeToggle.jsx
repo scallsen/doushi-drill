@@ -4,8 +4,8 @@ import { useTranslation } from '../i18n/index.jsx'
 export default function ModeToggle({ value, onChange }) {
   const { t } = useTranslation()
   const options = [
-    { key: 'speed', label: t('ui.mode_speed') },
     { key: 'input', label: t('ui.mode_input') },
+    { key: 'speed', label: t('ui.mode_speed') },
   ]
   return (
     <div style={{

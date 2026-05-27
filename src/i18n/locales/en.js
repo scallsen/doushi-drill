@@ -152,8 +152,8 @@ const en = {
     best_streak_label: 'BEST STREAK',
     vocabulary_from: 'Use vocabulary from',
     explore_hint:    'Tap to explore conjugations ↑',
-    mode_speed:      'Speed',
-    mode_input:      'Input',
+    mode_speed:      'Flip card',
+    mode_input:      'Type answer',
   },
 
   // ── Settings drawer ───────────────────────────────────────────────────────

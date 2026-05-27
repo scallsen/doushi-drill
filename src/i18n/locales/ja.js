@@ -150,8 +150,8 @@ const ja = {
     best_streak_label:     'ベストストリーク',
     vocabulary_from:       '使用語彙:',
     explore_hint:          '活用を見るにはタップ ↑',
-    mode_speed:            'スピード',
-    mode_input:            '入力',
+    mode_speed:            'カードをめくる',
+    mode_input:            '答えを入力',
   },
 
   // ── 設定ドロワー ──────────────────────────────────────────────────────────
