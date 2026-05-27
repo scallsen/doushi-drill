@@ -5,7 +5,7 @@ import FlipCard from '../../FlipCard.jsx'
 import { FORMS } from '../../data/forms.js'
 import { useTranslation } from '../../i18n/index.jsx'
 
-export default function ConjugationCard({ variant = 'plain', word = '', kana = null, showFurigana = false, pixelFont = true, answer = null, negative = false, past = false, bgComponent = null, registerLabel = null, flipped = false, onFlip = null, animate = true, showAnts = true, translation = null, showTranslation = 'off' }) {
+export default function ConjugationCard({ variant = 'plain', word = '', kana = null, showFurigana = false, pixelFont = true, answer = null, negative = false, past = false, bgComponent = null, registerLabel = null, flipped = false, onFlip = null, animate = true, showAnts = true, translation = null, showTranslation = 'off', focusHint = null, onFocusActivate = null }) {
   const { t } = useTranslation()
   const config = VARIANTS[variant] ?? VARIANTS.plain
   const FrontBg = bgComponent ?? config.BgComponent
@@ -35,7 +35,7 @@ export default function ConjugationCard({ variant = 'plain', word = '', kana = n
 
   return (
     <div style={{ width: 'min(380px, calc(100vw - 32px))', aspectRatio: '380 / 280', containerType: 'size' }}>
-      <FlipCard front={front} back={back} width="100%" height="100%" flipped={flipped} onFlip={onFlip} animate={animate} overlay={ants} focusHint={t('card.flip')} />
+      <FlipCard front={front} back={back} width="100%" height="100%" flipped={flipped} onFlip={onFlip} animate={animate} overlay={ants} focusHint={focusHint ?? t('card.flip')} onFocusActivate={onFocusActivate} />
     </div>
   )
 }

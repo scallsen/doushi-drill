@@ -121,6 +121,7 @@ function ActiveDrill({ drill, ttsEnabled, sfxEnabled, ttsVoice, showStreak, show
 
   const isFlippedRef = useRef(isFlipped)
   const transitioningRef = useRef(false)
+  const inputElRef = useRef(null)
   useEffect(() => { isFlippedRef.current = isFlipped }, [isFlipped])
   useEffect(() => { transitioningRef.current = transitioning }, [transitioning])
   const sfx = useSFX()
@@ -333,6 +334,8 @@ function ActiveDrill({ drill, ttsEnabled, sfxEnabled, ttsVoice, showStreak, show
             showAnts={inputMode !== 'input'}
             onFlip={inputMode === 'input' ? null : handleFlip}
             animate={showVisualEffects}
+            focusHint={inputMode === 'input' ? (isFlipped ? t('card.next_card_hint') : t('card.focus_input')) : null}
+            onFocusActivate={inputMode === 'input' && !isFlipped ? () => inputElRef.current?.focus() : null}
             translation={currentCard.word.english ?? null}
             showTranslation={showTranslation}
           />
@@ -341,6 +344,7 @@ function ActiveDrill({ drill, ttsEnabled, sfxEnabled, ttsVoice, showStreak, show
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10 }}>
           {inputMode === 'input' ? (
             <InputModeControls
+              ref={inputElRef}
               value={inputValue}
               onValueChange={setInputValue}
               onSubmit={handleInputSubmit}

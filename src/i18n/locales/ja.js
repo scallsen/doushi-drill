@@ -120,7 +120,9 @@ const ja = {
     input_hint:     '以下の言葉を活用させ、\n答えをタイプしてください',
     input_placeholder: '答えを入力',
     submit_answer:     '答えを送信 (Enter)',
-    next_card:      '次のカード (Space/Enter)',
+    next_card:         '次のカード (Space/Enter)',
+    focus_input:       '↵ 答えを入力',
+    next_card_hint:    '↵ 次のカード',
   },
 
   // ── 一般UI ────────────────────────────────────────────────────────────────

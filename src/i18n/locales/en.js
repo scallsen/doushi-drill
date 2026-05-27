@@ -122,7 +122,9 @@ const en = {
     input_hint:      'Conjugate the word below,\nthen type your answer.',
     input_placeholder: 'Type your answer',
     submit_answer:     'Submit answer (Enter)',
-    next_card:       'Next card (Space/Enter)',
+    next_card:         'Next card (Space/Enter)',
+    focus_input:       '↵ Type answer',
+    next_card_hint:    '↵ Next card',
   },
 
   // ── General UI ────────────────────────────────────────────────────────────

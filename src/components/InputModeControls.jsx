@@ -1,8 +1,8 @@
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, forwardRef } from 'react'
 import { useTranslation } from '../i18n/index.jsx'
 import * as wanakana from 'wanakana'
 
-export default function InputModeControls({ value, onValueChange, onSubmit, isFlipped, onVerdict, transitioning }) {
+const InputModeControls = forwardRef(function InputModeControls({ value, onValueChange, onSubmit, isFlipped, onVerdict, transitioning }, ref) {
   const { t } = useTranslation()
   const inputRef = useRef(null)
   const onVerdictRef = useRef(onVerdict)
@@ -49,7 +49,7 @@ export default function InputModeControls({ value, onValueChange, onSubmit, isFl
   return (
     <div style={{ height: 52, width: 'min(380px, calc(100vw - 32px))', display: 'flex', alignItems: 'center' }}>
       <input
-        ref={inputRef}
+        ref={node => { inputRef.current = node; if (ref) ref.current = node; }}
         type="text"
         value={value}
         onChange={isFlipped ? undefined : e => onValueChange(wanakana.toHiragana(e.target.value, { IMEMode: true }))}
@@ -65,4 +65,6 @@ export default function InputModeControls({ value, onValueChange, onSubmit, isFl
       />
     </div>
   )
-}
+})
+
+export default InputModeControls

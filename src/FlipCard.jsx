@@ -22,6 +22,7 @@ export default function FlipCard({
   animate = true,
   overlay = null,
   focusHint = '↵ Flip card',
+  onFocusActivate = null,
 }) {
   function handleClick() {
     onFlip?.(!flipped);
@@ -30,7 +31,8 @@ export default function FlipCard({
   function handleKeyDown(e) {
     if (e.code === 'Space' || e.code === 'Enter') {
       e.preventDefault();
-      handleClick();
+      if (onFocusActivate) onFocusActivate();
+      else handleClick();
     }
   }
 
