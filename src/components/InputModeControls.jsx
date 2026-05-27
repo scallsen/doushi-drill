@@ -47,7 +47,7 @@ const InputModeControls = forwardRef(function InputModeControls({ value, onValue
   }
 
   return (
-    <div style={{ height: 52, width: 'min(380px, calc(100vw - 32px))', display: 'flex', alignItems: 'center' }}>
+    <div style={{ position: 'relative', height: 52, width: 'min(380px, calc(100vw - 32px))', display: 'flex', alignItems: 'center' }}>
       <input
         ref={node => { inputRef.current = node; if (ref) ref.current = node; }}
         type="text"
@@ -61,8 +61,13 @@ const InputModeControls = forwardRef(function InputModeControls({ value, onValue
         autoCorrect="off"
         autoCapitalize="none"
         spellCheck={false}
-        style={{ ...inputStyle, ...(isFlipped ? { background: 'rgba(248,113,113,0.12)', border: '1px solid rgba(248,113,113,0.5)', color: 'rgba(248,113,113,0.9)' } : {}) }}
+        style={{ ...inputStyle, ...(isFlipped ? { background: 'rgba(248,113,113,0.12)', border: '1px solid transparent', color: 'rgba(248,113,113,0.9)' } : {}) }}
       />
+      {isFlipped && (
+        <svg style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', pointerEvents: 'none', overflow: 'visible' }} aria-hidden="true">
+          <rect x="0" y="0" width="100%" height="100%" rx="8" ry="8" fill="none" stroke="rgba(248,113,113,0.6)" strokeWidth="2" />
+        </svg>
+      )}
     </div>
   )
 })
