@@ -198,7 +198,7 @@ function ActiveDrill({ drill, ttsEnabled, sfxEnabled, ttsVoice, showStreak, show
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isFlipped, currentCard.id, ttsEnabled])
 
-  useEffect(() => { setInputIncorrect(false) }, [currentCard.id])
+  useEffect(() => { setInputIncorrect(false); setFlippedCardId(null) }, [currentCard.id])
 
   function handleFlip(next) {
     if (sfxEnabled) sfx.play('flip_card')
@@ -292,7 +292,7 @@ function ActiveDrill({ drill, ttsEnabled, sfxEnabled, ttsVoice, showStreak, show
             registerLabel={registerLabel}
             flipped={isFlipped}
             showAnts={inputMode !== 'input'}
-            onFlip={handleFlip}
+            onFlip={inputMode === 'input' ? null : handleFlip}
             animate={showVisualEffects}
             translation={currentCard.word.english ?? null}
             showTranslation={showTranslation}
