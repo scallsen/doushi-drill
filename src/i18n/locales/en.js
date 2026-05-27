@@ -30,7 +30,7 @@ const en = {
   // ── Conjugation form names ────────────────────────────────────────────────
   // These appear on form selector chips, card badges, and answer labels.
   forms: {
-    default:          'Dictionary form',
+    default:          'Basic forms',
     te:               'Te-form',
     potential:        'Potential',
     passive:          'Passive',
@@ -82,7 +82,7 @@ const en = {
     verb:      'Verb',
     i_adj:     'い-adjective',
     na_adj:    'な-adjective',
-    noun:      'Noun',
+    noun:      'Nouns',
     // Verb groups
     group1:    'Group 1 (う-verbs)',
     group2:    'Group 2 (る-verbs)',
@@ -90,10 +90,10 @@ const en = {
     // Short labels for compact UI
     group1_short: 'G1',
     group2_short: 'G2',
-    group3_short: 'Irr',
+    group3_short: 'Irregular',
     // Word-type button line labels
     verbs:        'Verbs',
-    adj_short:    'Adj.',
+    adj_short:    'Adjectives',
   },
 
   // ── JLPT levels ───────────────────────────────────────────────────────────

@@ -28,7 +28,7 @@ const ja = {
   // ── 活用形の名前 ─────────────────────────────────────────────────────────
   // Source: Genki appendix + school grammar 〜形 convention
   forms: {
-    default:           '辞書形',          // じしょけい — Dictionary form (the citation form)
+    default:           '基本形',          // きほんけい
     te:                'て形',            // てけい
     potential:         '可能形',          // かのうけい
     passive:           '受身形',          // うけみけい (also 受動形 judōkei; うけみけい is more common in JFL)
