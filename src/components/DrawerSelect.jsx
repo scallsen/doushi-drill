@@ -4,10 +4,10 @@ const srOnly = {
   whiteSpace: 'nowrap', border: 0,
 }
 
-export default function DrawerSelect({ value, onChange, options, indent = 0, label, subtext }) {
+export default function DrawerSelect({ value, onChange, options, label, subtext }) {
   const id = label ? `drawer-select-${label.toLowerCase().replace(/\s+/g, '-')}` : undefined
   return (
-    <div style={{ paddingLeft: indent * 14 + 22, display: 'flex', flexDirection: 'column', gap: 4 }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 4, marginTop: 6 }}>
       {label && (
         <label htmlFor={id} style={srOnly}>{label}</label>
       )}

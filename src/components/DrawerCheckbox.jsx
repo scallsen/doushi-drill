@@ -1,4 +1,4 @@
-export default function DrawerCheckbox({ checked, onChange, label, subtext, indent = 0, disabled = false }) {
+export default function DrawerCheckbox({ checked, onChange, label, subtext, indent = 0, disabled = false, children }) {
   return (
     <div
       role="checkbox"
@@ -12,7 +12,7 @@ export default function DrawerCheckbox({ checked, onChange, label, subtext, inde
         display: 'flex',
         alignItems: 'flex-start',
         gap: 8,
-        paddingLeft: indent * 14 + 6,
+        paddingLeft: indent * 22 + 6,
         cursor: disabled ? 'not-allowed' : 'pointer',
         userSelect: 'none',
         opacity: disabled ? 0.4 : 1,
@@ -46,6 +46,7 @@ export default function DrawerCheckbox({ checked, onChange, label, subtext, inde
             {subtext}
           </span>
         )}
+        {children}
       </div>
     </div>
   )
