@@ -199,6 +199,15 @@
   to { stroke-dashoffset: -12; }
 }
 
+@keyframes marchIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.mc-overlay {
+  animation: marchIn 150ms ease-out 150ms both;
+}
+
 .mc-ants {
   animation: march 400ms linear infinite;
 }
