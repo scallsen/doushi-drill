@@ -134,6 +134,16 @@ Output of `buildPool()`, input to engine and card rendering:
 // UI derives: bgComponent (register==='plain' → PlainBg), registerLabel (VARIANTS[register]?.label)
 ```
 
+## Mobile keyboard handling (input mode)
+
+The scroll container uses a CSS custom property `--vp-height` (set directly on `document.documentElement` via a `visualViewport.resize` listener) rather than React state, so the container resizes when the keyboard opens without triggering a React re-render — avoiding a layout flash. The container height is `calc(var(--vp-height, 100dvh) - headerHeight)`.
+
+`keyboardOpen` is derived from `visualViewport.height < baseH - 100` (baseH captured at mount). A 100px threshold avoids false positives from browser chrome changes.
+
+`hideHeader` (`isMobile && inputMode === 'input' && keyboardOpen`) hides the header with `visibility: hidden` (not `display: none`) so `ResizeObserver` keeps reporting the correct `headerHeight` for when it reappears.
+
+In `InputModeControls`, the input is `disabled={isFlipped}` only — **not** `disabled={transitioning}`. Setting `disabled` closes the iOS keyboard; `readOnly={isFlipped || transitioning}` blocks input during transitions without dismissing it. Programmatic `focus()` uses `{ preventScroll: true }` since the keyboard is already open. A `visualViewport.resize` listener inside `InputModeControls` calls `scrollIntoView({ block: 'end', behavior: 'smooth' })` when the keyboard opens with the input focused, overriding iOS's default scroll (which anchors the input near the top of the visible area rather than the bottom).
+
 ## Known quirks
 
 - **Sidebar tab scroll** — the outer panel wrapper uses `overflow: hidden` for the slide-in width animation. This makes the browser's Tab-triggered scroll-into-view target the wrong container, so focused elements above the current scroll position have no visible focus ring. Fix: `handleSidebarFocus` on each `.sidebar-scroll` div directly scrolls the container whenever a descendant receives focus. Do not remove `overflow: hidden` from the outer wrapper — it's needed for the animation.
