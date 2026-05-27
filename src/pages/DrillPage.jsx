@@ -56,6 +56,17 @@ function useIsShort(breakpoint = 680) {
   return isShort
 }
 
+function useKeyboardOffset() {
+  const [offset, setOffset] = useState(0)
+  useEffect(() => {
+    if (!window.visualViewport) return
+    const handler = () => setOffset(Math.max(0, window.innerHeight - window.visualViewport.height))
+    window.visualViewport.addEventListener('resize', handler)
+    return () => window.visualViewport.removeEventListener('resize', handler)
+  }, [])
+  return offset
+}
+
 function toggle(arr, val) {
   return arr.includes(val) ? arr.filter(v => v !== val) : [...arr, val]
 }
@@ -484,6 +495,7 @@ export default function DrillPage() {
   const isNarrow       = useIsMobile(412)
   const hideWordmark   = useIsMobile(560)
   const isShort        = useIsShort()
+  const keyboardOffset = useKeyboardOffset()
   const jaVoices = useJaVoices()
 
   useEffect(() => { localStorage.setItem('audio-enabled', audioEnabled) }, [audioEnabled])
@@ -931,7 +943,7 @@ export default function DrillPage() {
 
         {/* Center + Footer scroll container */}
         <div style={{
-          position: 'absolute', top: headerHeight, left: 0, right: 0, bottom: 0,
+          position: 'absolute', top: headerHeight, left: 0, right: 0, bottom: keyboardOffset,
           overflowY: 'auto',
           display: 'flex', flexDirection: 'column', alignItems: 'center',
           zIndex: 2,
