@@ -45,6 +45,17 @@ function useIsMobile(breakpoint = 768) {
   return isMobile
 }
 
+function useIsShort(breakpoint = 680) {
+  const [isShort, setIsShort] = useState(() => window.innerHeight <= breakpoint)
+  useEffect(() => {
+    const mq = window.matchMedia(`(max-height: ${breakpoint}px)`)
+    const handler = e => setIsShort(e.matches)
+    mq.addEventListener('change', handler)
+    return () => mq.removeEventListener('change', handler)
+  }, [breakpoint])
+  return isShort
+}
+
 function toggle(arr, val) {
   return arr.includes(val) ? arr.filter(v => v !== val) : [...arr, val]
 }
@@ -100,7 +111,7 @@ function findSeekCard(newPool, currentCard, axis, value) {
 
 // ── Sub-views ────────────────────────────────────────────────────────────────
 
-function ActiveDrill({ drill, ttsEnabled, sfxEnabled, ttsVoice, showStreak, showFurigana, pixelFont, showVisualEffects, showTranslation, onPulse, onFirstVerdict, inputMode }) {
+function ActiveDrill({ drill, ttsEnabled, sfxEnabled, ttsVoice, showStreak, showFurigana, pixelFont, showVisualEffects, showTranslation, onPulse, onFirstVerdict, inputMode, isShort }) {
   const { t } = useTranslation()
   const [flippedCardId, setFlippedCardId] = useState(null)
   const [transitioning, setTransitioning] = useState(false)
@@ -316,8 +327,9 @@ function ActiveDrill({ drill, ttsEnabled, sfxEnabled, ttsVoice, showStreak, show
       onboardingHint={hintPhase !== 'done' ? displayedHint : null}
       errorMessage={inputMode === 'input' && inputIncorrect ? t('card.incorrect') : null}
       actionSlot={inputMode === 'input' ? inputActionSlot : undefined}
+      isShort={isShort}
     >
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 15 }}>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: isShort ? 8 : 15 }}>
         <div key={currentCard.id} className={cardClass}>
           <ConjugationCard
             variant={currentCard.variant}
@@ -473,6 +485,7 @@ export default function DrillPage() {
   const isMobile       = useIsMobile()
   const isNarrow       = useIsMobile(412)
   const hideWordmark   = useIsMobile(560)
+  const isShort        = useIsShort()
   const jaVoices = useJaVoices()
 
   useEffect(() => { localStorage.setItem('audio-enabled', audioEnabled) }, [audioEnabled])
@@ -927,18 +940,26 @@ export default function DrillPage() {
         {/* Center */}
         <div style={{
           position: 'absolute', top: headerHeight, left: 0, right: 0, bottom: footerHeight,
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          overflowY: 'auto',
+          display: 'flex', flexDirection: 'column', alignItems: 'center',
           zIndex: 2,
         }}>
-          {!drillMode ? (
-            <div style={{ color: 'rgba(255,255,255,0.3)', fontSize: 14 }}>{t('errors.no_selection')}</div>
-          ) : pool.length === 0 ? (
-            <div style={{ color: 'rgba(255,255,255,0.3)', fontSize: 14 }}>{t('errors.no_valid_cards')}</div>
-          ) : drill.done ? (
-            <DoneScreen totalCorrect={drill.totalCorrect} totalWrong={drill.totalWrong} onRestart={drill.restart} />
-          ) : (
-            <ActiveDrill drill={drill} ttsEnabled={audioEnabled && ttsEnabled} sfxEnabled={audioEnabled && sfxEnabled} ttsVoice={ttsVoice} showStreak={showStreak} showFurigana={showFurigana} pixelFont={pixelFont} showVisualEffects={showVisualEffects} showTranslation={effectiveShowTranslation} onPulse={setPulseColor} onFirstVerdict={handleFirstVerdict} inputMode={inputMode} />
-          )}
+          <div style={{
+            flex: 1,
+            width: '100%',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            minHeight: 'min-content',
+          }}>
+            {!drillMode ? (
+              <div style={{ color: 'rgba(255,255,255,0.3)', fontSize: 14 }}>{t('errors.no_selection')}</div>
+            ) : pool.length === 0 ? (
+              <div style={{ color: 'rgba(255,255,255,0.3)', fontSize: 14 }}>{t('errors.no_valid_cards')}</div>
+            ) : drill.done ? (
+              <DoneScreen totalCorrect={drill.totalCorrect} totalWrong={drill.totalWrong} onRestart={drill.restart} />
+            ) : (
+              <ActiveDrill drill={drill} ttsEnabled={audioEnabled && ttsEnabled} sfxEnabled={audioEnabled && sfxEnabled} ttsVoice={ttsVoice} showStreak={showStreak} showFurigana={showFurigana} pixelFont={pixelFont} showVisualEffects={showVisualEffects} showTranslation={effectiveShowTranslation} onPulse={setPulseColor} onFirstVerdict={handleFirstVerdict} inputMode={inputMode} isShort={isShort} />
+            )}
+          </div>
         </div>
 
         {/* Footer */}

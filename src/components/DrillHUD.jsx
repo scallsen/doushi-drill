@@ -27,7 +27,7 @@ function WaveText({ text, color }) {
   ))
 }
 
-export default function DrillHUD({ streak, bestStreak, totalCorrect, totalWrong, canUndo, onUndo, showStreak, showVisualEffects = true, onboardingHint, errorMessage, actionSlot, children }) {
+export default function DrillHUD({ streak, bestStreak, totalCorrect, totalWrong, canUndo, onUndo, showStreak, showVisualEffects = true, onboardingHint, errorMessage, actionSlot, isShort, children }) {
   const { t } = useTranslation()
   const [streakLost,  setStreakLost]  = useState(null)
   const [popCount,    setPopCount]    = useState(0)
@@ -95,9 +95,9 @@ export default function DrillHUD({ streak, bestStreak, totalCorrect, totalWrong,
   const streakColor = streak > 0 ? '#fff' : 'transparent'
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 15 }}>
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: isShort ? 8 : 15 }}>
 
-      <div style={{ height: 64, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 8, visibility: (showStreak || onboardingHint != null) ? 'visible' : 'hidden' }}>
+      <div style={{ height: isShort ? 44 : 64, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 8, visibility: (showStreak || onboardingHint != null) ? 'visible' : 'hidden' }}>
         {onboardingHint != null ? (
           <span style={{ fontSize: 20, fontWeight: 700, fontFamily: FONT, color: '#fff', letterSpacing: '0.05em', lineHeight: 1.3, textAlign: 'center', maxWidth: 'calc(100vw - 48px)', whiteSpace: 'pre-line' }}>
             {onboardingHint}
