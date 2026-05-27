@@ -428,6 +428,7 @@ export default function DrillPage() {
   const [showTranslation,    setShowTranslation]    = useState(() => {
     return localStorage.getItem('show-translation') ?? 'both'
   })
+  const effectiveShowTranslation = locale === 'ja' ? 'off' : showTranslation
   const [pulseColor,         setPulseColor]         = useState(null)
   const [audioHovered,       setAudioHovered]       = useState(false)
   const [optionsHovered,     setOptionsHovered]     = useState(false)
@@ -676,11 +677,12 @@ export default function DrillPage() {
             label={t('settings.pixel_font')}
           />
           <DrawerCheckbox
-            checked={showTranslation !== 'off'}
+            checked={effectiveShowTranslation !== 'off'}
             onChange={() => setShowTranslation(v => v === 'off' ? 'back' : 'off')}
             label={t('settings.show_translation')}
+            disabled={locale === 'ja'}
           />
-          {showTranslation !== 'off' && (
+          {effectiveShowTranslation !== 'off' && (
             <DrawerSelect
               value={showTranslation}
               onChange={setShowTranslation}
@@ -866,7 +868,7 @@ export default function DrillPage() {
           ) : drill.done ? (
             <DoneScreen totalCorrect={drill.totalCorrect} totalWrong={drill.totalWrong} onRestart={drill.restart} />
           ) : (
-            <ActiveDrill drill={drill} ttsEnabled={audioEnabled && ttsEnabled} sfxEnabled={audioEnabled && sfxEnabled} ttsVoice={ttsVoice} showStreak={showStreak} showFurigana={showFurigana} pixelFont={pixelFont} showVisualEffects={showVisualEffects} showTranslation={showTranslation} onPulse={setPulseColor} onFirstVerdict={handleFirstVerdict} />
+            <ActiveDrill drill={drill} ttsEnabled={audioEnabled && ttsEnabled} sfxEnabled={audioEnabled && sfxEnabled} ttsVoice={ttsVoice} showStreak={showStreak} showFurigana={showFurigana} pixelFont={pixelFont} showVisualEffects={showVisualEffects} showTranslation={effectiveShowTranslation} onPulse={setPulseColor} onFirstVerdict={handleFirstVerdict} />
           )}
         </div>
 
