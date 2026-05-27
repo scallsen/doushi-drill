@@ -17,6 +17,7 @@ import { useSFX } from '../hooks/useSFX.js'
 import ChipRow from '../components/ChipRow.jsx'
 import DrawerCheckbox from '../components/DrawerCheckbox.jsx'
 import DrawerSelect from '../components/DrawerSelect.jsx'
+import DrawerRadio from '../components/DrawerRadio.jsx'
 import VolumeOnIcon from '../icons/volume-on.svg?react'
 import VolumeOffIcon from '../icons/volume-off.svg?react'
 import logoMain from '../icons/logo-main.png'
@@ -681,19 +682,19 @@ export default function DrillPage() {
             onChange={() => setShowTranslation(v => v === 'off' ? 'back' : 'off')}
             label={t('settings.show_translation')}
             disabled={locale === 'ja'}
-          />
-          {effectiveShowTranslation !== 'off' && (
-            <DrawerSelect
-              value={showTranslation}
-              onChange={setShowTranslation}
-              options={[
-                { value: 'back', label: t('settings.translation_answer_only') },
-                { value: 'both', label: t('settings.translation_both_sides') },
-              ]}
-              indent={1}
-              label={t('settings.translation_when')}
-            />
-          )}
+          >
+            {effectiveShowTranslation !== 'off' && (
+              <DrawerRadio
+                name="show-translation"
+                value={showTranslation}
+                onChange={setShowTranslation}
+                options={[
+                  { value: 'back', label: t('settings.translation_answer_only') },
+                  { value: 'both', label: t('settings.translation_both_sides') },
+                ]}
+              />
+            )}
+          </DrawerCheckbox>
           <DrawerCheckbox
             checked={audioEnabled}
             onChange={() => setAudioEnabled(v => !v)}
@@ -706,17 +707,17 @@ export default function DrillPage() {
                 onChange={() => setTtsEnabled(v => !v)}
                 label={t('settings.tts_short')}
                 indent={1}
-              />
-              {ttsEnabled && jaVoices.length > 0 && (
-                <DrawerSelect
-                  value={ttsVoice}
-                  onChange={setTtsVoice}
-                  options={[{ value: '', label: t('settings.voice_default') }, ...jaVoices.map(v => ({ value: v.name, label: v.name }))]}
-                  indent={1}
-                  label={t('settings.voice')}
-                  subtext={t('settings.voice_description')}
-                />
-              )}
+              >
+                {ttsEnabled && jaVoices.length > 0 && (
+                  <DrawerSelect
+                    value={ttsVoice}
+                    onChange={setTtsVoice}
+                    options={[{ value: '', label: t('settings.voice_default') }, ...jaVoices.map(v => ({ value: v.name, label: v.name }))]}
+                    label={t('settings.voice')}
+                    subtext={t('settings.voice_description')}
+                  />
+                )}
+              </DrawerCheckbox>
               <DrawerCheckbox
                 checked={sfxEnabled}
                 onChange={() => setSfxEnabled(v => !v)}
@@ -736,6 +737,7 @@ export default function DrillPage() {
             <select
               value={locale}
               onChange={e => setLocale(e.target.value)}
+              className="drawer-select"
               style={{
                 appearance: 'none',
                 WebkitAppearance: 'none',
