@@ -23,9 +23,16 @@ export default function ConjugationCard({ variant = 'plain', word = '', kana = n
     </CardShell>
   )
 
+  const ants = flipped && animate ? (
+    <svg viewBox="0 0 380 280" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', pointerEvents: 'none', zIndex: 10, overflow: 'visible' }} aria-hidden="true">
+      <rect className="mc-ants" x="-4" y="-4" width="388" height="288" fill="none" stroke="rgba(255,255,255,0.45)" strokeWidth="2" strokeDasharray="6 6" />
+      <rect className="mc-ants--offset" x="-4" y="-4" width="388" height="288" fill="none" stroke="rgba(0,0,0,0.2)" strokeWidth="2" strokeDasharray="6 6" />
+    </svg>
+  ) : null
+
   return (
     <div style={{ width: 'min(380px, calc(100vw - 32px))', aspectRatio: '380 / 280', containerType: 'size' }}>
-      <FlipCard front={front} back={back} width="100%" height="100%" flipped={flipped} onFlip={onFlip} animate={animate} />
+      <FlipCard front={front} back={back} width="100%" height="100%" flipped={flipped} onFlip={onFlip} animate={animate} overlay={ants} />
     </div>
   )
 }
