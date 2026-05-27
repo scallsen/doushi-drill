@@ -1,4 +1,5 @@
 import { useState, useMemo, useEffect, useRef } from 'react'
+import { useTranslation } from '../i18n/index.jsx'
 import ConjugationCard from '../components/ConjugationCard/index.jsx'
 import VARIANTS from '../components/ConjugationCard/variants.js'
 import PlainBg from '../components/ConjugationCard/backgrounds/PlainBg.jsx'
@@ -95,6 +96,7 @@ function findSeekCard(newPool, currentCard, axis, value) {
 // ── Sub-views ────────────────────────────────────────────────────────────────
 
 function ActiveDrill({ drill, ttsEnabled, sfxEnabled, ttsVoice, showStreak, showFurigana, pixelFont, showVisualEffects, showTranslation, onPulse, onFirstVerdict }) {
+  const { t } = useTranslation()
   const [flippedCardId, setFlippedCardId] = useState(null)
   const [transitioning, setTransitioning] = useState(false)
   const [exitDir, setExitDir] = useState(null)
@@ -131,14 +133,14 @@ function ActiveDrill({ drill, ttsEnabled, sfxEnabled, ttsVoice, showStreak, show
   }
 
   useEffect(() => {
-    runTypewriter('Conjugate the verb below,\nthen flip to check.', 55)
+    runTypewriter(t('card.conjugate_hint'), 55)
     return () => clearInterval(typewriterTimer.current)
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (hintPhase !== 'pre-flip' || !isFlipped) return
     setHintPhase('post-flip')
-    runTypewriter('Did you get it right?\nMark your answer.', 55)
+    runTypewriter(t('card.mark_hint'), 55)
   }, [isFlipped]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleVerdictRef = useRef()
@@ -235,7 +237,7 @@ function ActiveDrill({ drill, ttsEnabled, sfxEnabled, ttsVoice, showStreak, show
   }, [currentCard.id, drill])
 
   const bgComponent   = currentCard.register === 'plain' ? PlainBg : null
-  const registerLabel = currentCard.register ? VARIANTS[currentCard.register]?.label ?? null : null
+  const registerLabel = currentCard.register ? (VARIANTS[currentCard.register] ? t(VARIANTS[currentCard.register].labelKey) : null) : null
 
   let cardClass = ''
   if (showVisualEffects) {
@@ -300,7 +302,7 @@ function ActiveDrill({ drill, ttsEnabled, sfxEnabled, ttsVoice, showStreak, show
                     letterSpacing: '0.05em',
                   }}
                 >
-                  Wrong [Z]
+                  {t('card.incorrect')} [Z]
                 </button>
                 <button
                   onClick={() => handleVerdictRef.current(true)}
@@ -319,11 +321,11 @@ function ActiveDrill({ drill, ttsEnabled, sfxEnabled, ttsVoice, showStreak, show
                     letterSpacing: '0.05em',
                   }}
                 >
-                  Correct [X]
+                  {t('card.correct')} [X]
                 </button>
               </div>
             ) : (
-              <div style={{ color: 'rgba(255,255,255,0.5)', fontSize: 13 }}>{navigator.maxTouchPoints > 0 ? 'Tap card to flip' : 'Click card or press spacebar to flip'}</div>
+              <div style={{ color: 'rgba(255,255,255,0.5)', fontSize: 13 }}>{navigator.maxTouchPoints > 0 ? t('card.tap_to_flip') : t('card.click_to_flip')}</div>
             )}
           </div>
         </div>
@@ -333,11 +335,12 @@ function ActiveDrill({ drill, ttsEnabled, sfxEnabled, ttsVoice, showStreak, show
 }
 
 function DoneScreen({ totalCorrect, totalWrong, onRestart }) {
+  const { t } = useTranslation()
   return (
     <div style={{ textAlign: 'center', fontFamily: FONT }}>
-      <div style={{ color: '#fff', fontSize: 28, letterSpacing: '0.05em', marginBottom: 12 }}>All done!</div>
+      <div style={{ color: '#fff', fontSize: 28, letterSpacing: '0.05em', marginBottom: 12 }}>{t('summary.heading')}</div>
       <div style={{ color: 'rgba(255,255,255,0.4)', fontSize: 13, marginBottom: 28 }}>
-        {totalCorrect} correct &nbsp;·&nbsp; {totalWrong} wrong
+        {totalCorrect} {t('summary.correct')} &nbsp;·&nbsp; {totalWrong} {t('summary.incorrect')}
       </div>
       <button
         onClick={onRestart}
@@ -353,7 +356,7 @@ function DoneScreen({ totalCorrect, totalWrong, onRestart }) {
           letterSpacing: '0.05em',
         }}
       >
-        Restart
+        {t('ui.restart')}
       </button>
     </div>
   )
@@ -363,8 +366,8 @@ function DoneScreen({ totalCorrect, totalWrong, onRestart }) {
 
 const JLPT_LEVELS = [5, 4, 3]
 
-function jlptLabel(levels) {
-  if (!levels.length) return 'all levels'
+function jlptLabel(levels, t) {
+  if (!levels.length) return t('jlpt.all_levels')
   return levels.slice().sort((a, b) => b - a).map(n => `N${n}`).join(', ')
 }
 
@@ -379,6 +382,7 @@ const DEFAULTS = {
 }
 
 export default function DrillPage() {
+  const { t, locale, setLocale, availableLocales } = useTranslation()
   const [showOptions,        setShowOptions]        = useState(() => window.innerWidth > 768)
   const [selectedWordTypes,  setSelectedWordTypes]  = useState(DEFAULTS.wordTypes)
   const [selectedRegisters,  setSelectedRegisters]  = useState(DEFAULTS.registers)
@@ -424,6 +428,7 @@ export default function DrillPage() {
   const [showTranslation,    setShowTranslation]    = useState(() => {
     return localStorage.getItem('show-translation') ?? 'both'
   })
+  const effectiveShowTranslation = locale === 'ja' ? 'off' : showTranslation
   const [pulseColor,         setPulseColor]         = useState(null)
   const [audioHovered,       setAudioHovered]       = useState(false)
   const [optionsHovered,     setOptionsHovered]     = useState(false)
@@ -502,17 +507,17 @@ export default function DrillPage() {
 
   function renderPanelContent(paddingH) {
     return (
-      <div style={{ padding: `16px ${paddingH}px 24px` }}>
+      <div style={{ padding: `16px ${paddingH}px 16px` }}>
 
         {/* ── Section 1: Words ── */}
         <DrawerSectionHeader
-          title="Words"
+          title={t('settings.words_section')}
           hasSelections={selectedWordTypes.length > 0}
           onClearAll={() => { setSelectedWordTypes([]); setSeekCardId(null) }}
           fontSize={META_FONT}
         />
         <div style={{ display: 'grid', gridTemplateColumns: gridCols, gap: 6 }}>
-          {WORD_TYPES.map(({ key, line1, line2 }) => (
+          {WORD_TYPES.map(({ key, line1, line1Key, line2Key }) => (
             <SelectButton
               key={key}
               selected={selectedWordTypes.includes(key)}
@@ -532,8 +537,8 @@ export default function DrillPage() {
                 if (nextForms.length !== selectedForms.length) setSelectedForms(nextForms)
               }}
             >
-              <span style={{ fontSize: BTN_FONT }}>{line1}</span>
-              {line2 && <span style={{ fontSize: BTN_FONT, opacity: 0.8 }}>{line2}</span>}
+              <span style={{ fontSize: BTN_FONT }}>{line1 ?? t(line1Key)}</span>
+              {line2Key && <span style={{ fontSize: BTN_FONT, opacity: 0.8 }}>{t(line2Key)}</span>}
             </SelectButton>
           ))}
         </div>
@@ -541,7 +546,7 @@ export default function DrillPage() {
 
         {/* ── JLPT filter ── */}
         <div style={{ marginTop: 10, fontSize: 13, color: 'rgba(255,255,255,0.4)', lineHeight: 1.4 }}>
-          Use vocabulary from{' '}
+          {t('ui.vocabulary_from')}{' '}
           <span
             role="button"
             tabIndex={0}
@@ -554,7 +559,7 @@ export default function DrillPage() {
             onBlur={e => { e.currentTarget.style.color = 'rgba(255,255,255,0.65)' }}
             style={{ color: 'rgba(255,255,255,0.65)', textDecoration: 'underline', textUnderlineOffset: 3, cursor: 'pointer' }}
           >
-            JLPT {jlptLabel(selectedJlpt)}
+            JLPT {jlptLabel(selectedJlpt, t)}
           </span>
         </div>
         {jlptExpanded && (
@@ -580,8 +585,8 @@ export default function DrillPage() {
         {/* ── Section 2: Polarity / Tense / Register ── */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
           <ChipRow
-            label="Polarity"
-            options={POLARITIES}
+            label={t('axes.polarity')}
+            options={POLARITIES.map(o => ({ ...o, label: t(o.labelKey) }))}
             selected={selectedPolarities}
             axis="polarity"
             onChange={(newSel, axis, val) => {
@@ -590,8 +595,8 @@ export default function DrillPage() {
             }}
           />
           <ChipRow
-            label="Tense"
-            options={TENSES}
+            label={t('axes.tense')}
+            options={TENSES.map(o => ({ ...o, label: t(o.labelKey) }))}
             selected={selectedTenses}
             axis="tense"
             onChange={(newSel, axis, val) => {
@@ -600,8 +605,8 @@ export default function DrillPage() {
             }}
           />
           <ChipRow
-            label="Register"
-            options={REGISTERS.map(({ key }) => ({ key, label: VARIANTS[key].label }))}
+            label={t('axes.register')}
+            options={REGISTERS.map(({ key }) => ({ key, label: t(VARIANTS[key].labelKey) }))}
             selected={selectedRegisters}
             axis="register"
             onChange={(newSel, axis, val) => {
@@ -616,7 +621,7 @@ export default function DrillPage() {
           <>
             <div style={hairline} />
             <DrawerSectionHeader
-              title="Forms"
+              title={t('settings.forms_section')}
               hasSelections={selectedForms.length > 0}
               onClearAll={() => {
                 seek(selectedWordTypes, [], selectedRegisters, selectedTenses, selectedPolarities, null, null)
@@ -625,7 +630,7 @@ export default function DrillPage() {
               fontSize={META_FONT}
             />
             <div style={{ display: 'grid', gridTemplateColumns: gridCols, gap: 6 }}>
-              {availableGrammarForms.map(({ key, label, keyColor, subtext }) => (
+              {availableGrammarForms.map(({ key, labelKey, keyColor, subtext }) => (
                 <SelectButton
                   key={key}
                   selected={selectedForms.includes(key)}
@@ -639,7 +644,7 @@ export default function DrillPage() {
                     setSelectedForms(next)
                   }}
                 >
-                  {label}
+                  {t(labelKey)}
                 </SelectButton>
               ))}
             </div>
@@ -649,77 +654,113 @@ export default function DrillPage() {
 
         {/* ── Separator + Section: Additional Settings ── */}
         <div style={hairline} />
-        <DrawerSectionHeader title="Additional Settings" fontSize={META_FONT} />
+        <DrawerSectionHeader title={t('settings.additional_section')} fontSize={META_FONT} />
         <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
           <DrawerCheckbox
             checked={showStreak}
             onChange={() => setShowStreak(v => !v)}
-            label="Show streak"
+            label={t('settings.show_streak')}
           />
           <DrawerCheckbox
             checked={showFurigana}
             onChange={() => setShowFurigana(v => !v)}
-            label="Show furigana"
+            label={t('settings.show_furigana')}
           />
           <DrawerCheckbox
             checked={showVisualEffects}
             onChange={() => setShowVisualEffects(v => !v)}
-            label="Show visual effects"
+            label={t('settings.show_visual_effects')}
           />
           <DrawerCheckbox
             checked={pixelFont}
             onChange={() => setPixelFont(v => !v)}
-            label="Use pixel font"
+            label={t('settings.pixel_font')}
           />
           <DrawerCheckbox
-            checked={showTranslation !== 'off'}
+            checked={effectiveShowTranslation !== 'off'}
             onChange={() => setShowTranslation(v => v === 'off' ? 'back' : 'off')}
-            label="Show translation"
+            label={t('settings.show_translation')}
+            disabled={locale === 'ja'}
           />
-          {showTranslation !== 'off' && (
+          {effectiveShowTranslation !== 'off' && (
             <DrawerSelect
               value={showTranslation}
               onChange={setShowTranslation}
               options={[
-                { value: 'back', label: 'Answer only' },
-                { value: 'both', label: 'Both sides' },
+                { value: 'back', label: t('settings.translation_answer_only') },
+                { value: 'both', label: t('settings.translation_both_sides') },
               ]}
               indent={1}
-              label="When to show translation"
+              label={t('settings.translation_when')}
             />
           )}
           <DrawerCheckbox
             checked={audioEnabled}
             onChange={() => setAudioEnabled(v => !v)}
-            label="Enable audio"
+            label={t('settings.enable_audio')}
           />
           {audioEnabled && (
             <>
               <DrawerCheckbox
                 checked={ttsEnabled}
                 onChange={() => setTtsEnabled(v => !v)}
-                label="Text to speech"
+                label={t('settings.tts_short')}
                 indent={1}
               />
               {ttsEnabled && jaVoices.length > 0 && (
                 <DrawerSelect
                   value={ttsVoice}
                   onChange={setTtsVoice}
-                  options={[{ value: '', label: 'Default' }, ...jaVoices.map(v => ({ value: v.name, label: v.name }))]}
+                  options={[{ value: '', label: t('settings.voice_default') }, ...jaVoices.map(v => ({ value: v.name, label: v.name }))]}
                   indent={1}
-                  label="Voice"
-                  subtext="Availability based on your device or browser"
+                  label={t('settings.voice')}
+                  subtext={t('settings.voice_description')}
                 />
               )}
               <DrawerCheckbox
                 checked={sfxEnabled}
                 onChange={() => setSfxEnabled(v => !v)}
-                label="Sound effects"
-                subtext="Silent mode may mute sound effects"
+                label={t('settings.sfx_label')}
+                subtext={t('settings.sfx_description')}
                 indent={1}
               />
             </>
           )}
+        </div>
+        <div style={{ ...hairline, margin: '18px 0' }} />
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10, paddingLeft: 6 }}>
+          <span style={{ color: 'rgba(255,255,255,0.65)', fontSize: 13, fontFamily: 'inherit', flex: 1 }}>
+            {t('ui.language')}
+          </span>
+          <div style={{ position: 'relative', display: 'inline-flex', alignItems: 'center' }}>
+            <select
+              value={locale}
+              onChange={e => setLocale(e.target.value)}
+              style={{
+                appearance: 'none',
+                WebkitAppearance: 'none',
+                background: 'rgba(255,255,255,0.07)',
+                border: '1px solid rgba(255,255,255,0.18)',
+                borderRadius: 6,
+                color: 'rgba(255,255,255,0.65)',
+                fontSize: 13,
+                fontFamily: 'inherit',
+                padding: '5px 28px 5px 10px',
+                cursor: 'pointer',
+                minWidth: 90,
+                lineHeight: '1.4',
+              }}
+            >
+              {availableLocales.map(l => (
+                <option key={l.code} value={l.code} style={{ background: '#2E2E2E', color: '#fff' }}>
+                  {l.name}
+                </option>
+              ))}
+            </select>
+            <svg style={{ position: 'absolute', right: 8, pointerEvents: 'none' }} width="10" height="6" viewBox="0 0 10 6" fill="none">
+              <path d="M1 1L5 5L9 1" stroke="rgba(255,255,255,0.5)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </div>
         </div>
 
       </div>
@@ -804,7 +845,7 @@ export default function DrillPage() {
                 transition: 'background 130ms',
               }}
             >
-              {showOptions ? 'Hide options' : 'Show options'}
+              {showOptions ? t('ui.hide_options') : t('ui.show_options')}
             </button>
           </div>
         </div>
@@ -820,7 +861,7 @@ export default function DrillPage() {
             pointerEvents: 'none',
             zIndex: 10,
           }}>
-            Tap to explore conjugations ↑
+            {t('ui.explore_hint')}
           </div>
         )}
 
@@ -831,13 +872,13 @@ export default function DrillPage() {
           zIndex: 2,
         }}>
           {!drillMode ? (
-            <div style={{ color: 'rgba(255,255,255,0.3)', fontSize: 14 }}>Open options to start drilling</div>
+            <div style={{ color: 'rgba(255,255,255,0.3)', fontSize: 14 }}>{t('errors.no_selection')}</div>
           ) : pool.length === 0 ? (
-            <div style={{ color: 'rgba(255,255,255,0.3)', fontSize: 14 }}>No cards match your selections</div>
+            <div style={{ color: 'rgba(255,255,255,0.3)', fontSize: 14 }}>{t('errors.no_valid_cards')}</div>
           ) : drill.done ? (
             <DoneScreen totalCorrect={drill.totalCorrect} totalWrong={drill.totalWrong} onRestart={drill.restart} />
           ) : (
-            <ActiveDrill drill={drill} ttsEnabled={audioEnabled && ttsEnabled} sfxEnabled={audioEnabled && sfxEnabled} ttsVoice={ttsVoice} showStreak={showStreak} showFurigana={showFurigana} pixelFont={pixelFont} showVisualEffects={showVisualEffects} showTranslation={showTranslation} onPulse={setPulseColor} onFirstVerdict={handleFirstVerdict} />
+            <ActiveDrill drill={drill} ttsEnabled={audioEnabled && ttsEnabled} sfxEnabled={audioEnabled && sfxEnabled} ttsVoice={ttsVoice} showStreak={showStreak} showFurigana={showFurigana} pixelFont={pixelFont} showVisualEffects={showVisualEffects} showTranslation={effectiveShowTranslation} onPulse={setPulseColor} onFirstVerdict={handleFirstVerdict} />
           )}
         </div>
 
@@ -864,7 +905,7 @@ export default function DrillPage() {
             onMouseEnter={e => { e.currentTarget.style.color = 'rgba(255,255,255,0.85)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.55)'; }}
             onMouseLeave={e => { e.currentTarget.style.color = 'rgba(255,255,255,0.55)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.28)'; }}
           >
-            Report issue
+            {t('ui.report_issue')}
           </a>
           <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
             <a
@@ -976,12 +1017,12 @@ export default function DrillPage() {
               justifyContent: 'space-between',
               flexShrink: 0,
             }}>
-              <div style={{ color: '#fff', fontSize: 13, fontWeight: 700 }}>Options</div>
+              <div style={{ color: '#fff', fontSize: 13, fontWeight: 700 }}>{t('settings.heading')}</div>
               <button
                 onClick={() => setShowOptions(false)}
                 style={{ background: 'none', border: 'none', color: 'rgba(255,255,255,0.5)', fontSize: 13, fontFamily: 'inherit', cursor: 'pointer', padding: 0 }}
               >
-                Hide
+                {t('ui.back')}
               </button>
             </div>
             <div className="sidebar-scroll" style={{ flex: 1, overflowY: 'auto', paddingBottom: 'env(safe-area-inset-bottom)' }} onFocus={handleSidebarFocus}>

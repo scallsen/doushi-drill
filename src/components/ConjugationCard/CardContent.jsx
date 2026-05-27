@@ -1,7 +1,9 @@
 import { buildFurigana, buildFuriganaForConjugation } from '../../utils/furigana.js'
 import { FONT } from '../../data/theme.js'
+import { useTranslation } from '../../i18n/index.jsx'
 
 export default function CardContent({ label, n, past, word, kana = null, wordKanji = null, showFurigana = false, pixelFont = true, answerLabel = null, translation = null }) {
+  const { t } = useTranslation()
   const jaFont = pixelFont ? FONT : "system-ui, sans-serif"
   return (
     <div
@@ -23,12 +25,12 @@ export default function CardContent({ label, n, past, word, kana = null, wordKan
 
       {n && (
         <div style={{ position: 'absolute', bottom: 12, right: 20, fontFamily: FONT, fontSize: '6.32cqw', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#222', pointerEvents: 'none' }}>
-          Negative
+          {t('polarity.negative')}
         </div>
       )}
       {past && (
         <div style={{ position: 'absolute', bottom: 12, left: 20, fontFamily: FONT, fontSize: '6.32cqw', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#222', pointerEvents: 'none' }}>
-          Past
+          {t('tense.past')}
         </div>
       )}
 

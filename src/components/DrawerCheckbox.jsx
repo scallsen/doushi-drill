@@ -1,19 +1,21 @@
-export default function DrawerCheckbox({ checked, onChange, label, subtext, indent = 0 }) {
+export default function DrawerCheckbox({ checked, onChange, label, subtext, indent = 0, disabled = false }) {
   return (
     <div
       role="checkbox"
       aria-checked={checked}
-      tabIndex={0}
-      onClick={onChange}
-      onKeyDown={e => { if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); onChange() } }}
+      aria-disabled={disabled}
+      tabIndex={disabled ? -1 : 0}
+      onClick={disabled ? undefined : onChange}
+      onKeyDown={disabled ? undefined : (e => { if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); onChange() } })}
       className="drawer-checkbox"
       style={{
         display: 'flex',
         alignItems: 'flex-start',
         gap: 8,
         paddingLeft: indent * 14 + 6,
-        cursor: 'pointer',
+        cursor: disabled ? 'not-allowed' : 'pointer',
         userSelect: 'none',
+        opacity: disabled ? 0.4 : 1,
       }}
     >
       <div style={{
