@@ -918,7 +918,7 @@ export default function DrillPage() {
             >
               Developed by Simon Callsen
             </a>
-            <span style={{ color: 'rgba(255,255,255,0.15)', fontSize: 13 }}>·</span>
+            <span style={{ color: 'rgba(255,255,255,0.55)', fontSize: 13 }}>·</span>
             <a
               href="https://github.com/scallsen/katsuyou-drill"
               target="_blank"
