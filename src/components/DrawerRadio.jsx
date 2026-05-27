@@ -1,23 +1,24 @@
-const srOnly = {
-  position: 'absolute', width: 1, height: 1, padding: 0,
-  margin: -1, overflow: 'hidden', clip: 'rect(0,0,0,0)',
-  whiteSpace: 'nowrap', border: 0,
-}
-
 export default function DrawerRadio({ value, onChange, options, name }) {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 4, marginTop: 6 }}>
       {options.map(opt => {
         const selected = value === opt.value
         return (
-          <label key={opt.value} className="drawer-radio-option" style={{ position: 'relative', display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer', userSelect: 'none' }}>
+          <label
+            key={opt.value}
+            className="drawer-radio-option"
+            tabIndex={0}
+            onKeyDown={e => { if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); onChange(opt.value) } }}
+            style={{ position: 'relative', display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer', userSelect: 'none' }}
+          >
             <input
               type="radio"
               name={name}
               value={opt.value}
               checked={selected}
               onChange={() => onChange(opt.value)}
-              style={srOnly}
+              tabIndex={-1}
+              style={{ position: 'absolute', opacity: 0, width: 0, height: 0, margin: 0, padding: 0, border: 0 }}
             />
             <div style={{
               width: 14,
