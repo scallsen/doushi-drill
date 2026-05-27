@@ -118,8 +118,8 @@ const ja = {
     conjugate_hint: '以下の動詞を活用させ、\nカードをめくって確認しよう',
     mark_hint:      '正解でしたか？\n答えをマークしてください',
     input_hint:     '以下の言葉を活用させ、\n答えをタイプしてください',
-    input_placeholder_prefix: '',
-    input_placeholder_suffix: 'の形をタイプしてください',
+    input_placeholder: '答えを入力',
+    submit_answer:     '答えを送信 (Enter)',
     next_card:      '次のカード (Space/Enter)',
   },
 

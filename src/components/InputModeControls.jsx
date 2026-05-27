@@ -1,17 +1,12 @@
-import { useState, useRef, useEffect } from 'react'
+import { useRef, useEffect } from 'react'
 import { useTranslation } from '../i18n/index.jsx'
 import * as wanakana from 'wanakana'
 
-export default function InputModeControls({ card, isFlipped, onVerdict, onFlipToReveal, transitioning }) {
+export default function InputModeControls({ value, onValueChange, onSubmit, isFlipped, onVerdict, transitioning }) {
   const { t } = useTranslation()
-  const [value, setValue] = useState('')
   const inputRef = useRef(null)
   const onVerdictRef = useRef(onVerdict)
   useEffect(() => { onVerdictRef.current = onVerdict })
-
-  useEffect(() => {
-    setValue('')
-  }, [card.id])
 
   useEffect(() => {
     if (transitioning || isFlipped) return
@@ -38,22 +33,6 @@ export default function InputModeControls({ card, isFlipped, onVerdict, onFlipTo
     }
   }, [isFlipped])
 
-  function handleKeyDown(e) {
-    if (e.key !== 'Enter') return
-    const trimmed = value.trim()
-    if (!trimmed) return
-    // toHiragana without IMEMode forces any trailing partial romaji (e.g. 'r') to convert
-    const normalized = wanakana.toHiragana(trimmed)
-    const correct = card.acceptedAnswers.includes(normalized)
-    if (correct) {
-      onVerdict(true)
-    } else {
-      onFlipToReveal()
-    }
-  }
-
-  const formLabel = t(`forms.${card.variant}`) ?? card.variant
-
   const inputStyle = {
     width: '100%',
     padding: '10px 14px',
@@ -67,54 +46,22 @@ export default function InputModeControls({ card, isFlipped, onVerdict, onFlipTo
     letterSpacing: '0.05em',
   }
 
-  if (isFlipped) {
-    return (
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 8, width: 'min(380px, calc(100vw - 32px))' }}>
-        <input
-          type="text"
-          value={value}
-          readOnly
-          disabled
-          style={{ ...inputStyle, opacity: 0.5 }}
-        />
-        <button
-          onClick={() => onVerdict(false)}
-          disabled={transitioning}
-          className="verdict-btn"
-          style={{
-            width: '100%',
-            padding: '10px 0',
-            fontSize: 14,
-            fontFamily: 'inherit',
-            background: 'rgba(255,255,255,0.12)',
-            color: '#fff',
-            border: '1px solid rgba(255,255,255,0.2)',
-            borderRadius: 8,
-            cursor: 'pointer',
-            letterSpacing: '0.05em',
-          }}
-        >
-          {t('card.next_card')}
-        </button>
-      </div>
-    )
-  }
-
   return (
-    <div style={{ width: 'min(380px, calc(100vw - 32px))' }}>
+    <div style={{ height: 52, width: 'min(380px, calc(100vw - 32px))', display: 'flex', alignItems: 'center' }}>
       <input
         ref={inputRef}
         type="text"
         value={value}
-        onChange={e => setValue(wanakana.toHiragana(e.target.value, { IMEMode: true }))}
-        onKeyDown={handleKeyDown}
-        disabled={transitioning}
-        placeholder={`${t('card.input_placeholder_prefix')} ${formLabel} ${t('card.input_placeholder_suffix')}`}
+        onChange={isFlipped ? undefined : e => onValueChange(wanakana.toHiragana(e.target.value, { IMEMode: true }))}
+        onKeyDown={isFlipped ? undefined : e => { if (e.key === 'Enter') onSubmit() }}
+        readOnly={isFlipped}
+        disabled={isFlipped || transitioning}
+        placeholder={t('card.input_placeholder')}
         autoComplete="off"
         autoCorrect="off"
         autoCapitalize="none"
         spellCheck={false}
-        style={inputStyle}
+        style={{ ...inputStyle, ...(isFlipped ? { opacity: 0.5 } : {}) }}
       />
     </div>
   )

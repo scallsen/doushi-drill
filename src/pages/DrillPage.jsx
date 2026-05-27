@@ -25,6 +25,7 @@ import Wordmark from '../icons/wordmark.svg?react'
 import ModeToggle from '../components/ModeToggle.jsx'
 import SpeedModeControls from '../components/SpeedModeControls.jsx'
 import InputModeControls from '../components/InputModeControls.jsx'
+import * as wanakana from 'wanakana'
 
 const PANEL_W = 420
 const CHEVRON_W = 28
@@ -106,6 +107,8 @@ function ActiveDrill({ drill, ttsEnabled, sfxEnabled, ttsVoice, showStreak, show
   const [exitDir, setExitDir] = useState(null)
   const [undoEntering, setUndoEntering] = useState(false)
   const [inputIncorrect, setInputIncorrect] = useState(false)
+  const [inputValue, setInputValue] = useState('')
+  const inputHasContent = inputValue.trim().length > 0
   const { currentCard, streak, bestStreak, totalCorrect, totalWrong, remaining, canUndo, onUndo } = drill
   const isFlipped = flippedCardId === currentCard.id
   const tts = useTTS(ttsVoice)
@@ -198,7 +201,7 @@ function ActiveDrill({ drill, ttsEnabled, sfxEnabled, ttsVoice, showStreak, show
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isFlipped, currentCard.id, ttsEnabled])
 
-  useEffect(() => { setInputIncorrect(false); setFlippedCardId(null) }, [currentCard.id])
+  useEffect(() => { setInputIncorrect(false); setFlippedCardId(null); setInputValue('') }, [currentCard.id])
 
   function handleFlip(next) {
     if (sfxEnabled) sfx.play('flip_card')
@@ -208,6 +211,18 @@ function ActiveDrill({ drill, ttsEnabled, sfxEnabled, ttsVoice, showStreak, show
   function handleFlipToReveal() {
     handleFlip(true)
     setInputIncorrect(true)
+  }
+
+  function handleInputSubmit() {
+    const trimmed = inputValue.trim()
+    if (!trimmed) return
+    const normalized = wanakana.toHiragana(trimmed)
+    const correct = currentCard.acceptedAnswers.includes(normalized)
+    if (correct) {
+      handleVerdictRef.current(true)
+    } else {
+      handleFlipToReveal()
+    }
   }
 
   function handleUndo() {
@@ -264,6 +279,29 @@ function ActiveDrill({ drill, ttsEnabled, sfxEnabled, ttsVoice, showStreak, show
     else if (transitioning) cardClass = 'card-entering'
   }
 
+  const inputActionSlot = (
+    <button
+      onClick={isFlipped ? () => handleVerdictRef.current(false) : handleInputSubmit}
+      disabled={(!isFlipped && !inputHasContent) || transitioning}
+      className="verdict-btn"
+      style={{
+        width: '100%',
+        padding: '10px 0',
+        fontSize: 14,
+        fontFamily: 'inherit',
+        background: 'rgba(255,255,255,0.12)',
+        color: '#fff',
+        border: '1px solid rgba(255,255,255,0.2)',
+        borderRadius: 8,
+        cursor: (isFlipped || inputHasContent) ? 'pointer' : 'default',
+        letterSpacing: '0.05em',
+        visibility: (isFlipped || inputHasContent) ? 'visible' : 'hidden',
+      }}
+    >
+      {isFlipped ? t('card.next_card') : t('card.submit_answer')}
+    </button>
+  )
+
   return (
     <DrillHUD
       streak={localStreak}
@@ -276,6 +314,7 @@ function ActiveDrill({ drill, ttsEnabled, sfxEnabled, ttsVoice, showStreak, show
       showVisualEffects={showVisualEffects}
       onboardingHint={hintPhase !== 'done' ? displayedHint : null}
       errorMessage={inputMode === 'input' && inputIncorrect ? t('card.incorrect') : null}
+      actionSlot={inputMode === 'input' ? inputActionSlot : undefined}
     >
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 15 }}>
         <div key={currentCard.id} className={cardClass}>
@@ -302,10 +341,11 @@ function ActiveDrill({ drill, ttsEnabled, sfxEnabled, ttsVoice, showStreak, show
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10 }}>
           {inputMode === 'input' ? (
             <InputModeControls
-              card={currentCard}
+              value={inputValue}
+              onValueChange={setInputValue}
+              onSubmit={handleInputSubmit}
               isFlipped={isFlipped}
               onVerdict={v => handleVerdictRef.current(v)}
-              onFlipToReveal={handleFlipToReveal}
               transitioning={transitioning}
             />
           ) : (

@@ -120,8 +120,8 @@ const en = {
     conjugate_hint:  'Conjugate the verb below,\nthen flip to check.',
     mark_hint:       'Did you get it right?\nMark your answer.',
     input_hint:      'Conjugate the word below,\nthen type your answer.',
-    input_placeholder_prefix: 'Type in',
-    input_placeholder_suffix: 'form',
+    input_placeholder: 'Type your answer',
+    submit_answer:     'Submit answer (Enter)',
     next_card:       'Next card (Space/Enter)',
   },
 
