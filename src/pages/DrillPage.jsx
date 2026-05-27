@@ -475,9 +475,7 @@ export default function DrillPage() {
   const [inputMode,          setInputMode]          = useState(() => localStorage.getItem('input-mode') ?? 'speed')
   const [pulseColor,         setPulseColor]         = useState(null)
   const [headerHeight,       setHeaderHeight]       = useState(72)
-  const [footerHeight,       setFooterHeight]       = useState(80)
   const headerRef = useRef(null)
-  const footerRef = useRef(null)
   const [audioHovered,       setAudioHovered]       = useState(false)
   const [optionsHovered,     setOptionsHovered]     = useState(false)
   const [chevronHovered,     setChevronHovered]     = useState(false)
@@ -508,13 +506,7 @@ export default function DrillPage() {
     return () => ro.disconnect()
   }, [])
 
-  useEffect(() => {
-    const el = footerRef.current
-    if (!el) return
-    const ro = new ResizeObserver(() => setFooterHeight(el.offsetHeight))
-    ro.observe(el)
-    return () => ro.disconnect()
-  }, [])
+
 
   function seek(newWordTypes, newForms, newRegs, newTenses, newPols, axis, value, newJlpt) {
     const newPool = buildPool({
@@ -937,9 +929,9 @@ export default function DrillPage() {
           </div>
         )}
 
-        {/* Center */}
+        {/* Center + Footer scroll container */}
         <div style={{
-          position: 'absolute', top: headerHeight, left: 0, right: 0, bottom: footerHeight,
+          position: 'absolute', top: headerHeight, left: 0, right: 0, bottom: 0,
           overflowY: 'auto',
           display: 'flex', flexDirection: 'column', alignItems: 'center',
           zIndex: 2,
@@ -960,16 +952,14 @@ export default function DrillPage() {
               <ActiveDrill drill={drill} ttsEnabled={audioEnabled && ttsEnabled} sfxEnabled={audioEnabled && sfxEnabled} ttsVoice={ttsVoice} showStreak={showStreak} showFurigana={showFurigana} pixelFont={pixelFont} showVisualEffects={showVisualEffects} showTranslation={effectiveShowTranslation} onPulse={setPulseColor} onFirstVerdict={handleFirstVerdict} inputMode={inputMode} isShort={isShort} />
             )}
           </div>
-        </div>
 
-        {/* Footer */}
-        <div ref={footerRef} style={{
-          position: 'absolute', bottom: 0, left: 0, right: 0,
-          display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16,
-          padding: '12px 24px',
-          zIndex: 10,
-          pointerEvents: 'none',
-        }}>
+          {/* Footer — flows after content, scrolls with it */}
+          <div style={{
+            width: '100%',
+            display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16,
+            padding: '12px 24px',
+            pointerEvents: 'none',
+          }}>
           <a
             href="mailto:hello@scallsen.ca?subject=Katsuyou%20Drill%20-%20Issue%20Report"
             style={{
@@ -1010,6 +1000,7 @@ export default function DrillPage() {
               GitHub
             </a>
           </div>
+        </div>
         </div>
       </div>
 
