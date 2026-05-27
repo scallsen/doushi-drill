@@ -15,6 +15,7 @@ export default function DrawerSelect({ value, onChange, options, label, subtext 
         id={id}
         value={value}
         onChange={e => onChange(e.target.value)}
+        className="drawer-select"
         style={{
           width: '100%',
           background: 'rgba(255,255,255,0.07)',

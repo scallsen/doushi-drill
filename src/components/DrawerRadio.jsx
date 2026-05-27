@@ -10,7 +10,7 @@ export default function DrawerRadio({ value, onChange, options, name }) {
       {options.map(opt => {
         const selected = value === opt.value
         return (
-          <label key={opt.value} style={{ position: 'relative', display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer', userSelect: 'none' }}>
+          <label key={opt.value} className="drawer-radio-option" style={{ position: 'relative', display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer', userSelect: 'none' }}>
             <input
               type="radio"
               name={name}

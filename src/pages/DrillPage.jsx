@@ -17,6 +17,7 @@ import { useSFX } from '../hooks/useSFX.js'
 import ChipRow from '../components/ChipRow.jsx'
 import DrawerCheckbox from '../components/DrawerCheckbox.jsx'
 import DrawerSelect from '../components/DrawerSelect.jsx'
+import DrawerRadio from '../components/DrawerRadio.jsx'
 import VolumeOnIcon from '../icons/volume-on.svg?react'
 import VolumeOffIcon from '../icons/volume-off.svg?react'
 import logoMain from '../icons/logo-main.png'
@@ -683,14 +684,14 @@ export default function DrillPage() {
             disabled={locale === 'ja'}
           >
             {effectiveShowTranslation !== 'off' && (
-              <DrawerSelect
+              <DrawerRadio
+                name="show-translation"
                 value={showTranslation}
                 onChange={setShowTranslation}
                 options={[
                   { value: 'back', label: t('settings.translation_answer_only') },
                   { value: 'both', label: t('settings.translation_both_sides') },
                 ]}
-                label={t('settings.translation_when')}
               />
             )}
           </DrawerCheckbox>
@@ -736,6 +737,7 @@ export default function DrillPage() {
             <select
               value={locale}
               onChange={e => setLocale(e.target.value)}
+              className="drawer-select"
               style={{
                 appearance: 'none',
                 WebkitAppearance: 'none',

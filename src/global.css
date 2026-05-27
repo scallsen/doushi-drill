@@ -44,6 +44,21 @@ button, input, select, textarea {
   border-radius: 4px;
 }
 
+.drawer-radio-option {
+  padding: 3px 6px;
+  margin: -3px -6px;
+  border-radius: 4px;
+}
+
+.drawer-radio-option:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.drawer-select:hover {
+  background: rgba(255, 255, 255, 0.12) !important;
+  border-color: rgba(255, 255, 255, 0.28) !important;
+}
+
 .drawer-checkbox:focus-visible {
   outline: 2px solid rgba(255, 255, 255, 0.45);
   outline-offset: 3px;

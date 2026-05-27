@@ -1,7 +1,7 @@
 export default function DrawerCheckbox({ checked, onChange, label, subtext, indent = 0, disabled = false, children }) {
   return (
     <div style={{
-      paddingLeft: indent * 22 + 6,
+      paddingLeft: indent * 22,
       display: 'flex',
       flexDirection: 'column',
       opacity: disabled ? 0.4 : 1,
