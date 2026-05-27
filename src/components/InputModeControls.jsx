@@ -61,7 +61,7 @@ const InputModeControls = forwardRef(function InputModeControls({ value, onValue
         autoCorrect="off"
         autoCapitalize="none"
         spellCheck={false}
-        style={{ ...inputStyle, ...(isFlipped ? { opacity: 0.5 } : {}) }}
+        style={{ ...inputStyle, ...(isFlipped ? { background: 'rgba(248,113,113,0.12)', border: '1px solid rgba(248,113,113,0.5)', color: 'rgba(248,113,113,0.9)' } : {}) }}
       />
     </div>
   )
