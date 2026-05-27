@@ -10,7 +10,8 @@ const InputModeControls = forwardRef(function InputModeControls({ value, onValue
 
   useEffect(() => {
     if (transitioning || isFlipped) return
-    inputRef.current?.focus()
+    // preventScroll: keyboard is already open — don't trigger a browser scroll
+    inputRef.current?.focus({ preventScroll: true })
   }, [transitioning])
 
   useEffect(() => {
@@ -33,6 +34,23 @@ const InputModeControls = forwardRef(function InputModeControls({ value, onValue
     }
   }, [isFlipped])
 
+  // When keyboard first opens, override the browser's default scroll (which puts the
+  // input near the top) and anchor it to the bottom of the visible area instead.
+  useEffect(() => {
+    const vv = window.visualViewport
+    if (!vv) return
+    let prevH = vv.height
+    const handler = () => {
+      const h = vv.height
+      if (h < prevH && document.activeElement === inputRef.current) {
+        setTimeout(() => inputRef.current?.scrollIntoView({ block: 'end', behavior: 'smooth' }), 50)
+      }
+      prevH = h
+    }
+    vv.addEventListener('resize', handler)
+    return () => vv.removeEventListener('resize', handler)
+  }, [])
+
   const inputStyle = {
     width: '100%',
     padding: '10px 14px',
@@ -54,8 +72,8 @@ const InputModeControls = forwardRef(function InputModeControls({ value, onValue
         value={value}
         onChange={isFlipped ? undefined : e => onValueChange(wanakana.toHiragana(e.target.value, { IMEMode: true }))}
         onKeyDown={isFlipped ? undefined : e => { if (e.key === 'Enter') onSubmit() }}
-        readOnly={isFlipped}
-        disabled={isFlipped || transitioning}
+        readOnly={isFlipped || transitioning}
+        disabled={isFlipped}
         placeholder={t('card.input_placeholder')}
         autoComplete="off"
         autoCorrect="off"

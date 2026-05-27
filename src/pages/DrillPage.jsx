@@ -56,16 +56,6 @@ function useIsShort(breakpoint = 680) {
   return isShort
 }
 
-function useKeyboardOffset() {
-  const [offset, setOffset] = useState(0)
-  useEffect(() => {
-    if (!window.visualViewport) return
-    const handler = () => setOffset(Math.max(0, window.innerHeight - window.visualViewport.height))
-    window.visualViewport.addEventListener('resize', handler)
-    return () => window.visualViewport.removeEventListener('resize', handler)
-  }, [])
-  return offset
-}
 
 function toggle(arr, val) {
   return arr.includes(val) ? arr.filter(v => v !== val) : [...arr, val]
@@ -491,11 +481,11 @@ export default function DrillPage() {
   const [optionsHovered,     setOptionsHovered]     = useState(false)
   const [chevronHovered,     setChevronHovered]     = useState(false)
   const [showMobileMenuHint, setShowMobileMenuHint] = useState(false)
+  const [keyboardOpen,       setKeyboardOpen]       = useState(false)
   const isMobile       = useIsMobile()
   const isNarrow       = useIsMobile(412)
   const hideWordmark   = useIsMobile(560)
   const isShort        = useIsShort()
-  const keyboardOffset = useKeyboardOffset()
   const jaVoices = useJaVoices()
 
   useEffect(() => { localStorage.setItem('audio-enabled', audioEnabled) }, [audioEnabled])
@@ -518,7 +508,22 @@ export default function DrillPage() {
     return () => ro.disconnect()
   }, [])
 
+  useEffect(() => {
+    if (!window.visualViewport) return
+    const baseH = window.visualViewport.height
+    const update = () => {
+      const h = window.visualViewport.height
+      document.documentElement.style.setProperty('--vp-height', `${h}px`)
+      setKeyboardOpen(h < baseH - 100)
+    }
+    update()
+    window.visualViewport.addEventListener('resize', update)
+    return () => window.visualViewport.removeEventListener('resize', update)
+  }, [])
 
+
+
+  const hideHeader = isMobile && inputMode === 'input' && keyboardOpen
 
   function seek(newWordTypes, newForms, newRegs, newTenses, newPols, axis, value, newJlpt) {
     const newPool = buildPool({
@@ -862,7 +867,7 @@ export default function DrillPage() {
         />
 
         {/* Header */}
-        <div ref={headerRef} style={{ position: 'absolute', top: 0, left: 0, right: 0, zIndex: 10 }}>
+        <div ref={headerRef} style={{ position: 'absolute', top: 0, left: 0, right: 0, zIndex: 10, visibility: hideHeader ? 'hidden' : 'visible', pointerEvents: hideHeader ? 'none' : 'auto' }}>
           <div style={{
             display: 'flex', alignItems: 'flex-start', flexWrap: 'wrap',
             padding: `${isNarrow ? 12 : 20}px ${isNarrow ? 12 : 24}px`, gap: '8px 0',
@@ -943,7 +948,7 @@ export default function DrillPage() {
 
         {/* Center + Footer scroll container */}
         <div style={{
-          position: 'absolute', top: headerHeight, left: 0, right: 0, bottom: keyboardOffset,
+          position: 'absolute', top: hideHeader ? 0 : headerHeight, left: 0, right: 0, height: `calc(var(--vp-height, 100dvh) - ${hideHeader ? 0 : headerHeight}px)`,
           overflowY: 'auto',
           display: 'flex', flexDirection: 'column', alignItems: 'center',
           zIndex: 2,
