@@ -20,6 +20,7 @@ export default function FlipCard({
   flipped = false,
   onFlip,
   animate = true,
+  overlay = null,
 }) {
   function handleClick() {
     onFlip?.(!flipped);
@@ -45,6 +46,7 @@ export default function FlipCard({
           <div className="fc-focus-hint">↵ Flip card</div>
         </div>
       </div>
+      {overlay}
     </div>
   );
 }

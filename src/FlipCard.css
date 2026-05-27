@@ -193,6 +193,20 @@
   transition: transform 40ms ease-in;
 }
 
+/* ── Marching ants border (answering state) ───────────────────── */
+
+@keyframes march {
+  to { stroke-dashoffset: -12; }
+}
+
+.mc-ants {
+  animation: march 400ms linear infinite;
+}
+
+.mc-ants--offset {
+  animation: march 400ms linear -200ms infinite;
+}
+
 /* ── Undo button ──────────────────────────────────────────────── */
 
 .undo-btn {
