@@ -157,6 +157,7 @@ const en = {
     forms_section:        'Forms',
     modifiers_section:    'Modifiers',
     display_section:      'Display',
+    additional_section:   'Additional Settings',
     tts_label:            'Read answer aloud',
     tts_description:      'Speaks the conjugated form when the card flips',
     tts_short:            'Text to speech',

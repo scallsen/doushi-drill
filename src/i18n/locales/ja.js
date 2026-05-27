@@ -155,6 +155,7 @@ const ja = {
     forms_section:     '活用形',
     modifiers_section: '修飾子',
     display_section:   '表示',
+    additional_section: 'その他の設定',
     tts_label:         '答えを読み上げる',
     tts_description:   'カードをめくったときに活用形を読み上げます',
     tts_short:         '音声読み上げ',
