@@ -389,6 +389,8 @@ function ActiveDrill({ drill, ttsEnabled, sfxEnabled, ttsVoice, showStreak, show
     } else if (localStreak > 0) {
       kbBarLeft = t('ui.streak', { count: localStreak }); kbBarLeftColor = '#fff'
       if (localBestStreak > 0) kbBarRight = t('ui.best_streak', { count: localBestStreak })
+    } else if (localBestStreak > 0) {
+      kbBarLeft = t('ui.best_streak', { count: localBestStreak }); kbBarLeftColor = 'rgba(255,255,255,0.5)'
     }
 
     return (
