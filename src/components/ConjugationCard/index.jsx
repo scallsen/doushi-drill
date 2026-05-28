@@ -34,7 +34,7 @@ export default function ConjugationCard({ variant = 'plain', word = '', kana = n
   ) : null
 
   return (
-    <div style={{ width: 'min(380px, calc(100vw - 32px))', aspectRatio: '380 / 280', containerType: 'size' }}>
+    <div style={{ width: 'min(380px, calc(100vw - 32px), calc(var(--card-max-h, 9999px) * 380 / 280))', aspectRatio: '380 / 280', containerType: 'size' }}>
       <FlipCard front={front} back={back} width="100%" height="100%" flipped={flipped} onFlip={onFlip} animate={animate} overlay={ants} focusHint={focusHint ?? t('card.flip')} onFocusActivate={onFocusActivate} />
     </div>
   )

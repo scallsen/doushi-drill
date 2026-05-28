@@ -74,6 +74,14 @@ const InputModeControls = forwardRef(function InputModeControls({ value, onValue
         onKeyDown={isFlipped ? undefined : e => { if (e.key === 'Enter') onSubmit() }}
         readOnly={isFlipped || transitioning}
         disabled={isFlipped}
+        onPointerDown={e => {
+          const vv = window.visualViewport
+          const kbOpen = vv && vv.height < window.screen.height * 0.75
+          if (!kbOpen) {
+            e.preventDefault()
+            inputRef.current?.focus({ preventScroll: true })
+          }
+        }}
         placeholder={t('card.input_placeholder')}
         autoComplete="off"
         autoCorrect="off"

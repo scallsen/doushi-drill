@@ -27,11 +27,10 @@ function WaveText({ text, color }) {
   ))
 }
 
-export default function DrillHUD({ streak, bestStreak, totalCorrect, totalWrong, canUndo, onUndo, showStreak, showVisualEffects = true, onboardingHint, errorMessage, actionSlot, isShort, children }) {
+export default function DrillHUD({ streak, bestStreak, totalCorrect, totalWrong, canUndo, onUndo, showStreak, showVisualEffects = true, onboardingHint, errorMessage, streakLost, actionSlot, isShort, children }) {
   const { t } = useTranslation()
-  const [streakLost,  setStreakLost]  = useState(null)
-  const [popCount,    setPopCount]    = useState(0)
-  const [errorCount,  setErrorCount]  = useState(0)
+  const [popCount,   setPopCount]   = useState(0)
+  const [errorCount, setErrorCount] = useState(0)
   const prevStreakRef = useRef(streak)
 
   useEffect(() => {
@@ -55,16 +54,8 @@ export default function DrillHUD({ streak, bestStreak, totalCorrect, totalWrong,
 
   useEffect(() => {
     const prev = prevStreakRef.current
-    if (prev > 0 && streak === 0) {
-      setStreakLost('visible')
-      const t1 = setTimeout(() => setStreakLost('fading'), 250)
-      const t2 = setTimeout(() => setStreakLost(null), 400)
-      return () => { clearTimeout(t1); clearTimeout(t2) }
-    }
     prevStreakRef.current = streak
-    if (streak > prev) {
-      setPopCount(c => c + 1)
-    }
+    if (streak > prev) setPopCount(c => c + 1)
   }, [streak])
 
   const ghostBtn = (available, onClick, label) => (

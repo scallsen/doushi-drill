@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect, useRef } from 'react'
+import { useState, useMemo, useEffect, useLayoutEffect, useRef } from 'react'
 import { useTranslation } from '../i18n/index.jsx'
 import ConjugationCard from '../components/ConjugationCard/index.jsx'
 import VARIANTS from '../components/ConjugationCard/variants.js'
@@ -29,6 +29,7 @@ import * as wanakana from 'wanakana'
 
 const PANEL_W = 420
 const CHEVRON_W = 28
+const KB_BAR_H = 40
 const PANEL_CONTENT_W = PANEL_W - CHEVRON_W
 
 const BTN_FONT  = 13
@@ -112,7 +113,7 @@ function findSeekCard(newPool, currentCard, axis, value) {
 
 // ── Sub-views ────────────────────────────────────────────────────────────────
 
-function ActiveDrill({ drill, ttsEnabled, sfxEnabled, ttsVoice, showStreak, showFurigana, pixelFont, showVisualEffects, showTranslation, onPulse, onFirstVerdict, inputMode, isShort }) {
+function ActiveDrill({ drill, ttsEnabled, sfxEnabled, ttsVoice, showStreak, showFurigana, pixelFont, showVisualEffects, showTranslation, onPulse, onFirstVerdict, inputMode, isShort, inKeyboardMode, vpH }) {
   const { t } = useTranslation()
   const [flippedCardId, setFlippedCardId] = useState(null)
   const [transitioning, setTransitioning] = useState(false)
@@ -130,6 +131,19 @@ function ActiveDrill({ drill, ttsEnabled, sfxEnabled, ttsVoice, showStreak, show
   const [localBestStreak, setLocalBestStreak] = useState(bestStreak)
   useEffect(() => { setLocalStreak(streak) },     [streak])
   useEffect(() => { setLocalBestStreak(bestStreak) }, [bestStreak])
+
+  const prevLocalStreakRef = useRef(localStreak)
+  const [localStreakLost, setLocalStreakLost] = useState(null)
+  useEffect(() => {
+    const prev = prevLocalStreakRef.current
+    prevLocalStreakRef.current = localStreak
+    if (prev > 0 && localStreak === 0) {
+      setLocalStreakLost('visible')
+      const t1 = setTimeout(() => setLocalStreakLost('fading'), 250)
+      const t2 = setTimeout(() => setLocalStreakLost(null), 400)
+      return () => { clearTimeout(t1); clearTimeout(t2) }
+    }
+  }, [localStreak])
 
   const isFlippedRef = useRef(isFlipped)
   const transitioningRef = useRef(false)
@@ -315,57 +329,121 @@ function ActiveDrill({ drill, ttsEnabled, sfxEnabled, ttsVoice, showStreak, show
     </button>
   )
 
+  const onboardingHintText = hintPhase !== 'done' ? displayedHint : null
+  const errorMessage = inputMode === 'input' && inputIncorrect ? t('card.incorrect') : null
+
+  const conjugationCard = (
+    <ConjugationCard
+      variant={currentCard.variant}
+      word={currentCard.word.kanji}
+      kana={currentCard.word.kana}
+      showFurigana={showFurigana}
+      pixelFont={pixelFont}
+      answer={currentCard.conjugation}
+      negative={currentCard.polarity === 'negative'}
+      past={currentCard.tense === 'past'}
+      bgComponent={bgComponent}
+      registerLabel={registerLabel}
+      flipped={isFlipped}
+      showAnts={inputMode !== 'input'}
+      onFlip={inputMode === 'input' ? null : handleFlip}
+      animate={showVisualEffects}
+      focusHint={inputMode === 'input' ? (isFlipped ? t('card.next_card_hint') : t('card.focus_input')) : null}
+      onFocusActivate={inputMode === 'input' && !isFlipped ? () => inputElRef.current?.focus() : null}
+      translation={currentCard.word.english ?? null}
+      showTranslation={showTranslation}
+    />
+  )
+
+  const inputControls = (
+    <InputModeControls
+      ref={inputElRef}
+      value={inputValue}
+      onValueChange={setInputValue}
+      onSubmit={handleInputSubmit}
+      isFlipped={isFlipped}
+      onVerdict={v => handleVerdictRef.current(v)}
+      transitioning={transitioning}
+    />
+  )
+
+  if (inKeyboardMode) {
+    // Keyboard open: fixed top bar + card (height-constrained) + input field only
+    const cardMaxH = Math.max(vpH - KB_BAR_H - 12 - 10 - 52 - 10, 80)
+
+    if (!document.getElementById('kb-bar-keyframes')) {
+      const style = document.createElement('style')
+      style.id = 'kb-bar-keyframes'
+      style.textContent = '@keyframes kb-bar-in { from { transform: translateY(-100%); opacity: 0 } to { transform: translateY(0); opacity: 1 } }'
+      document.head.appendChild(style)
+    }
+
+    let kbBarLeft = '', kbBarLeftColor = 'rgba(255,255,255,0.4)', kbBarRight = null
+    if (onboardingHintText != null) {
+      kbBarLeft = onboardingHintText; kbBarLeftColor = 'rgba(255,255,255,0.9)'
+    } else if (errorMessage != null) {
+      kbBarLeft = errorMessage; kbBarLeftColor = '#f87171'
+    } else if (localStreakLost) {
+      kbBarLeft = t('ui.streak_lost')
+      kbBarLeftColor = localStreakLost === 'fading' ? 'rgba(248,113,113,0)' : '#f87171'
+    } else if (localStreak > 0) {
+      kbBarLeft = t('ui.streak', { count: localStreak }); kbBarLeftColor = '#fff'
+      if (localBestStreak > 0) kbBarRight = t('ui.best_streak', { count: localBestStreak })
+    }
+
+    return (
+      <>
+        <div style={{
+          position: 'fixed', top: 0, left: 0, right: 0,
+          height: KB_BAR_H,
+          zIndex: 100,
+          background: '#1E1E1E',
+          borderBottom: '1px solid rgba(255,255,255,0.1)',
+          display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+          padding: '0 16px',
+          fontFamily: FONT, fontSize: 13, letterSpacing: TRACKING,
+          animation: 'kb-bar-in 180ms ease',
+        }}>
+          <span style={{ color: kbBarLeftColor, transition: 'color 0.3s ease' }}>{kbBarLeft}</span>
+          {kbBarRight && <span style={{ color: 'rgba(255,255,255,0.5)' }}>{kbBarRight}</span>}
+        </div>
+        <div style={{
+          position: 'fixed', top: KB_BAR_H, left: 0, right: 0,
+          height: `calc(var(--vp-height, 100dvh) - ${KB_BAR_H}px)`,
+          display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+          gap: 10, paddingTop: 12, paddingBottom: 10,
+        }}>
+          <div key={currentCard.id} className={cardClass} style={{ '--card-max-h': `${cardMaxH}px`, transition: 'width 200ms ease' }}>
+            {conjugationCard}
+          </div>
+          {inputControls}
+        </div>
+      </>
+    )
+  }
+
   return (
     <DrillHUD
       streak={localStreak}
       bestStreak={localBestStreak}
+      streakLost={localStreakLost}
       totalCorrect={totalCorrect}
       totalWrong={totalWrong}
       canUndo={inputMode !== 'input' && canUndo}
       onUndo={handleUndo}
       showStreak={showStreak}
       showVisualEffects={showVisualEffects}
-      onboardingHint={hintPhase !== 'done' ? displayedHint : null}
-      errorMessage={inputMode === 'input' && inputIncorrect ? t('card.incorrect') : null}
+      onboardingHint={onboardingHintText}
+      errorMessage={errorMessage}
       actionSlot={inputMode === 'input' ? inputActionSlot : undefined}
       isShort={isShort}
     >
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: isShort ? 8 : 15 }}>
-        <div key={currentCard.id} className={cardClass}>
-          <ConjugationCard
-            variant={currentCard.variant}
-            word={currentCard.word.kanji}
-            kana={currentCard.word.kana}
-            showFurigana={showFurigana}
-            pixelFont={pixelFont}
-            answer={currentCard.conjugation}
-            negative={currentCard.polarity === 'negative'}
-            past={currentCard.tense === 'past'}
-            bgComponent={bgComponent}
-            registerLabel={registerLabel}
-            flipped={isFlipped}
-            showAnts={inputMode !== 'input'}
-            onFlip={inputMode === 'input' ? null : handleFlip}
-            animate={showVisualEffects}
-            focusHint={inputMode === 'input' ? (isFlipped ? t('card.next_card_hint') : t('card.focus_input')) : null}
-            onFocusActivate={inputMode === 'input' && !isFlipped ? () => inputElRef.current?.focus() : null}
-            translation={currentCard.word.english ?? null}
-            showTranslation={showTranslation}
-          />
+        <div key={currentCard.id} className={cardClass} style={{ transition: 'width 200ms ease' }}>
+          {conjugationCard}
         </div>
-
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10 }}>
-          {inputMode === 'input' ? (
-            <InputModeControls
-              ref={inputElRef}
-              value={inputValue}
-              onValueChange={setInputValue}
-              onSubmit={handleInputSubmit}
-              isFlipped={isFlipped}
-              onVerdict={v => handleVerdictRef.current(v)}
-              transitioning={transitioning}
-            />
-          ) : (
+          {inputMode === 'input' ? inputControls : (
             <SpeedModeControls
               isFlipped={isFlipped}
               transitioning={transitioning}
@@ -482,6 +560,9 @@ export default function DrillPage() {
   const [chevronHovered,     setChevronHovered]     = useState(false)
   const [showMobileMenuHint, setShowMobileMenuHint] = useState(false)
   const [keyboardOpen,       setKeyboardOpen]       = useState(false)
+  const [vpH,                setVpH]                = useState(() => window.visualViewport?.height ?? window.innerHeight)
+  const scrollContainerRef = useRef(null)
+  const inputModeRef       = useRef(inputMode)
   const isMobile       = useIsMobile()
   const isNarrow       = useIsMobile(412)
   const hideWordmark   = useIsMobile(560)
@@ -498,7 +579,7 @@ export default function DrillPage() {
   useEffect(() => { localStorage.setItem('pixel-font', pixelFont) }, [pixelFont])
   useEffect(() => { localStorage.setItem('show-translation', showTranslation) }, [showTranslation])
   useEffect(() => { localStorage.setItem('selected-jlpt', JSON.stringify(selectedJlpt)) }, [selectedJlpt])
-  useEffect(() => { localStorage.setItem('input-mode', inputMode) }, [inputMode])
+  useEffect(() => { localStorage.setItem('input-mode', inputMode); inputModeRef.current = inputMode }, [inputMode])
 
   useEffect(() => {
     const el = headerRef.current
@@ -515,6 +596,12 @@ export default function DrillPage() {
       const h = window.visualViewport.height
       document.documentElement.style.setProperty('--vp-height', `${h}px`)
       setKeyboardOpen(h < baseH - 100)
+      setVpH(h)
+      // Reset scroll synchronously before repaint so the browser's auto-scroll
+      // (which puts the focused input at the top) never becomes visible.
+      if (h < baseH - 100 && inputModeRef.current === 'input' && scrollContainerRef.current) {
+        scrollContainerRef.current.scrollTop = 0
+      }
     }
     update()
     window.visualViewport.addEventListener('resize', update)
@@ -524,6 +611,13 @@ export default function DrillPage() {
 
 
   const hideHeader = isMobile && inputMode === 'input' && keyboardOpen
+  const inKeyboardMode = hideHeader
+
+  useLayoutEffect(() => {
+    if (inKeyboardMode && scrollContainerRef.current) {
+      scrollContainerRef.current.scrollTop = 0
+    }
+  }, [inKeyboardMode])
 
   function seek(newWordTypes, newForms, newRegs, newTenses, newPols, axis, value, newJlpt) {
     const newPool = buildPool({
@@ -947,7 +1041,10 @@ export default function DrillPage() {
         )}
 
         {/* Center + Footer scroll container */}
-        <div style={{
+        <div
+          ref={scrollContainerRef}
+          onScroll={inKeyboardMode ? () => { scrollContainerRef.current.scrollTop = 0 } : undefined}
+          style={{
           position: 'absolute', top: hideHeader ? 0 : headerHeight, left: 0, right: 0, height: `calc(var(--vp-height, 100dvh) - ${hideHeader ? 0 : headerHeight}px)`,
           overflowY: 'auto',
           display: 'flex', flexDirection: 'column', alignItems: 'center',
@@ -956,8 +1053,9 @@ export default function DrillPage() {
           <div style={{
             flex: 1,
             width: '100%',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            display: 'flex', alignItems: inKeyboardMode ? 'flex-start' : 'center', justifyContent: 'center',
             minHeight: 'min-content',
+            paddingTop: inKeyboardMode ? KB_BAR_H + 12 : 0,
           }}>
             {!drillMode ? (
               <div style={{ color: 'rgba(255,255,255,0.3)', fontSize: 14 }}>{t('errors.no_selection')}</div>
@@ -966,14 +1064,14 @@ export default function DrillPage() {
             ) : drill.done ? (
               <DoneScreen totalCorrect={drill.totalCorrect} totalWrong={drill.totalWrong} onRestart={drill.restart} />
             ) : (
-              <ActiveDrill drill={drill} ttsEnabled={audioEnabled && ttsEnabled} sfxEnabled={audioEnabled && sfxEnabled} ttsVoice={ttsVoice} showStreak={showStreak} showFurigana={showFurigana} pixelFont={pixelFont} showVisualEffects={showVisualEffects} showTranslation={effectiveShowTranslation} onPulse={setPulseColor} onFirstVerdict={handleFirstVerdict} inputMode={inputMode} isShort={isShort} />
+              <ActiveDrill drill={drill} ttsEnabled={audioEnabled && ttsEnabled} sfxEnabled={audioEnabled && sfxEnabled} ttsVoice={ttsVoice} showStreak={showStreak} showFurigana={showFurigana} pixelFont={pixelFont} showVisualEffects={showVisualEffects} showTranslation={effectiveShowTranslation} onPulse={setPulseColor} onFirstVerdict={handleFirstVerdict} inputMode={inputMode} isShort={isShort} inKeyboardMode={inKeyboardMode} vpH={vpH} />
             )}
           </div>
 
           {/* Footer — flows after content, scrolls with it */}
           <div style={{
             width: '100%',
-            display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16,
+            display: inKeyboardMode ? 'none' : 'flex', flexDirection: 'column', alignItems: 'center', gap: 16,
             padding: '12px 24px',
             pointerEvents: 'none',
           }}>
