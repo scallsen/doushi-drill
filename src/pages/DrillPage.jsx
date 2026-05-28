@@ -386,10 +386,10 @@ function ActiveDrill({ drill, ttsEnabled, sfxEnabled, ttsVoice, showStreak, show
     } else if (localStreakLost) {
       kbBarLeft = t('ui.streak_lost')
       kbBarLeftColor = localStreakLost === 'fading' ? 'rgba(248,113,113,0)' : '#f87171'
-    } else if (localStreak > 0) {
+    } else if (showStreak && localStreak > 0) {
       kbBarLeft = t('ui.streak', { count: localStreak }); kbBarLeftColor = '#fff'
       if (localBestStreak > 0) kbBarRight = t('ui.best_streak', { count: localBestStreak })
-    } else if (localBestStreak > 0) {
+    } else if (showStreak && localBestStreak > 0) {
       kbBarLeft = t('ui.best_streak', { count: localBestStreak }); kbBarLeftColor = 'rgba(255,255,255,0.5)'
     }
 
