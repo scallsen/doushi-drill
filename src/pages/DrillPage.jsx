@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect, useLayoutEffect, useRef } from 'react'
+import { useState, useMemo, useEffect, useRef } from 'react'
 import { useTranslation } from '../i18n/index.jsx'
 import ConjugationCard from '../components/ConjugationCard/index.jsx'
 import VARIANTS from '../components/ConjugationCard/variants.js'
@@ -151,6 +151,16 @@ function ActiveDrill({ drill, ttsEnabled, sfxEnabled, ttsVoice, showStreak, show
   useEffect(() => { isFlippedRef.current = isFlipped }, [isFlipped])
   useEffect(() => { transitioningRef.current = transitioning }, [transitioning])
   const sfx = useSFX()
+
+  useEffect(() => {
+    if (!document.getElementById('kb-bar-keyframes')) {
+      const style = document.createElement('style')
+      style.id = 'kb-bar-keyframes'
+      style.textContent = '@keyframes kb-bar-in { from { transform: translateY(-100%); opacity: 0 } to { transform: translateY(0); opacity: 1 } }'
+      document.head.appendChild(style)
+    }
+    return () => document.getElementById('kb-bar-keyframes')?.remove()
+  }, [])
 
   const [hintPhase,        setHintPhase]        = useState('pre-flip')
   const [displayedHint,    setDisplayedHint]    = useState('')
@@ -371,13 +381,6 @@ function ActiveDrill({ drill, ttsEnabled, sfxEnabled, ttsVoice, showStreak, show
     // Keyboard open: fixed top bar + card (height-constrained) + input field only
     const cardMaxH = Math.max(vpH - KB_BAR_H - 12 - 10 - 52 - 10, 80)
 
-    if (!document.getElementById('kb-bar-keyframes')) {
-      const style = document.createElement('style')
-      style.id = 'kb-bar-keyframes'
-      style.textContent = '@keyframes kb-bar-in { from { transform: translateY(-100%); opacity: 0 } to { transform: translateY(0); opacity: 1 } }'
-      document.head.appendChild(style)
-    }
-
     let kbBarLeft = '', kbBarLeftColor = 'rgba(255,255,255,0.4)', kbBarRight = null
     if (onboardingHintText != null) {
       kbBarLeft = onboardingHintText; kbBarLeftColor = 'rgba(255,255,255,0.9)'
@@ -563,8 +566,6 @@ export default function DrillPage() {
   const [showMobileMenuHint, setShowMobileMenuHint] = useState(false)
   const [keyboardOpen,       setKeyboardOpen]       = useState(false)
   const [vpH,                setVpH]                = useState(() => window.visualViewport?.height ?? window.innerHeight)
-  const scrollContainerRef = useRef(null)
-  const inputModeRef       = useRef(inputMode)
   const isMobile       = useIsMobile()
   const isNarrow       = useIsMobile(412)
   const hideWordmark   = useIsMobile(560)
@@ -581,7 +582,7 @@ export default function DrillPage() {
   useEffect(() => { localStorage.setItem('pixel-font', pixelFont) }, [pixelFont])
   useEffect(() => { localStorage.setItem('show-translation', showTranslation) }, [showTranslation])
   useEffect(() => { localStorage.setItem('selected-jlpt', JSON.stringify(selectedJlpt)) }, [selectedJlpt])
-  useEffect(() => { localStorage.setItem('input-mode', inputMode); inputModeRef.current = inputMode }, [inputMode])
+  useEffect(() => { localStorage.setItem('input-mode', inputMode) }, [inputMode])
 
   useEffect(() => {
     const el = headerRef.current
@@ -599,27 +600,14 @@ export default function DrillPage() {
       document.documentElement.style.setProperty('--vp-height', `${h}px`)
       setKeyboardOpen(h < baseH - 100)
       setVpH(h)
-      // Reset scroll synchronously before repaint so the browser's auto-scroll
-      // (which puts the focused input at the top) never becomes visible.
-      if (h < baseH - 100 && inputModeRef.current === 'input' && scrollContainerRef.current) {
-        scrollContainerRef.current.scrollTop = 0
-      }
     }
     update()
     window.visualViewport.addEventListener('resize', update)
     return () => window.visualViewport.removeEventListener('resize', update)
   }, [])
 
-
-
   const hideHeader = isMobile && inputMode === 'input' && keyboardOpen
   const inKeyboardMode = hideHeader
-
-  useLayoutEffect(() => {
-    if (inKeyboardMode && scrollContainerRef.current) {
-      scrollContainerRef.current.scrollTop = 0
-    }
-  }, [inKeyboardMode])
 
   function seek(newWordTypes, newForms, newRegs, newTenses, newPols, axis, value, newJlpt) {
     const newPool = buildPool({
@@ -1043,10 +1031,7 @@ export default function DrillPage() {
         )}
 
         {/* Center + Footer scroll container */}
-        <div
-          ref={scrollContainerRef}
-          onScroll={inKeyboardMode ? () => { scrollContainerRef.current.scrollTop = 0 } : undefined}
-          style={{
+        <div style={{
           position: 'absolute', top: hideHeader ? 0 : headerHeight, left: 0, right: 0, height: `calc(var(--vp-height, 100dvh) - ${hideHeader ? 0 : headerHeight}px)`,
           overflowY: 'auto',
           display: 'flex', flexDirection: 'column', alignItems: 'center',
@@ -1055,9 +1040,8 @@ export default function DrillPage() {
           <div style={{
             flex: 1,
             width: '100%',
-            display: 'flex', alignItems: inKeyboardMode ? 'flex-start' : 'center', justifyContent: 'center',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
             minHeight: 'min-content',
-            paddingTop: inKeyboardMode ? KB_BAR_H + 12 : 0,
           }}>
             {!drillMode ? (
               <div style={{ color: 'rgba(255,255,255,0.3)', fontSize: 14 }}>{t('errors.no_selection')}</div>
