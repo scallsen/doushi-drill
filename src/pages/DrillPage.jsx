@@ -915,7 +915,7 @@ export default function DrillPage() {
             >
               {availableLocales.map(l => (
                 <option key={l.code} value={l.code} style={{ background: '#2E2E2E', color: '#fff' }}>
-                  {l.name}
+                  {l.code === 'ja' ? `${l.name} (Experimental)` : l.name}
                 </option>
               ))}
             </select>
