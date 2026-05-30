@@ -9,10 +9,12 @@ export default function ConjugationCard({ variant = 'plain', word = '', kana = n
   const { t } = useTranslation()
   const config = VARIANTS[variant] ?? VARIANTS.plain
   const FrontBg = bgComponent ?? config.BgComponent
-  const answerLabel = FORMS[variant]?.axes?.includes('register') ? registerLabel : null
+  const answerLabel = config.labelKey.startsWith('register.')
+    ? t(config.labelKey)
+    : FORMS[variant]?.axes?.includes('register') ? registerLabel : null
   const frontTranslation = showTranslation === 'both' ? translation : null
   const backTranslation  = showTranslation === 'both' || showTranslation === 'back' ? translation : null
-  const label = t(config.labelKey)
+  const label = config.labelKey.startsWith('register.') ? null : t(config.labelKey)
 
   const front = (
     <CardShell bgColor={config.bgColor} border={config.border} BgComponent={FrontBg}>

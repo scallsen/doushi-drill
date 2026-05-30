@@ -16,21 +16,19 @@ export default function CardContent({ label, n, past, word, kana = null, wordKan
         alignItems: 'center',
       }}
     >
-      {/* Answer label */}
+      {past && (
+        <div style={{ position: 'absolute', bottom: 12, left: 20, fontFamily: FONT, fontSize: '5.5cqw', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#222', pointerEvents: 'none' }}>
+          {t('tense.past')}
+        </div>
+      )}
       {answerLabel && (
-        <div style={{ position: 'absolute', top: 14, left: 0, right: 0, textAlign: 'center', fontFamily: FONT, fontSize: '6.32cqw', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(0,0,0,0.35)' }}>
+        <div style={{ position: 'absolute', bottom: 12, left: 0, right: 0, textAlign: 'center', fontFamily: FONT, fontSize: '5.5cqw', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#222' }}>
           {answerLabel}
         </div>
       )}
-
       {n && (
-        <div style={{ position: 'absolute', bottom: 12, right: 20, fontFamily: FONT, fontSize: '6.32cqw', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#222', pointerEvents: 'none' }}>
+        <div style={{ position: 'absolute', bottom: 12, right: 20, fontFamily: FONT, fontSize: '5.5cqw', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#222', pointerEvents: 'none' }}>
           {t('polarity.negative')}
-        </div>
-      )}
-      {past && (
-        <div style={{ position: 'absolute', bottom: 12, left: 20, fontFamily: FONT, fontSize: '6.32cqw', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#222', pointerEvents: 'none' }}>
-          {t('tense.past')}
         </div>
       )}
 
@@ -87,18 +85,6 @@ export default function CardContent({ label, n, past, word, kana = null, wordKan
             )
           })() : word}
         </div>
-        <div
-          style={{
-            fontFamily: FONT,
-            fontSize: '6.84cqw',
-            fontWeight: 400,
-            letterSpacing: '0.05em',
-            color: '#222',
-            textShadow: '2px 2px 0 rgba(0,0,0,0.15)',
-          }}
-        >
-          {label}
-        </div>
         {translation && (
           <div
             style={{
@@ -106,10 +92,24 @@ export default function CardContent({ label, n, past, word, kana = null, wordKan
               fontSize: '5.26cqw',
               fontWeight: 400,
               letterSpacing: '0.04em',
-              color: 'rgba(0,0,0,0.42)',
+              color: '#555',
             }}
           >
             {translation}
+          </div>
+        )}
+        {label && (
+          <div
+            style={{
+              fontFamily: FONT,
+              fontSize: '6.84cqw',
+              fontWeight: 400,
+              letterSpacing: '0.05em',
+              color: '#222',
+              textShadow: '2px 2px 0 rgba(0,0,0,0.15)',
+            }}
+          >
+            {label}
           </div>
         )}
       </div>
