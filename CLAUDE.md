@@ -142,7 +142,7 @@ The scroll container uses a CSS custom property `--vp-height` (set directly on `
 
 `hideHeader` (`isMobile && inputMode === 'input' && keyboardOpen`) hides the header with `visibility: hidden` (not `display: none`) so `ResizeObserver` keeps reporting the correct `headerHeight` for when it reappears.
 
-In `InputModeControls`, the input is `disabled={isFlipped}` only — **not** `disabled={transitioning}`. Setting `disabled` closes the iOS keyboard; `readOnly={isFlipped || transitioning}` blocks input during transitions without dismissing it. Programmatic `focus()` uses `{ preventScroll: true }` since the keyboard is already open. A `visualViewport.resize` listener inside `InputModeControls` calls `scrollIntoView({ block: 'end', behavior: 'smooth' })` when the keyboard opens with the input focused, overriding iOS's default scroll (which anchors the input near the top of the visible area rather than the bottom).
+In `InputModeControls`, the input is never `disabled` — setting `disabled` closes the iOS keyboard. `readOnly={isFlipped || transitioning}` blocks text entry in both states without dismissing the keyboard. When `isFlipped`, `onPointerDown` short-circuits with `e.preventDefault()` to suppress iOS text-selection handles on the inactive-looking field. Programmatic `focus()` uses `{ preventScroll: true }` since the keyboard is already open. A `visualViewport.resize` listener inside `InputModeControls` calls `scrollIntoView({ block: 'end', behavior: 'smooth' })` when the keyboard opens with the input focused, overriding iOS's default scroll (which anchors the input near the top of the visible area rather than the bottom).
 
 ## Known quirks
 

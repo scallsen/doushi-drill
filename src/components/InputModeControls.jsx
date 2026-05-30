@@ -73,8 +73,8 @@ const InputModeControls = forwardRef(function InputModeControls({ value, onValue
         onChange={isFlipped ? undefined : e => onValueChange(wanakana.toHiragana(e.target.value, { IMEMode: true }))}
         onKeyDown={isFlipped ? undefined : e => { if (e.key === 'Enter') onSubmit() }}
         readOnly={isFlipped || transitioning}
-        disabled={isFlipped}
         onPointerDown={e => {
+          if (isFlipped) { e.preventDefault(); return }
           const vv = window.visualViewport
           const kbOpen = vv && vv.height < window.screen.height * 0.75
           if (!kbOpen) {
