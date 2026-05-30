@@ -110,6 +110,17 @@ export function getErrorHint(card, entry) {
   if (formKey === 'te' && hints.length === 0)
     return 'Wrong て form used.'
 
+  // If only the word-type hint fired, confirm the entry matches the wrong-group
+  // conjugation for the CORRECT tense/register/polarity. The stem-based patterns
+  // (e.g. startsWith(stem + 'り')) fire regardless of what follows, so they catch
+  // wrong-group + wrong-tense as a single hit. If the entry doesn't match the
+  // wrong-group + correct-axes form, there are multiple errors → generic.
+  if (hints.length === 1 && wordTypeHint && wordType === 'verb') {
+    const wrongGroup = group === 2 ? 1 : group === 1 ? 2 : null
+    if (wrongGroup && !inResult(conjugate({ ...word, group: wrongGroup }, formKey, register, tense, polarity), entry))
+      return null
+  }
+
   // Single detected error → show it. Multiple → too ambiguous, fall back to generic.
   return hints.length === 1 ? hints[0] : null
 }
