@@ -112,6 +112,7 @@ IDs use the romaji of the kana reading. Disambiguate homophones with a suffix: `
 | `src/hooks/useDrill.js` | React wrapper for any engine; `ENGINES` registry; seek-on-reinit |
 | `src/hooks/useTTS.js` | Web Speech API wrapper; speaks `conjugation` on card flip-to-back; `ttsEnabled` persisted in localStorage |
 | `src/hooks/useSFX.js` | Web Audio API sound effects: `flip_card`, `draw_card`, `flip_card_correct` (pitch scales with streak), `flip_card_wrong`, `best_streak_broken` |
+| `src/errorHints.js` | `getErrorHint(card, entry) → string \| null` — detects why a wrong input answer was wrong (word-type confusion, wrong register/tense/polarity); returns a short hint or null for generic |
 | `src/components/DrillHUD.jsx` | HUD wrapper: streak display with pop/wiggle/wave animations, best streak, show/hide stats toggle, undo button |
 | `src/pages/DrillPage.jsx` | Main page — options state, pool memoization, drill rendering, `findSeekCard` |
 | `src/components/ConjugationCard/` | Card component family (CardShell, CardContent, variants) |
@@ -133,6 +134,14 @@ Output of `buildPool()`, input to engine and card rendering:
 }
 // UI derives: bgComponent (register==='plain' → PlainBg), registerLabel (VARIANTS[register]?.label)
 ```
+
+## Error hint system (input mode)
+
+`src/errorHints.js` exports `getErrorHint(card, entry)`. Called in `DrillPage.jsx` on wrong answers in input mode; the result replaces the generic "Incorrect" message when exactly one error category fires. If two or more fire simultaneously, it returns `null` (generic).
+
+Detection categories: word-type confusion (ichidan/godan swap, な/い adjective swap, する/くる irregulars), wrong register, wrong tense, wrong polarity, adjective pattern mistakes (でした vs かった), and a て-form catch-all.
+
+**To remove the feature entirely:** delete `src/errorHints.js`; in `DrillPage.jsx` remove the `import { getErrorHint }` line, the `errorHint` const, and restore the original `errorMessage` line: `const errorMessage = inputMode === 'input' && inputIncorrect ? t('card.incorrect') : null`.
 
 ## Mobile keyboard handling (input mode)
 
