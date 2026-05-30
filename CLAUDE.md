@@ -112,6 +112,7 @@ IDs use the romaji of the kana reading. Disambiguate homophones with a suffix: `
 | `src/hooks/useDrill.js` | React wrapper for any engine; `ENGINES` registry; seek-on-reinit |
 | `src/hooks/useTTS.js` | Web Speech API wrapper; speaks `conjugation` on card flip-to-back; `ttsEnabled` persisted in localStorage |
 | `src/hooks/useSFX.js` | Web Audio API sound effects: `flip_card`, `draw_card`, `flip_card_correct` (pitch scales with streak), `flip_card_wrong`, `best_streak_broken` |
+| `src/errorHints.js` | `getErrorHint(card, entry) → string \| null` — detects why a wrong input answer was wrong (word-type confusion, wrong register/tense/polarity); returns a short hint or null for generic |
 | `src/components/DrillHUD.jsx` | HUD wrapper: streak display with pop/wiggle/wave animations, best streak, show/hide stats toggle, undo button |
 | `src/pages/DrillPage.jsx` | Main page — options state, pool memoization, drill rendering, `findSeekCard` |
 | `src/components/ConjugationCard/` | Card component family (CardShell, CardContent, variants) |
@@ -134,6 +135,14 @@ Output of `buildPool()`, input to engine and card rendering:
 // UI derives: bgComponent (register==='plain' → PlainBg), registerLabel (VARIANTS[register]?.label)
 ```
 
+## Error hint system (input mode)
+
+`src/errorHints.js` exports `getErrorHint(card, entry)`. Called in `DrillPage.jsx` on wrong answers in input mode; the result replaces the generic "Incorrect" message when exactly one error category fires. If two or more fire simultaneously, it returns `null` (generic).
+
+Detection categories: word-type confusion (ichidan/godan swap, な/い adjective swap, する/くる irregulars), wrong register, wrong tense, wrong polarity, adjective pattern mistakes (でした vs かった), and a て-form catch-all.
+
+**To remove the feature entirely:** delete `src/errorHints.js`; in `DrillPage.jsx` remove the `import { getErrorHint }` line, the `errorHint` const, and restore the original `errorMessage` line: `const errorMessage = inputMode === 'input' && inputIncorrect ? t('card.incorrect') : null`.
+
 ## Mobile keyboard handling (input mode)
 
 The scroll container uses a CSS custom property `--vp-height` (set directly on `document.documentElement` via a `visualViewport.resize` listener) rather than React state, so the container resizes when the keyboard opens without triggering a React re-render — avoiding a layout flash. The container height is `calc(var(--vp-height, 100dvh) - headerHeight)`.
@@ -142,7 +151,7 @@ The scroll container uses a CSS custom property `--vp-height` (set directly on `
 
 `hideHeader` (`isMobile && inputMode === 'input' && keyboardOpen`) hides the header with `visibility: hidden` (not `display: none`) so `ResizeObserver` keeps reporting the correct `headerHeight` for when it reappears.
 
-In `InputModeControls`, the input is `disabled={isFlipped}` only — **not** `disabled={transitioning}`. Setting `disabled` closes the iOS keyboard; `readOnly={isFlipped || transitioning}` blocks input during transitions without dismissing it. Programmatic `focus()` uses `{ preventScroll: true }` since the keyboard is already open. A `visualViewport.resize` listener inside `InputModeControls` calls `scrollIntoView({ block: 'end', behavior: 'smooth' })` when the keyboard opens with the input focused, overriding iOS's default scroll (which anchors the input near the top of the visible area rather than the bottom).
+In `InputModeControls`, the input is never `disabled` — setting `disabled` closes the iOS keyboard. `readOnly={isFlipped || transitioning}` blocks text entry in both states without dismissing the keyboard. When `isFlipped`, `onPointerDown` short-circuits with `e.preventDefault()` to suppress iOS text-selection handles on the inactive-looking field. Programmatic `focus()` uses `{ preventScroll: true }` since the keyboard is already open. A `visualViewport.resize` listener inside `InputModeControls` calls `scrollIntoView({ block: 'end', behavior: 'smooth' })` when the keyboard opens with the input focused, overriding iOS's default scroll (which anchors the input near the top of the visible area rather than the bottom).
 
 ## Known quirks
 

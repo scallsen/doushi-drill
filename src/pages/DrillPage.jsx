@@ -26,6 +26,7 @@ import ModeToggle from '../components/ModeToggle.jsx'
 import SpeedModeControls from '../components/SpeedModeControls.jsx'
 import InputModeControls from '../components/InputModeControls.jsx'
 import * as wanakana from 'wanakana'
+import { getErrorHint } from '../errorHints.js'
 
 const PANEL_W = 420
 const CHEVRON_W = 28
@@ -340,7 +341,8 @@ function ActiveDrill({ drill, ttsEnabled, sfxEnabled, ttsVoice, showStreak, show
   )
 
   const onboardingHintText = hintPhase !== 'done' ? displayedHint : null
-  const errorMessage = inputMode === 'input' && inputIncorrect ? t('card.incorrect') : null
+  const errorHint = (inputMode === 'input' && inputIncorrect && inputValue) ? getErrorHint(currentCard, wanakana.toHiragana(inputValue.trim())) : null
+  const errorMessage = inputMode === 'input' && inputIncorrect ? (errorHint ?? t('card.incorrect')) : null
 
   const conjugationCard = (
     <ConjugationCard
@@ -382,10 +384,10 @@ function ActiveDrill({ drill, ttsEnabled, sfxEnabled, ttsVoice, showStreak, show
     const cardMaxH = Math.max(vpH - KB_BAR_H - 12 - 10 - 52 - 10, 80)
 
     let kbBarLeft = '', kbBarLeftColor = 'rgba(255,255,255,0.4)', kbBarRight = null
-    if (onboardingHintText != null) {
-      kbBarLeft = onboardingHintText; kbBarLeftColor = 'rgba(255,255,255,0.9)'
-    } else if (errorMessage != null) {
+    if (errorMessage != null) {
       kbBarLeft = errorMessage; kbBarLeftColor = '#f87171'
+    } else if (onboardingHintText != null) {
+      kbBarLeft = onboardingHintText; kbBarLeftColor = 'rgba(255,255,255,0.9)'
     } else if (localStreakLost) {
       kbBarLeft = t('ui.streak_lost')
       kbBarLeftColor = localStreakLost === 'fading' ? 'rgba(248,113,113,0)' : '#f87171'
