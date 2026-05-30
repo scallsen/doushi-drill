@@ -26,6 +26,7 @@ import ModeToggle from '../components/ModeToggle.jsx'
 import SpeedModeControls from '../components/SpeedModeControls.jsx'
 import InputModeControls from '../components/InputModeControls.jsx'
 import * as wanakana from 'wanakana'
+import { getErrorHint } from '../errorHints.js'
 
 const PANEL_W = 420
 const CHEVRON_W = 28
@@ -340,7 +341,8 @@ function ActiveDrill({ drill, ttsEnabled, sfxEnabled, ttsVoice, showStreak, show
   )
 
   const onboardingHintText = hintPhase !== 'done' ? displayedHint : null
-  const errorMessage = inputMode === 'input' && inputIncorrect ? t('card.incorrect') : null
+  const errorHint = (inputMode === 'input' && inputIncorrect && inputValue) ? getErrorHint(currentCard, wanakana.toHiragana(inputValue.trim())) : null
+  const errorMessage = inputMode === 'input' && inputIncorrect ? (errorHint ?? t('card.incorrect')) : null
 
   const conjugationCard = (
     <ConjugationCard
