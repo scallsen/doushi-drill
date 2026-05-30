@@ -384,10 +384,10 @@ function ActiveDrill({ drill, ttsEnabled, sfxEnabled, ttsVoice, showStreak, show
     const cardMaxH = Math.max(vpH - KB_BAR_H - 12 - 10 - 52 - 10, 80)
 
     let kbBarLeft = '', kbBarLeftColor = 'rgba(255,255,255,0.4)', kbBarRight = null
-    if (onboardingHintText != null) {
-      kbBarLeft = onboardingHintText; kbBarLeftColor = 'rgba(255,255,255,0.9)'
-    } else if (errorMessage != null) {
+    if (errorMessage != null) {
       kbBarLeft = errorMessage; kbBarLeftColor = '#f87171'
+    } else if (onboardingHintText != null) {
+      kbBarLeft = onboardingHintText; kbBarLeftColor = 'rgba(255,255,255,0.9)'
     } else if (localStreakLost) {
       kbBarLeft = t('ui.streak_lost')
       kbBarLeftColor = localStreakLost === 'fading' ? 'rgba(248,113,113,0)' : '#f87171'
