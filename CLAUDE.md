@@ -8,6 +8,9 @@ Japanese verb conjugation drill app. Vite + React, no TypeScript.
 
 ## Git workflow
 - **Always create a feature branch before making any code changes.** Never commit directly to `main`.
+- **Always run `npm run build` and `npm run lint` before committing.** Fix any errors before proceeding.
+- **Commit messages must describe what changed and why** — not just what the code does.
+- **After merging a branch, switch back to `main` and pull** (`git checkout main && git pull`).
 
 ## Conventions
 - **Inline styles only** — no CSS modules, no Tailwind. CSS files are only for things that can't be expressed inline: `FlipCard.css` (3D flip animation), `global.css` (pseudo-element styles like custom scrollbars).
