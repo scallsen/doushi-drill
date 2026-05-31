@@ -1,10 +1,11 @@
 import builtinWords from './words.json'
+import { safeLocalStorageGet } from '../utils/storage.js'
 
 // Merges custom words from localStorage with builtin words.
 // Custom words with the same id as a builtin entry override it.
 function loadWords() {
   try {
-    const raw = localStorage.getItem('customWords')
+    const raw = safeLocalStorageGet('customWords')
     if (!raw) return builtinWords
     const custom = JSON.parse(raw)
     const customMap = Object.fromEntries(custom.map(w => [w.id, w]))
