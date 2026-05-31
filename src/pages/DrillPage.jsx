@@ -123,7 +123,7 @@ function ActiveDrill({ drill, ttsEnabled, sfxEnabled, ttsVoice, showStreak, show
   const [inputIncorrect, setInputIncorrect] = useState(false)
   const [inputValue, setInputValue] = useState('')
   const inputHasContent = inputValue.trim().length > 0
-  const { currentCard, streak, bestStreak, totalCorrect, totalWrong, remaining, canUndo, onUndo } = drill
+  const { currentCard, streak, bestStreak, totalCorrect, totalWrong, canUndo, onUndo } = drill
   const isFlipped = flippedCardId === currentCard.id
   const tts = useTTS(ttsVoice)
 
@@ -303,6 +303,7 @@ function ActiveDrill({ drill, ttsEnabled, sfxEnabled, ttsVoice, showStreak, show
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentCard.id, drill, inputMode])
 
   const bgComponent   = currentCard.register === 'plain' ? PlainBg : null
@@ -518,7 +519,7 @@ export default function DrillPage() {
   const [selectedForms,      setSelectedForms]      = useState(DEFAULTS.forms)
   const [selectedTenses,     setSelectedTenses]     = useState(DEFAULTS.tenses)
   const [selectedPolarities, setSelectedPolarities] = useState(DEFAULTS.polarities)
-  const [selectedEngine,     setSelectedEngine]     = useState(DEFAULTS.engine)
+  const [selectedEngine] = useState(DEFAULTS.engine)
   const [selectedJlpt,       setSelectedJlpt]       = useState(() => {
     const stored = localStorage.getItem('selected-jlpt')
     return stored ? JSON.parse(stored) : DEFAULTS.jlpt
@@ -653,8 +654,6 @@ export default function DrillPage() {
 
   const gridCols = 'repeat(2, 1fr)'
   const hairline = { height: 1, background: 'rgba(255,255,255,0.08)', margin: '20px 0' }
-  const rowStyle = { display: 'flex', alignItems: 'center', gap: 10 }
-  const rowLabelStyle = { width: 60, flexShrink: 0, color: 'rgba(255,255,255,0.4)', fontSize: META_FONT, letterSpacing: '0.08em', textTransform: 'uppercase' }
 
   function handleSidebarFocus(e) {
     const container = e.currentTarget

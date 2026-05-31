@@ -12,6 +12,7 @@ const InputModeControls = forwardRef(function InputModeControls({ value, onValue
     if (transitioning || isFlipped) return
     // preventScroll: keyboard is already open — don't trigger a browser scroll
     inputRef.current?.focus({ preventScroll: true })
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [transitioning])
 
   useEffect(() => {

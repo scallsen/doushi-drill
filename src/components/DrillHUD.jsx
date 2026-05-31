@@ -58,25 +58,6 @@ export default function DrillHUD({ streak, bestStreak, totalCorrect, totalWrong,
     if (streak > prev) setPopCount(c => c + 1)
   }, [streak])
 
-  const ghostBtn = (available, onClick, label) => (
-    <button
-      onClick={available ? onClick : undefined}
-      style={{
-        background: 'none',
-        border: 'none',
-        color: 'rgba(255,255,255,0.6)',
-        fontSize: 12,
-        cursor: available ? 'pointer' : 'default',
-        fontFamily: 'inherit',
-        padding: 0,
-        opacity: available ? 1 : 0.25,
-        letterSpacing: '0.03em',
-      }}
-    >
-      {label}
-    </button>
-  )
-
   const atBest   = streak > 0 && streak === bestStreak
   const subLabel = bestStreak === 0 ? null : atBest ? t('ui.best_streak_label') : t('ui.best_streak', { count: bestStreak })
 
