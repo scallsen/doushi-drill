@@ -13,6 +13,7 @@
 import { createContext, useContext, useState, useCallback } from 'react';
 import en from './locales/en.js';
 import ja from './locales/ja.js';
+import { safeLocalStorageGet, safeLocalStorageSet } from '../utils/storage.js';
 
 // ── Registry ────────────────────────────────────────────────────────────────
 // Add new locales here. The key becomes the locale code stored in localStorage.
@@ -30,7 +31,7 @@ const LocaleContext = createContext(null);
 // ── Provider ─────────────────────────────────────────────────────────────────
 export function LocaleProvider({ children }) {
   const [localeCode, setLocaleCode] = useState(() => {
-    const saved = localStorage.getItem(STORAGE_KEY);
+    const saved = safeLocalStorageGet(STORAGE_KEY);
     return saved && LOCALES[saved] ? saved : DEFAULT_LOCALE;
   });
 
@@ -40,7 +41,7 @@ export function LocaleProvider({ children }) {
       return;
     }
     setLocaleCode(code);
-    localStorage.setItem(STORAGE_KEY, code);
+    safeLocalStorageSet(STORAGE_KEY, code);
   }, []);
 
   return (

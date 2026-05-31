@@ -27,6 +27,7 @@ import SpeedModeControls from '../components/SpeedModeControls.jsx'
 import InputModeControls from '../components/InputModeControls.jsx'
 import * as wanakana from 'wanakana'
 import { getErrorHint } from '../errorHints.js'
+import { safeLocalStorageGet, safeLocalStorageSet } from '../utils/storage.js'
 
 const PANEL_W = 420
 const CHEVRON_W = 28
@@ -521,45 +522,45 @@ export default function DrillPage() {
   const [selectedPolarities, setSelectedPolarities] = useState(DEFAULTS.polarities)
   const [selectedEngine] = useState(DEFAULTS.engine)
   const [selectedJlpt,       setSelectedJlpt]       = useState(() => {
-    const stored = localStorage.getItem('selected-jlpt')
+    const stored = safeLocalStorageGet('selected-jlpt')
     return stored ? JSON.parse(stored) : DEFAULTS.jlpt
   })
   const [jlptExpanded,       setJlptExpanded]       = useState(false)
   const [seekCardId,         setSeekCardId]         = useState(null)
   const [audioEnabled,       setAudioEnabled]       = useState(() => {
-    const stored = localStorage.getItem('audio-enabled')
+    const stored = safeLocalStorageGet('audio-enabled')
     return stored === null ? true : stored === 'true'
   })
   const [ttsEnabled,         setTtsEnabled]         = useState(() => {
-    const stored = localStorage.getItem('tts-enabled')
+    const stored = safeLocalStorageGet('tts-enabled')
     return stored === null ? false : stored === 'true'
   })
   const [sfxEnabled,         setSfxEnabled]         = useState(() => {
-    const stored = localStorage.getItem('sfx-enabled')
+    const stored = safeLocalStorageGet('sfx-enabled')
     return stored === null ? true : stored === 'true'
   })
-  const [ttsVoice,           setTtsVoice]           = useState(() => localStorage.getItem('tts-voice') ?? '')
+  const [ttsVoice,           setTtsVoice]           = useState(() => safeLocalStorageGet('tts-voice') ?? '')
   const [showStreak,         setShowStreak]         = useState(() => {
-    const stored = localStorage.getItem('hud-show-stats')
+    const stored = safeLocalStorageGet('hud-show-stats')
     return stored === null ? true : stored === 'true'
   })
   const [showFurigana,       setShowFurigana]       = useState(() => {
-    const stored = localStorage.getItem('show-furigana')
+    const stored = safeLocalStorageGet('show-furigana')
     return stored === null ? true : stored === 'true'
   })
   const [showVisualEffects,  setShowVisualEffects]  = useState(() => {
-    const stored = localStorage.getItem('show-visual-effects')
+    const stored = safeLocalStorageGet('show-visual-effects')
     return stored === null ? true : stored === 'true'
   })
   const [pixelFont,          setPixelFont]          = useState(() => {
-    const stored = localStorage.getItem('pixel-font')
+    const stored = safeLocalStorageGet('pixel-font')
     return stored === null ? true : stored === 'true'
   })
   const [showTranslation,    setShowTranslation]    = useState(() => {
-    return localStorage.getItem('show-translation') ?? 'both'
+    return safeLocalStorageGet('show-translation') ?? 'both'
   })
   const effectiveShowTranslation = locale === 'ja' ? 'off' : showTranslation
-  const [inputMode,          setInputMode]          = useState(() => localStorage.getItem('input-mode') ?? 'speed')
+  const [inputMode,          setInputMode]          = useState(() => safeLocalStorageGet('input-mode') ?? 'speed')
   const [pulseColor,         setPulseColor]         = useState(null)
   const [headerHeight,       setHeaderHeight]       = useState(72)
   const headerRef = useRef(null)
@@ -575,17 +576,17 @@ export default function DrillPage() {
   const isShort        = useIsShort()
   const jaVoices = useJaVoices()
 
-  useEffect(() => { localStorage.setItem('audio-enabled', audioEnabled) }, [audioEnabled])
-  useEffect(() => { localStorage.setItem('tts-enabled', ttsEnabled) }, [ttsEnabled])
-  useEffect(() => { localStorage.setItem('sfx-enabled', sfxEnabled) }, [sfxEnabled])
-  useEffect(() => { localStorage.setItem('tts-voice', ttsVoice) }, [ttsVoice])
-  useEffect(() => { localStorage.setItem('hud-show-stats', showStreak) }, [showStreak])
-  useEffect(() => { localStorage.setItem('show-furigana', showFurigana) }, [showFurigana])
-  useEffect(() => { localStorage.setItem('show-visual-effects', showVisualEffects) }, [showVisualEffects])
-  useEffect(() => { localStorage.setItem('pixel-font', pixelFont) }, [pixelFont])
-  useEffect(() => { localStorage.setItem('show-translation', showTranslation) }, [showTranslation])
-  useEffect(() => { localStorage.setItem('selected-jlpt', JSON.stringify(selectedJlpt)) }, [selectedJlpt])
-  useEffect(() => { localStorage.setItem('input-mode', inputMode) }, [inputMode])
+  useEffect(() => { safeLocalStorageSet('audio-enabled', audioEnabled) }, [audioEnabled])
+  useEffect(() => { safeLocalStorageSet('tts-enabled', ttsEnabled) }, [ttsEnabled])
+  useEffect(() => { safeLocalStorageSet('sfx-enabled', sfxEnabled) }, [sfxEnabled])
+  useEffect(() => { safeLocalStorageSet('tts-voice', ttsVoice) }, [ttsVoice])
+  useEffect(() => { safeLocalStorageSet('hud-show-stats', showStreak) }, [showStreak])
+  useEffect(() => { safeLocalStorageSet('show-furigana', showFurigana) }, [showFurigana])
+  useEffect(() => { safeLocalStorageSet('show-visual-effects', showVisualEffects) }, [showVisualEffects])
+  useEffect(() => { safeLocalStorageSet('pixel-font', pixelFont) }, [pixelFont])
+  useEffect(() => { safeLocalStorageSet('show-translation', showTranslation) }, [showTranslation])
+  useEffect(() => { safeLocalStorageSet('selected-jlpt', JSON.stringify(selectedJlpt)) }, [selectedJlpt])
+  useEffect(() => { safeLocalStorageSet('input-mode', inputMode) }, [inputMode])
 
   useEffect(() => {
     const el = headerRef.current
@@ -626,9 +627,9 @@ export default function DrillPage() {
 
   function handleFirstVerdict() {
     if (!isMobile) return
-    if (localStorage.getItem('menu-hint-shown') === 'true') return
+    if (safeLocalStorageGet('menu-hint-shown') === 'true') return
     if (showOptions) return
-    localStorage.setItem('menu-hint-shown', 'true')
+    safeLocalStorageSet('menu-hint-shown', 'true')
     setShowMobileMenuHint(true)
     setTimeout(() => setShowMobileMenuHint(false), 6000)
   }
