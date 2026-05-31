@@ -16,12 +16,12 @@ import ja from './locales/ja.js';
 
 // ── Registry ────────────────────────────────────────────────────────────────
 // Add new locales here. The key becomes the locale code stored in localStorage.
-export const LOCALES = {
+const LOCALES = {
   en,
   ja,
 };
 
-export const DEFAULT_LOCALE = 'en';
+const DEFAULT_LOCALE = 'en';
 const STORAGE_KEY = 'doushi-drill-locale';
 
 // ── Context ──────────────────────────────────────────────────────────────────

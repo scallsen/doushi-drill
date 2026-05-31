@@ -50,7 +50,7 @@ export function buildPool({ selectedWordTypes, selectedForms, selectedRegisters,
 }
 
 // Returns all words whose wordType+group matches any of the selected category keys.
-export function filterWords(selectedWordTypeKeys, selectedJlpt = []) {
+function filterWords(selectedWordTypeKeys, selectedJlpt = []) {
   if (!selectedWordTypeKeys.length) return []
   const words = getAllWords()
   return words.filter(word => {
@@ -65,7 +65,7 @@ export function filterWords(selectedWordTypeKeys, selectedJlpt = []) {
 
 // Returns the card variant key to use for a given form + register selection.
 // 'default' form uses the register colour; all other forms use their own colour.
-export function resolveVariant(formKey, register) {
+function resolveVariant(formKey, register) {
   if (!formKey || formKey === 'default') return register ?? 'plain'
   return formKey
 }

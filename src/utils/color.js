@@ -5,7 +5,7 @@ export function lightenHex(hex, amount = 0.85) {
   return `#${[r, g, b].map(c => Math.round(c + (255 - c) * amount).toString(16).padStart(2, '0')).join('')}`
 }
 
-export function getTextColor(hex) {
+function getTextColor(hex) {
   const clean = hex.replace('#', '')
   const toLinear = c => { const s = c / 255; return s <= 0.04045 ? s / 12.92 : Math.pow((s + 0.055) / 1.055, 2.4) }
   const r = toLinear(parseInt(clean.slice(0, 2), 16))
