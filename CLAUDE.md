@@ -134,7 +134,7 @@ No `english`, `transitive`, `common`, or `difficulty` — those are generated. N
 | `english` | `string` | First English gloss from sense[0] in JMdict |
 | `transitive` | `boolean \| null` | `true` = transitive (`vt`), `false` = intransitive (`vi`), `null` = both, neither, or non-verb |
 | `common` | `boolean` | `true` if the matched kanji/kana element is marked common in JMdict; build script warns if `false` |
-| `difficulty` | `string` | `"beginner"` (N5), `"upper_beginner"` (N4), or `"common"` (JMdict common, unlevelled) |
+| `difficulty` | `string` | `"beginner"` (N5), `"upper_beginner"` (N4), or `"common"` (JMdict common, unlevelled) — UI labels these as Beginner / Upper beginner / Intermediate |
 
 ### JMdict POS tags → group mapping
 
@@ -157,37 +157,39 @@ Prioritise N5 then N4; use `npm run suggest-words` to generate candidates. The s
 **Group 1 verbs — distribute by ending (JMdict POS tag):**
 | Ending | POS tag | Target | Notes |
 |--------|---------|--------|-------|
-| く | `v5k` | 20 | includes 行く (special て form: いって) |
-| ぐ | `v5g` | 10 | て form: いで |
-| す | `v5s` | 20 | |
-| つ | `v5t` | 12 | |
-| う | `v5u` | 16 | |
-| る-godan | `v5r` | 12 | only true godan-る (乗る, 走る, 知る); never ichidan |
+| く | `v5k` | 30 | includes 行く (special て form: いって) |
+| ぐ | `v5g` | 12 | て form: いで |
+| す | `v5s` | 25 | |
+| つ | `v5t` | 15 | |
+| う | `v5u` | 25 | |
+| る-godan | `v5r` | 20 | only true godan-る (乗る, 走る, 知る); never ichidan |
 | ぬ | `v5n` | 2 | 死ぬ is the only common N5/N4 word |
-| ぶ | `v5b` | 12 | |
-| む | `v5m` | 14 | |
+| ぶ | `v5b` | 15 | |
+| む | `v5m` | 20 | |
 
-**Group 2 verbs (ichidan, `v1`) — 70 total**
+**Group 2 verbs (ichidan, `v1`) — 100 total**
 
-**Group 3 (irregular) — 16 total** — する (`vs-i`) + くる (`vk`) + compound する verbs (`vs`)
+**Group 3 (irregular) — 18 total** — する (`vs-i`) + くる (`vk`) + compound する verbs (`vs`)
 
-**い-adjectives (`adj-i`) — 35 total**
+**い-adjectives (`adj-i`) — 50 total**
 
-**な-adjectives (`adj-na`) — 35 total**
+**な-adjectives (`adj-na`) — 40 total**
 
-**Nouns (`n`) — 50 total**
+**Nouns (`n`) — 70 total**
 
 ## Key files
 
 | File | Purpose |
 |---|---|
 | `src/data/conjugation.js` | `conjugate(word, formKey, register, tense, polarity)` — algorithmic conjugation for verbs, adjectives, nouns; returns accepted-answer array (kanji + kana) |
-| `src/data/drill.js` | `buildPool`, `filterWords`, `resolveVariant` |
+| `src/data/drill.js` | `buildPool`, `filterWords` (exported — used by DrillPage for live word count), `resolveVariant` |
 | `src/data/illegalCombos.js` | Declarative list of card combos to suppress (e.g. trivial/duplicate answers); checked in `buildPool()` |
 | `src/data/forms.js` | `FORMS` — all form/register definitions with axes and colors |
-| `scripts/words-seed.json` | Curated word list (id, kanji, kana, romaji, wordType, group, jlpt) — edit this, not words.json |
+| `scripts/words-seed.json` | Curated word list (id, kanji, kana, romaji, wordType, group) — edit this, not words.json |
 | `scripts/build-words.js` | Generates `src/data/words.json` from the seed + JMdict (`npm run build:words`) |
-| `src/data/words.json` | **Generated** — word entries with `english`, `transitive`, `common` from JMdict; do not edit directly |
+| `scripts/suggest-words.js` | Generates JLPT-prioritised candidate entries for any under-target category (`npm run suggest-words`) |
+| `scripts/filters.js` | Shared `WARN_MISC / WARN_FIELD / WARN_POS` sets and `hasBadTags()` — used by both build and suggest scripts |
+| `src/data/words.json` | **Generated** — word entries with `english`, `transitive`, `common`, `difficulty` from JMdict/JLPT; do not edit directly |
 | `src/engines/simpleQueue.js` | Default engine — float + wrong-card reinsertion |
 | `src/hooks/useDrill.js` | React wrapper for any engine; `ENGINES` registry; seek-on-reinit |
 | `src/hooks/useTTS.js` | Web Speech API wrapper; speaks `conjugation` on card flip-to-back; `ttsEnabled` persisted in localStorage |
