@@ -10,7 +10,7 @@ import SelectionError from '../components/SelectionError.jsx'
 import { WORD_TYPES, REGISTERS, GRAMMAR_FORMS, TENSES, POLARITIES } from '../data/options.js'
 import { CATEGORIES } from '../data/categories.js'
 import { FONT, TRACKING } from '../data/theme.js'
-import { buildPool } from '../data/drill.js'
+import { buildPool, filterWords } from '../data/drill.js'
 import { useDrill, ENGINES } from '../hooks/useDrill.js'
 import { useTTS, useJaVoices } from '../hooks/useTTS.js'
 import { useSFX } from '../hooks/useSFX.js'
@@ -501,6 +501,11 @@ const DIFFICULTIES = [
   { key: 'common',         labelKey: 'difficulty.common' },
 ]
 
+function difficultyLabel(selected, t) {
+  if (!selected.length || selected.length === DIFFICULTIES.length) return t('difficulty.all')
+  return DIFFICULTIES.filter(d => selected.includes(d.key)).map(d => t(d.labelKey)).join(', ')
+}
+
 const DEFAULTS = {
   wordTypes:    ['u-verb', 'ru-verb', 'irregular'],
   registers:    ['polite'],
@@ -523,6 +528,7 @@ export default function DrillPage() {
     const stored = safeLocalStorageGet('selected-difficulty')
     return stored ? JSON.parse(stored) : DEFAULTS.difficulties
   })
+  const [difficultyExpanded,   setDifficultyExpanded]   = useState(false)
   const [selectedEngine] = useState(DEFAULTS.engine)
   const [seekCardId,         setSeekCardId]         = useState(null)
   const [audioEnabled,       setAudioEnabled]       = useState(() => {
@@ -648,6 +654,10 @@ export default function DrillPage() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const pool = useMemo(() => buildPool({ selectedWordTypes, selectedForms, selectedRegisters, selectedTenses, selectedPolarities, selectedDifficulties }), [poolKey])
 
+  const wordCountKey = `${selectedWordTypes.join(',')}|${selectedDifficulties.join(',')}`
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const wordCount = useMemo(() => filterWords(selectedWordTypes, selectedDifficulties).length, [wordCountKey])
+
   const engine = ENGINES[selectedEngine]
   const drill  = useDrill(pool, { engine, seekCardId })
 
@@ -706,18 +716,44 @@ export default function DrillPage() {
         <SelectionError visible={selectedWordTypes.length === 0} />
 
         {/* ── Difficulty ── */}
-        <div style={{ marginTop: 14 }}>
-          <ChipRow
-            label={t('settings.filter_difficulty')}
-            options={DIFFICULTIES.map(d => ({ key: d.key, label: t(d.labelKey) }))}
-            selected={selectedDifficulties}
-            axis={null}
-            onChange={(newSel) => {
-              seek(selectedWordTypes, selectedForms, selectedRegisters, selectedTenses, selectedPolarities, newSel, null, null)
-              setSelectedDifficulties(newSel)
-            }}
-          />
+        <div style={{ marginTop: 10, display: 'flex', alignItems: 'center', gap: 8 }}>
+          <div style={{ flex: 1, fontSize: 13, color: 'rgba(255,255,255,0.4)', lineHeight: 1.4 }}>
+            {t('ui.vocabulary_from')}{' '}
+            <span
+              role="button"
+              tabIndex={0}
+              className="jlpt-toggle"
+              onClick={() => setDifficultyExpanded(v => !v)}
+              onKeyDown={e => { if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); setDifficultyExpanded(v => !v) } }}
+              onMouseEnter={e => { e.currentTarget.style.color = 'rgba(255,255,255,0.9)' }}
+              onMouseLeave={e => { e.currentTarget.style.color = 'rgba(255,255,255,0.65)' }}
+              onFocus={e => { e.currentTarget.style.color = 'rgba(255,255,255,0.9)' }}
+              onBlur={e => { e.currentTarget.style.color = 'rgba(255,255,255,0.65)' }}
+              style={{ color: 'rgba(255,255,255,0.65)', textDecoration: 'underline', textUnderlineOffset: 3, cursor: 'pointer' }}
+            >
+              {difficultyLabel(selectedDifficulties, t)}
+            </span>
+          </div>
+          <div style={{ flexShrink: 0, fontSize: 13, color: 'rgba(255,255,255,0.35)' }}>
+            {wordCount} words
+          </div>
         </div>
+        {difficultyExpanded && (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 6, marginTop: 8 }}>
+            {DIFFICULTIES.map(d => (
+              <DrawerCheckbox
+                key={d.key}
+                checked={selectedDifficulties.includes(d.key)}
+                onChange={() => {
+                  const next = toggle(selectedDifficulties, d.key)
+                  seek(selectedWordTypes, selectedForms, selectedRegisters, selectedTenses, selectedPolarities, next, null, null)
+                  setSelectedDifficulties(next)
+                }}
+                label={t(d.labelKey)}
+              />
+            ))}
+          </div>
+        )}
 
         {/* ── Separator ── */}
         <div style={hairline} />

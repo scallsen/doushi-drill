@@ -50,7 +50,7 @@ export function buildPool({ selectedWordTypes, selectedForms, selectedRegisters,
 }
 
 // Returns all words whose wordType+group matches any of the selected category keys.
-function filterWords(selectedWordTypeKeys, selectedDifficulties) {
+export function filterWords(selectedWordTypeKeys, selectedDifficulties) {
   if (!selectedWordTypeKeys.length) return []
   const words = getAllWords()
   return words.filter(word => {

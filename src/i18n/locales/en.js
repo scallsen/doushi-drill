@@ -151,7 +151,8 @@ const en = {
   difficulty: {
     beginner:       'Beginner',        // N5
     upper_beginner: 'Upper beginner',  // N4
-    common:         'Common',          // JMdict common, unlevelled
+    common:         'Intermediate',     // JMdict common, unlevelled
+    all:            'all levels',
   },
 
   settings: {

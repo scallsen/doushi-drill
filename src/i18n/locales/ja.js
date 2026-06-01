@@ -149,7 +149,8 @@ const ja = {
   difficulty: {
     beginner:       '初級',        // N5
     upper_beginner: '初中級',      // N4
-    common:         '一般',        // JMdict common, unlevelled
+    common:         '中級',        // JMdict common, unlevelled
+    all:            'すべてのレベル',
   },
 
   // ── 設定ドロワー ──────────────────────────────────────────────────────────
