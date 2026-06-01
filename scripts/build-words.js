@@ -20,6 +20,41 @@ if (!existsSync(JMDICT_PATH)) {
 
 const seed = JSON.parse(readFileSync(SEED_PATH, 'utf8'))
 
+// Tags that indicate a word is archaic, problematic, or out of scope for a conjugation drill.
+// Used to warn when a seed word's JMdict entry carries one of these tags.
+const WARN_MISC = new Set([
+  'arch', 'obs', 'rare', 'dated', 'hist',
+  'id',      // idiomatic — can't conjugate in isolation
+  'on-mim',  // onomatopoeic (ドキドキする etc.)
+  'X',       // rude/vulgar
+  'derog', 'vulg', 'sens',
+  'yoji',    // four-character compounds
+])
+const WARN_FIELD = new Set([
+  'med', 'chem', 'phys', 'biol', 'bot', 'zool',
+  'anat', 'math', 'law', 'archit', 'geol', 'astron',
+])
+const WARN_POS = new Set([
+  'hon',  // honorific — not covered by the conjugation engine
+  'hum',  // humble
+])
+
+function checkTags(entry, word) {
+  const s0 = entry.sense[0]
+  const allMisc = new Set(s0.misc ?? [])
+  const allField = new Set(s0.field ?? [])
+  const allPos   = new Set(s0.partOfSpeech ?? [])
+
+  const flagged = [
+    ...[...allMisc].filter(t => WARN_MISC.has(t)),
+    ...[...allField].filter(t => WARN_FIELD.has(t)),
+    ...[...allPos].filter(t => WARN_POS.has(t)),
+  ]
+  if (flagged.length) {
+    console.warn(`  WARN: ${word.id} (${word.kanji}) has tags: ${flagged.join(', ')}`)
+  }
+}
+
 // Pre-build sets of kanji/kana we care about (including stripped base forms for する compounds)
 // Compound する verbs: group 3, ends in する, but NOT plain する itself
 function isSuruCompound(w) {
@@ -113,6 +148,7 @@ loadDictionary('jmdict', JMDICT_PATH)
         transitive = word.wordType === 'verb' ? extractTransitive(entry) : null
         common = extractCommon(entry, word)
         if (!common) console.warn(`  WARN: not marked common in JMdict: ${word.id} (${word.kanji})`)
+        checkTags(entry, word)
       }
 
       if (!english) {
