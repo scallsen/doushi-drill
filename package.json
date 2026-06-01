@@ -10,6 +10,7 @@
     "lint": "eslint .",
     "test": "vitest run",
     "build:words": "node scripts/build-words.js",
+    "suggest-words": "node scripts/suggest-words.js",
     "prepare": "husky"
   },
   "lint-staged": {

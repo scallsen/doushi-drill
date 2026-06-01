@@ -2,10 +2,12 @@ import { loadDictionary } from '@scriptin/jmdict-simplified-loader'
 import { readFileSync, writeFileSync, existsSync } from 'fs'
 import { fileURLToPath } from 'url'
 import { dirname, resolve } from 'path'
+import { WARN_MISC, WARN_FIELD, WARN_POS } from './filters.js'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const JMDICT_PATH = process.argv[2] || resolve(__dirname, 'data', 'jmdict-eng.json')
-const SEED_PATH = resolve(__dirname, 'words-seed.json')
+const JLPT_PATH   = resolve(__dirname, 'data', 'jlpt.json')
+const SEED_PATH   = resolve(__dirname, 'words-seed.json')
 const OUTPUT_PATH = resolve(__dirname, '../src/data/words.json')
 
 if (!existsSync(JMDICT_PATH)) {
@@ -20,24 +22,36 @@ if (!existsSync(JMDICT_PATH)) {
 
 const seed = JSON.parse(readFileSync(SEED_PATH, 'utf8'))
 
-// Tags that indicate a word is archaic, problematic, or out of scope for a conjugation drill.
-// Used to warn when a seed word's JMdict entry carries one of these tags.
-const WARN_MISC = new Set([
-  'arch', 'obs', 'rare', 'dated', 'hist',
-  'id',      // idiomatic — can't conjugate in isolation
-  'on-mim',  // onomatopoeic (ドキドキする etc.)
-  'X',       // rude/vulgar
-  'derog', 'vulg', 'sens',
-  'yoji',    // four-character compounds
-])
-const WARN_FIELD = new Set([
-  'med', 'chem', 'phys', 'biol', 'bot', 'zool',
-  'anat', 'math', 'law', 'archit', 'geol', 'astron',
-])
-const WARN_POS = new Set([
-  'hon',  // honorific — not covered by the conjugation engine
-  'hum',  // humble
-])
+// jlpt.json: { kanji: { kana: level } } where level 5=N5, 4=N4
+const jlpt = existsSync(JLPT_PATH) ? JSON.parse(readFileSync(JLPT_PATH, 'utf8')) : null
+if (!jlpt) console.warn('  WARN: scripts/data/jlpt.json not found — all words will get difficulty="common"')
+
+function extractDifficulty(word) {
+  if (!jlpt) return 'common'
+  const base = baseFormSimple(word)
+  const entry = jlpt[base.kanji] ?? jlpt[base.kana]
+  if (!entry) return 'common'
+  const level = entry[base.kana] ?? Math.max(...Object.values(entry))
+  if (level === 5) return 'beginner'
+  if (level === 4) return 'upper_beginner'
+  return 'common'
+}
+
+// Minimal base-form for JLPT lookup only (before isSuruCompound is defined below)
+function baseFormSimple(word) {
+  if (word.wordType === 'verb' && word.group === 3 && word.kanji !== 'する' && word.kanji.endsWith('する')) {
+    return { kanji: word.kanji.slice(0, -2), kana: word.kana.slice(0, -2) }
+  }
+  return word
+}
+
+// Maps JMdict POS tag → expected seed group value (as string for comparison).
+const POS_TO_GROUP = {
+  v5k: '1', v5g: '1', v5s: '1', v5t: '1', v5u: '1',
+  v5r: '1', v5n: '1', v5b: '1', v5m: '1', 'v5u-s': '1',
+  v1: '2', vk: '3', 'vs-i': '3', 'vs-s': '3', vs: '3',
+  'adj-i': 'i', 'adj-na': 'na', n: 'null',
+}
 
 function checkTags(entry, word) {
   const s0 = entry.sense[0]
@@ -52,6 +66,23 @@ function checkTags(entry, word) {
   ]
   if (flagged.length) {
     console.warn(`  WARN: ${word.id} (${word.kanji}) has tags: ${flagged.join(', ')}`)
+  }
+
+  // Cross-check seed group against JMdict POS.
+  // Skip compound-する verbs (JMdict stores them as n+vs, which is ambiguous by design)
+  // and plain nouns (group=null), which often carry extra vs/adj-na tags in JMdict.
+  if (!isSuruCompound(word) && word.group !== null) {
+    const POS_PRIORITY = [
+      'vk','vs-i','vs-s',
+      'v5k','v5g','v5s','v5t','v5u','v5u-s','v5r','v5n','v5b','v5m','v1',
+      'adj-i','adj-na',
+    ]
+    const allEntryPos = new Set(entry.sense.flatMap(s => s.partOfSpeech))
+    const expectedGroup = POS_PRIORITY.map(t => allEntryPos.has(t) ? POS_TO_GROUP[t] : undefined).find(g => g !== undefined)
+    const seedGroup = String(word.group)
+    if (expectedGroup !== undefined && expectedGroup !== seedGroup) {
+      console.warn(`  WARN: ${word.id} (${word.kanji}) seed group=${seedGroup} but JMdict POS suggests group=${expectedGroup}`)
+    }
   }
 }
 
@@ -157,7 +188,8 @@ loadDictionary('jmdict', JMDICT_PATH)
         missing++
       }
 
-      return { ...word, english, transitive, common }
+      const difficulty = extractDifficulty(word)
+      return { ...word, english, transitive, common, difficulty }
     })
 
     writeFileSync(OUTPUT_PATH, JSON.stringify(words, null, 2) + '\n')

@@ -495,13 +495,20 @@ function DoneScreen({ totalCorrect, totalWrong, onRestart }) {
 
 // ── Main page ────────────────────────────────────────────────────────────────
 
+const DIFFICULTIES = [
+  { key: 'beginner',       labelKey: 'difficulty.beginner' },
+  { key: 'upper_beginner', labelKey: 'difficulty.upper_beginner' },
+  { key: 'common',         labelKey: 'difficulty.common' },
+]
+
 const DEFAULTS = {
-  wordTypes:  ['u-verb', 'ru-verb', 'irregular'],
-  registers:  ['polite'],
-  forms:      ['default'],
-  tenses:     ['present'],
-  polarities: ['positive'],
-  engine:     'simpleQueue',
+  wordTypes:    ['u-verb', 'ru-verb', 'irregular'],
+  registers:    ['polite'],
+  forms:        ['default'],
+  tenses:       ['present'],
+  polarities:   ['positive'],
+  difficulties: ['beginner'],
+  engine:       'simpleQueue',
 }
 
 export default function DrillPage() {
@@ -511,7 +518,11 @@ export default function DrillPage() {
   const [selectedRegisters,  setSelectedRegisters]  = useState(DEFAULTS.registers)
   const [selectedForms,      setSelectedForms]      = useState(DEFAULTS.forms)
   const [selectedTenses,     setSelectedTenses]     = useState(DEFAULTS.tenses)
-  const [selectedPolarities, setSelectedPolarities] = useState(DEFAULTS.polarities)
+  const [selectedPolarities,   setSelectedPolarities]   = useState(DEFAULTS.polarities)
+  const [selectedDifficulties, setSelectedDifficulties] = useState(() => {
+    const stored = safeLocalStorageGet('selected-difficulty')
+    return stored ? JSON.parse(stored) : DEFAULTS.difficulties
+  })
   const [selectedEngine] = useState(DEFAULTS.engine)
   const [seekCardId,         setSeekCardId]         = useState(null)
   const [audioEnabled,       setAudioEnabled]       = useState(() => {
@@ -573,6 +584,7 @@ export default function DrillPage() {
   useEffect(() => { safeLocalStorageSet('pixel-font', pixelFont) }, [pixelFont])
   useEffect(() => { safeLocalStorageSet('show-translation', showTranslation) }, [showTranslation])
   useEffect(() => { safeLocalStorageSet('input-mode', inputMode) }, [inputMode])
+  useEffect(() => { safeLocalStorageSet('selected-difficulty', JSON.stringify(selectedDifficulties)) }, [selectedDifficulties])
 
   useEffect(() => {
     const el = headerRef.current
@@ -599,13 +611,14 @@ export default function DrillPage() {
   const hideHeader = isMobile && inputMode === 'input' && keyboardOpen
   const inKeyboardMode = hideHeader
 
-  function seek(newWordTypes, newForms, newRegs, newTenses, newPols, axis, value) {
+  function seek(newWordTypes, newForms, newRegs, newTenses, newPols, newDiffs, axis, value) {
     const newPool = buildPool({
-      selectedWordTypes:  newWordTypes,
-      selectedForms:      newForms,
-      selectedRegisters:  newRegs,
-      selectedTenses:     newTenses,
-      selectedPolarities: newPols,
+      selectedWordTypes:    newWordTypes,
+      selectedForms:        newForms,
+      selectedRegisters:    newRegs,
+      selectedTenses:       newTenses,
+      selectedPolarities:   newPols,
+      selectedDifficulties: newDiffs,
     })
     setSeekCardId(findSeekCard(newPool, drill.currentCard, axis, value)?.id ?? null)
   }
@@ -628,12 +641,12 @@ export default function DrillPage() {
   const activeWordTypes      = new Set(selectedWordTypes.map(k => CATEGORIES.find(c => c.key === k)?.wordType).filter(Boolean))
   const availableGrammarForms = GRAMMAR_FORMS.filter(f => f.validWordTypes.some(wt => activeWordTypes.has(wt)))
 
-  const poolKey = [selectedWordTypes, selectedForms, selectedRegisters, selectedTenses, selectedPolarities]
+  const poolKey = [selectedWordTypes, selectedForms, selectedRegisters, selectedTenses, selectedPolarities, selectedDifficulties]
     .map(a => [...a].sort().join(','))
     .join('|')
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const pool = useMemo(() => buildPool({ selectedWordTypes, selectedForms, selectedRegisters, selectedTenses, selectedPolarities }), [poolKey])
+  const pool = useMemo(() => buildPool({ selectedWordTypes, selectedForms, selectedRegisters, selectedTenses, selectedPolarities, selectedDifficulties }), [poolKey])
 
   const engine = ENGINES[selectedEngine]
   const drill  = useDrill(pool, { engine, seekCardId })
@@ -680,7 +693,7 @@ export default function DrillPage() {
                   const f = GRAMMAR_FORMS.find(gf => gf.key === fk)
                   return f && f.validWordTypes.some(wt => nextWordTypes.has(wt))
                 })
-                seek(next, nextForms, selectedRegisters, selectedTenses, selectedPolarities, adding ? 'wordType' : null, adding ? key : null)
+                seek(next, nextForms, selectedRegisters, selectedTenses, selectedPolarities, selectedDifficulties, adding ? 'wordType' : null, adding ? key : null)
                 setSelectedWordTypes(next)
                 if (nextForms.length !== selectedForms.length) setSelectedForms(nextForms)
               }}
@@ -691,6 +704,20 @@ export default function DrillPage() {
           ))}
         </div>
         <SelectionError visible={selectedWordTypes.length === 0} />
+
+        {/* ── Difficulty ── */}
+        <div style={{ marginTop: 14 }}>
+          <ChipRow
+            label={t('settings.filter_difficulty')}
+            options={DIFFICULTIES.map(d => ({ key: d.key, label: t(d.labelKey) }))}
+            selected={selectedDifficulties}
+            axis={null}
+            onChange={(newSel) => {
+              seek(selectedWordTypes, selectedForms, selectedRegisters, selectedTenses, selectedPolarities, newSel, null, null)
+              setSelectedDifficulties(newSel)
+            }}
+          />
+        </div>
 
         {/* ── Separator ── */}
         <div style={hairline} />
@@ -703,7 +730,7 @@ export default function DrillPage() {
             selected={selectedPolarities}
             axis="polarity"
             onChange={(newSel, axis, val) => {
-              seek(selectedWordTypes, selectedForms, selectedRegisters, selectedTenses, newSel, axis, val)
+              seek(selectedWordTypes, selectedForms, selectedRegisters, selectedTenses, newSel, selectedDifficulties, axis, val)
               setSelectedPolarities(newSel)
             }}
           />
@@ -713,7 +740,7 @@ export default function DrillPage() {
             selected={selectedTenses}
             axis="tense"
             onChange={(newSel, axis, val) => {
-              seek(selectedWordTypes, selectedForms, selectedRegisters, newSel, selectedPolarities, axis, val)
+              seek(selectedWordTypes, selectedForms, selectedRegisters, newSel, selectedPolarities, selectedDifficulties, axis, val)
               setSelectedTenses(newSel)
             }}
           />
@@ -723,7 +750,7 @@ export default function DrillPage() {
             selected={selectedRegisters}
             axis="register"
             onChange={(newSel, axis, val) => {
-              seek(selectedWordTypes, selectedForms, newSel, selectedTenses, selectedPolarities, axis, val)
+              seek(selectedWordTypes, selectedForms, newSel, selectedTenses, selectedPolarities, selectedDifficulties, axis, val)
               setSelectedRegisters(newSel)
             }}
           />
@@ -737,7 +764,7 @@ export default function DrillPage() {
               title={t('settings.forms_section')}
               hasSelections={selectedForms.length > 0}
               onClearAll={() => {
-                seek(selectedWordTypes, [], selectedRegisters, selectedTenses, selectedPolarities, null, null)
+                seek(selectedWordTypes, [], selectedRegisters, selectedTenses, selectedPolarities, selectedDifficulties, null, null)
                 setSelectedForms([])
               }}
               fontSize={META_FONT}
@@ -753,7 +780,7 @@ export default function DrillPage() {
                   onClick={() => {
                     const next = toggle(selectedForms, key)
                     const adding = !selectedForms.includes(key)
-                    seek(selectedWordTypes, next, selectedRegisters, selectedTenses, selectedPolarities, adding ? 'form' : null, adding ? key : null)
+                    seek(selectedWordTypes, next, selectedRegisters, selectedTenses, selectedPolarities, selectedDifficulties, adding ? 'form' : null, adding ? key : null)
                     setSelectedForms(next)
                   }}
                 >

@@ -147,6 +147,13 @@ const en = {
   },
 
   // ── Settings drawer ───────────────────────────────────────────────────────
+  // ── Difficulty levels ─────────────────────────────────────────────────────
+  difficulty: {
+    beginner:       'Beginner',        // N5
+    upper_beginner: 'Upper beginner',  // N4
+    common:         'Common',          // JMdict common, unlevelled
+  },
+
   settings: {
     heading:              'Options',
     words_section:        'Words',
@@ -160,6 +167,7 @@ const en = {
     show_romaji:          'Show rōmaji',
     show_english:         'Show English meaning',
     filter_word_type:     'Word type',
+    filter_difficulty:    'Difficulty',
     show_streak:          'Show streak',
     show_furigana:        'Show furigana',
     show_visual_effects:  'Show visual effects',

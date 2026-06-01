@@ -145,6 +145,13 @@ const ja = {
     mode_input:            '答えを入力',
   },
 
+  // ── 難易度 ────────────────────────────────────────────────────────────────
+  difficulty: {
+    beginner:       '初級',        // N5
+    upper_beginner: '初中級',      // N4
+    common:         '一般',        // JMdict common, unlevelled
+  },
+
   // ── 設定ドロワー ──────────────────────────────────────────────────────────
   settings: {
     heading:           'オプション',
@@ -159,6 +166,7 @@ const ja = {
     show_romaji:       'ローマ字を表示',
     show_english:      '英語の意味を表示',
     filter_word_type:  '品詞',
+    filter_difficulty: '難易度',
     show_streak:          'ストリークを表示',
     show_furigana:        'ふりがなを表示',
     show_visual_effects:  '視覚効果を表示',
