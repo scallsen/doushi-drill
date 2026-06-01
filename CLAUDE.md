@@ -17,7 +17,6 @@ Japanese verb conjugation drill app. Vite + React, no TypeScript.
 - **No comments** unless the WHY is non-obvious (a hidden constraint, a workaround, a subtle invariant).
 - **No TypeScript** — plain JS throughout.
 - `DrillPage` is the real entry point (`App.jsx` renders it).
-- `src/pages/ColorReview.jsx` is a **color/appearance testing page** — navigate to `/#/color-review` in the dev server to see a static grid of all 11 card variants (4 columns × 2 rows each). Use it to tweak card visuals in isolation without loading the full drill. Routing is hash-based in `App.jsx`.
 
 ## How the drill works
 
@@ -119,7 +118,6 @@ IDs use the romaji of the kana reading. Disambiguate homophones with a suffix: `
 | `src/components/DrillHUD.jsx` | HUD wrapper: streak display with pop/wiggle/wave animations, best streak, show/hide stats toggle, undo button |
 | `src/pages/DrillPage.jsx` | Main page — options state, pool memoization, drill rendering, `findSeekCard` |
 | `src/components/ConjugationCard/` | Card component family (CardShell, CardContent, variants) |
-| `src/pages/ColorReview.jsx` | Static color/appearance testing grid — all variants, all states |
 
 ## Card spec shape
 
