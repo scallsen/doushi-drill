@@ -94,17 +94,6 @@ const ja = {
     adj_short:    '形容詞',
   },
 
-  // ── JLPT ──────────────────────────────────────────────────────────────────
-  jlpt: {
-    n5:         'N5',
-    n4:         'N4',
-    n3:         'N3',
-    n2:         'N2',
-    n1:         'N1',
-    unlisted:   '未分類',         // みぶんるい — unclassified
-    all_levels: 'すべてのレベル',
-  },
-
   // ── カード上のテキスト ─────────────────────────────────────────────────────
   card: {
     tap_to_reveal:  'タップして答えを見る',
@@ -156,6 +145,14 @@ const ja = {
     mode_input:            '答えを入力',
   },
 
+  // ── 難易度 ────────────────────────────────────────────────────────────────
+  difficulty: {
+    beginner:       '初級',        // N5
+    upper_beginner: '初中級',      // N4
+    common:         '中級',        // JMdict common, unlevelled
+    all:            'すべてのレベル',
+  },
+
   // ── 設定ドロワー ──────────────────────────────────────────────────────────
   settings: {
     heading:           'オプション',
@@ -169,8 +166,8 @@ const ja = {
     tts_short:         '音声読み上げ',
     show_romaji:       'ローマ字を表示',
     show_english:      '英語の意味を表示',
-    filter_jlpt:       'JLPTレベル',
     filter_word_type:  '品詞',
+    filter_difficulty: '難易度',
     show_streak:          'ストリークを表示',
     show_furigana:        'ふりがなを表示',
     show_visual_effects:  '視覚効果を表示',

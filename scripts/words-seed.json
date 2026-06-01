@@ -1,0 +1,1933 @@
+[
+  {
+    "id": "kaku",
+    "kanji": "書く",
+    "kana": "かく",
+    "romaji": "kaku",
+    "wordType": "verb",
+    "group": 1
+  },
+  {
+    "id": "kiku",
+    "kanji": "聞く",
+    "kana": "きく",
+    "romaji": "kiku",
+    "wordType": "verb",
+    "group": 1
+  },
+  {
+    "id": "hanasu",
+    "kanji": "話す",
+    "kana": "はなす",
+    "romaji": "hanasu",
+    "wordType": "verb",
+    "group": 1
+  },
+  {
+    "id": "matsu",
+    "kanji": "待つ",
+    "kana": "まつ",
+    "romaji": "matsu",
+    "wordType": "verb",
+    "group": 1
+  },
+  {
+    "id": "nomu",
+    "kanji": "飲む",
+    "kana": "のむ",
+    "romaji": "nomu",
+    "wordType": "verb",
+    "group": 1
+  },
+  {
+    "id": "kau",
+    "kanji": "買う",
+    "kana": "かう",
+    "romaji": "kau",
+    "wordType": "verb",
+    "group": 1
+  },
+  {
+    "id": "kaeru",
+    "kanji": "帰る",
+    "kana": "かえる",
+    "romaji": "kaeru",
+    "wordType": "verb",
+    "group": 1
+  },
+  {
+    "id": "iku",
+    "kanji": "行く",
+    "kana": "いく",
+    "romaji": "iku",
+    "wordType": "verb",
+    "group": 1
+  },
+  {
+    "id": "aruku",
+    "kanji": "歩く",
+    "kana": "あるく",
+    "romaji": "aruku",
+    "wordType": "verb",
+    "group": 1
+  },
+  {
+    "id": "hataraku",
+    "kanji": "働く",
+    "kana": "はたらく",
+    "romaji": "hataraku",
+    "wordType": "verb",
+    "group": 1
+  },
+  {
+    "id": "oku",
+    "kanji": "置く",
+    "kana": "おく",
+    "romaji": "oku",
+    "wordType": "verb",
+    "group": 1
+  },
+  {
+    "id": "hiraku",
+    "kanji": "開く",
+    "kana": "ひらく",
+    "romaji": "hiraku",
+    "wordType": "verb",
+    "group": 1
+  },
+  {
+    "id": "hiku",
+    "kanji": "引く",
+    "kana": "ひく",
+    "romaji": "hiku",
+    "wordType": "verb",
+    "group": 1
+  },
+  {
+    "id": "migaku",
+    "kanji": "磨く",
+    "kana": "みがく",
+    "romaji": "migaku",
+    "wordType": "verb",
+    "group": 1
+  },
+  {
+    "id": "oyogu",
+    "kanji": "泳ぐ",
+    "kana": "およぐ",
+    "romaji": "oyogu",
+    "wordType": "verb",
+    "group": 1
+  },
+  {
+    "id": "nugu",
+    "kanji": "脱ぐ",
+    "kana": "ぬぐ",
+    "romaji": "nugu",
+    "wordType": "verb",
+    "group": 1
+  },
+  {
+    "id": "isogu",
+    "kanji": "急ぐ",
+    "kana": "いそぐ",
+    "romaji": "isogu",
+    "wordType": "verb",
+    "group": 1
+  },
+  {
+    "id": "sosogu",
+    "kanji": "注ぐ",
+    "kana": "そそぐ",
+    "romaji": "sosogu",
+    "wordType": "verb",
+    "group": 1
+  },
+  {
+    "id": "kasu",
+    "kanji": "貸す",
+    "kana": "かす",
+    "romaji": "kasu",
+    "wordType": "verb",
+    "group": 1
+  },
+  {
+    "id": "kaesu",
+    "kanji": "返す",
+    "kana": "かえす",
+    "romaji": "kaesu",
+    "wordType": "verb",
+    "group": 1
+  },
+  {
+    "id": "dasu",
+    "kanji": "出す",
+    "kana": "だす",
+    "romaji": "dasu",
+    "wordType": "verb",
+    "group": 1
+  },
+  {
+    "id": "kesu",
+    "kanji": "消す",
+    "kana": "けす",
+    "romaji": "kesu",
+    "wordType": "verb",
+    "group": 1
+  },
+  {
+    "id": "osu",
+    "kanji": "押す",
+    "kana": "おす",
+    "romaji": "osu",
+    "wordType": "verb",
+    "group": 1
+  },
+  {
+    "id": "watasu",
+    "kanji": "渡す",
+    "kana": "わたす",
+    "romaji": "watasu",
+    "wordType": "verb",
+    "group": 1
+  },
+  {
+    "id": "sagasu",
+    "kanji": "探す",
+    "kana": "さがす",
+    "romaji": "sagasu",
+    "wordType": "verb",
+    "group": 1
+  },
+  {
+    "id": "naosu",
+    "kanji": "直す",
+    "kana": "なおす",
+    "romaji": "naosu",
+    "wordType": "verb",
+    "group": 1
+  },
+  {
+    "id": "tatsu",
+    "kanji": "立つ",
+    "kana": "たつ",
+    "romaji": "tatsu",
+    "wordType": "verb",
+    "group": 1
+  },
+  {
+    "id": "motsu",
+    "kanji": "持つ",
+    "kana": "もつ",
+    "romaji": "motsu",
+    "wordType": "verb",
+    "group": 1
+  },
+  {
+    "id": "utsu",
+    "kanji": "打つ",
+    "kana": "うつ",
+    "romaji": "utsu",
+    "wordType": "verb",
+    "group": 1
+  },
+  {
+    "id": "katsu",
+    "kanji": "勝つ",
+    "kana": "かつ",
+    "romaji": "katsu",
+    "wordType": "verb",
+    "group": 1
+  },
+  {
+    "id": "iu",
+    "kanji": "言う",
+    "kana": "いう",
+    "romaji": "iu",
+    "wordType": "verb",
+    "group": 1
+  },
+  {
+    "id": "au",
+    "kanji": "会う",
+    "kana": "あう",
+    "romaji": "au",
+    "wordType": "verb",
+    "group": 1
+  },
+  {
+    "id": "tsukau",
+    "kanji": "使う",
+    "kana": "つかう",
+    "romaji": "tsukau",
+    "wordType": "verb",
+    "group": 1
+  },
+  {
+    "id": "utau",
+    "kanji": "歌う",
+    "kana": "うたう",
+    "romaji": "utau",
+    "wordType": "verb",
+    "group": 1
+  },
+  {
+    "id": "harau",
+    "kanji": "払う",
+    "kana": "はらう",
+    "romaji": "harau",
+    "wordType": "verb",
+    "group": 1
+  },
+  {
+    "id": "chigau",
+    "kanji": "違う",
+    "kana": "ちがう",
+    "romaji": "chigau",
+    "wordType": "verb",
+    "group": 1
+  },
+  {
+    "id": "warau",
+    "kanji": "笑う",
+    "kana": "わらう",
+    "romaji": "warau",
+    "wordType": "verb",
+    "group": 1
+  },
+  {
+    "id": "noru",
+    "kanji": "乗る",
+    "kana": "のる",
+    "romaji": "noru",
+    "wordType": "verb",
+    "group": 1
+  },
+  {
+    "id": "hashiru",
+    "kanji": "走る",
+    "kana": "はしる",
+    "romaji": "hashiru",
+    "wordType": "verb",
+    "group": 1
+  },
+  {
+    "id": "shiru",
+    "kanji": "知る",
+    "kana": "しる",
+    "romaji": "shiru",
+    "wordType": "verb",
+    "group": 1
+  },
+  {
+    "id": "kiru_cut",
+    "kanji": "切る",
+    "kana": "きる",
+    "romaji": "kiru",
+    "wordType": "verb",
+    "group": 1
+  },
+  {
+    "id": "okuru",
+    "kanji": "送る",
+    "kana": "おくる",
+    "romaji": "okuru",
+    "wordType": "verb",
+    "group": 1
+  },
+  {
+    "id": "shinu",
+    "kanji": "死ぬ",
+    "kana": "しぬ",
+    "romaji": "shinu",
+    "wordType": "verb",
+    "group": 1
+  },
+  {
+    "id": "asobu",
+    "kanji": "遊ぶ",
+    "kana": "あそぶ",
+    "romaji": "asobu",
+    "wordType": "verb",
+    "group": 1
+  },
+  {
+    "id": "tobu",
+    "kanji": "飛ぶ",
+    "kana": "とぶ",
+    "romaji": "tobu",
+    "wordType": "verb",
+    "group": 1
+  },
+  {
+    "id": "yobu",
+    "kanji": "呼ぶ",
+    "kana": "よぶ",
+    "romaji": "yobu",
+    "wordType": "verb",
+    "group": 1
+  },
+  {
+    "id": "manabu",
+    "kanji": "学ぶ",
+    "kana": "まなぶ",
+    "romaji": "manabu",
+    "wordType": "verb",
+    "group": 1
+  },
+  {
+    "id": "hakobu",
+    "kanji": "運ぶ",
+    "kana": "はこぶ",
+    "romaji": "hakobu",
+    "wordType": "verb",
+    "group": 1
+  },
+  {
+    "id": "erabu",
+    "kanji": "選ぶ",
+    "kana": "えらぶ",
+    "romaji": "erabu",
+    "wordType": "verb",
+    "group": 1
+  },
+  {
+    "id": "yomu",
+    "kanji": "読む",
+    "kana": "よむ",
+    "romaji": "yomu",
+    "wordType": "verb",
+    "group": 1
+  },
+  {
+    "id": "yasumu",
+    "kanji": "休む",
+    "kana": "やすむ",
+    "romaji": "yasumu",
+    "wordType": "verb",
+    "group": 1
+  },
+  {
+    "id": "sumu",
+    "kanji": "住む",
+    "kana": "すむ",
+    "romaji": "sumu",
+    "wordType": "verb",
+    "group": 1
+  },
+  {
+    "id": "tanomu",
+    "kanji": "頼む",
+    "kana": "たのむ",
+    "romaji": "tanomu",
+    "wordType": "verb",
+    "group": 1
+  },
+  {
+    "id": "tanoshimu",
+    "kanji": "楽しむ",
+    "kana": "たのしむ",
+    "romaji": "tanoshimu",
+    "wordType": "verb",
+    "group": 1
+  },
+  {
+    "id": "susumu",
+    "kanji": "進む",
+    "kana": "すすむ",
+    "romaji": "susumu",
+    "wordType": "verb",
+    "group": 1
+  },
+  {
+    "id": "miru",
+    "kanji": "見る",
+    "kana": "みる",
+    "romaji": "miru",
+    "wordType": "verb",
+    "group": 2
+  },
+  {
+    "id": "okiru",
+    "kanji": "起きる",
+    "kana": "おきる",
+    "romaji": "okiru",
+    "wordType": "verb",
+    "group": 2
+  },
+  {
+    "id": "neru",
+    "kanji": "寝る",
+    "kana": "ねる",
+    "romaji": "neru",
+    "wordType": "verb",
+    "group": 2
+  },
+  {
+    "id": "oshieru",
+    "kanji": "教える",
+    "kana": "おしえる",
+    "romaji": "oshieru",
+    "wordType": "verb",
+    "group": 2
+  },
+  {
+    "id": "oboeru",
+    "kanji": "覚える",
+    "kana": "おぼえる",
+    "romaji": "oboeru",
+    "wordType": "verb",
+    "group": 2
+  },
+  {
+    "id": "wasureru",
+    "kanji": "忘れる",
+    "kana": "わすれる",
+    "romaji": "wasureru",
+    "wordType": "verb",
+    "group": 2
+  },
+  {
+    "id": "taberu",
+    "kanji": "食べる",
+    "kana": "たべる",
+    "romaji": "taberu",
+    "wordType": "verb",
+    "group": 2
+  },
+  {
+    "id": "kiru_wear",
+    "kanji": "着る",
+    "kana": "きる",
+    "romaji": "kiru",
+    "wordType": "verb",
+    "group": 2
+  },
+  {
+    "id": "deru",
+    "kanji": "出る",
+    "kana": "でる",
+    "romaji": "deru",
+    "wordType": "verb",
+    "group": 2
+  },
+  {
+    "id": "ireru",
+    "kanji": "入れる",
+    "kana": "いれる",
+    "romaji": "ireru",
+    "wordType": "verb",
+    "group": 2
+  },
+  {
+    "id": "ageru",
+    "kanji": "上げる",
+    "kana": "あげる",
+    "romaji": "ageru",
+    "wordType": "verb",
+    "group": 2
+  },
+  {
+    "id": "akeru",
+    "kanji": "開ける",
+    "kana": "あける",
+    "romaji": "akeru",
+    "wordType": "verb",
+    "group": 2
+  },
+  {
+    "id": "shimeru",
+    "kanji": "閉める",
+    "kana": "しめる",
+    "romaji": "shimeru",
+    "wordType": "verb",
+    "group": 2
+  },
+  {
+    "id": "miseru",
+    "kanji": "見せる",
+    "kana": "みせる",
+    "romaji": "miseru",
+    "wordType": "verb",
+    "group": 2
+  },
+  {
+    "id": "kangaeru",
+    "kanji": "考える",
+    "kana": "かんがえる",
+    "romaji": "kangaeru",
+    "wordType": "verb",
+    "group": 2
+  },
+  {
+    "id": "hajimeru",
+    "kanji": "始める",
+    "kana": "はじめる",
+    "romaji": "hajimeru",
+    "wordType": "verb",
+    "group": 2
+  },
+  {
+    "id": "tsuzukeru",
+    "kanji": "続ける",
+    "kana": "つづける",
+    "romaji": "tsuzukeru",
+    "wordType": "verb",
+    "group": 2
+  },
+  {
+    "id": "shiraberu",
+    "kanji": "調べる",
+    "kana": "しらべる",
+    "romaji": "shiraberu",
+    "wordType": "verb",
+    "group": 2
+  },
+  {
+    "id": "ukeru",
+    "kanji": "受ける",
+    "kana": "うける",
+    "romaji": "ukeru",
+    "wordType": "verb",
+    "group": 2
+  },
+  {
+    "id": "atsumeru",
+    "kanji": "集める",
+    "kana": "あつめる",
+    "romaji": "atsumeru",
+    "wordType": "verb",
+    "group": 2
+  },
+  {
+    "id": "kaeru_change",
+    "kanji": "変える",
+    "kana": "かえる",
+    "romaji": "kaeru",
+    "wordType": "verb",
+    "group": 2
+  },
+  {
+    "id": "kimeru",
+    "kanji": "決める",
+    "kana": "きめる",
+    "romaji": "kimeru",
+    "wordType": "verb",
+    "group": 2
+  },
+  {
+    "id": "kotaeru",
+    "kanji": "答える",
+    "kana": "こたえる",
+    "romaji": "kotaeru",
+    "wordType": "verb",
+    "group": 2
+  },
+  {
+    "id": "shinjiru",
+    "kanji": "信じる",
+    "kana": "しんじる",
+    "romaji": "shinjiru",
+    "wordType": "verb",
+    "group": 2
+  },
+  {
+    "id": "umareru",
+    "kanji": "生まれる",
+    "kana": "うまれる",
+    "romaji": "umareru",
+    "wordType": "verb",
+    "group": 2
+  },
+  {
+    "id": "tasukeru",
+    "kanji": "助ける",
+    "kana": "たすける",
+    "romaji": "tasukeru",
+    "wordType": "verb",
+    "group": 2
+  },
+  {
+    "id": "suteru",
+    "kanji": "捨てる",
+    "kana": "すてる",
+    "romaji": "suteru",
+    "wordType": "verb",
+    "group": 2
+  },
+  {
+    "id": "tomeru",
+    "kanji": "止める",
+    "kana": "とめる",
+    "romaji": "tomeru",
+    "wordType": "verb",
+    "group": 2
+  },
+  {
+    "id": "abiru",
+    "kanji": "浴びる",
+    "kana": "あびる",
+    "romaji": "abiru",
+    "wordType": "verb",
+    "group": 2
+  },
+  {
+    "id": "kariru",
+    "kanji": "借りる",
+    "kana": "かりる",
+    "romaji": "kariru",
+    "wordType": "verb",
+    "group": 2
+  },
+  {
+    "id": "ochiru",
+    "kanji": "落ちる",
+    "kana": "おちる",
+    "romaji": "ochiru",
+    "wordType": "verb",
+    "group": 2
+  },
+  {
+    "id": "tsukareru",
+    "kanji": "疲れる",
+    "kana": "つかれる",
+    "romaji": "tsukareru",
+    "wordType": "verb",
+    "group": 2
+  },
+  {
+    "id": "kanjiru",
+    "kanji": "感じる",
+    "kana": "かんじる",
+    "romaji": "kanjiru",
+    "wordType": "verb",
+    "group": 2
+  },
+  {
+    "id": "wakareru",
+    "kanji": "別れる",
+    "kana": "わかれる",
+    "romaji": "wakareru",
+    "wordType": "verb",
+    "group": 2
+  },
+  {
+    "id": "mitsukeru",
+    "kanji": "見つける",
+    "kana": "みつける",
+    "romaji": "mitsukeru",
+    "wordType": "verb",
+    "group": 2
+  },
+  {
+    "id": "kuru",
+    "kanji": "来る",
+    "kana": "くる",
+    "romaji": "kuru",
+    "wordType": "verb",
+    "group": 3
+  },
+  {
+    "id": "suru",
+    "kanji": "する",
+    "kana": "する",
+    "romaji": "suru",
+    "wordType": "verb",
+    "group": 3
+  },
+  {
+    "id": "benkyousuru",
+    "kanji": "勉強する",
+    "kana": "べんきょうする",
+    "romaji": "benkyousuru",
+    "wordType": "verb",
+    "group": 3
+  },
+  {
+    "id": "undousuru",
+    "kanji": "運動する",
+    "kana": "うんどうする",
+    "romaji": "undousuru",
+    "wordType": "verb",
+    "group": 3
+  },
+  {
+    "id": "renshuusuru",
+    "kanji": "練習する",
+    "kana": "れんしゅうする",
+    "romaji": "renshuusuru",
+    "wordType": "verb",
+    "group": 3
+  },
+  {
+    "id": "ryokousuru",
+    "kanji": "旅行する",
+    "kana": "りょこうする",
+    "romaji": "ryokousuru",
+    "wordType": "verb",
+    "group": 3
+  },
+  {
+    "id": "ryourisuru",
+    "kanji": "料理する",
+    "kana": "りょうりする",
+    "romaji": "ryourisuru",
+    "wordType": "verb",
+    "group": 3
+  },
+  {
+    "id": "ookii",
+    "kanji": "大きい",
+    "kana": "おおきい",
+    "romaji": "ookii",
+    "wordType": "adjective",
+    "group": "i"
+  },
+  {
+    "id": "chiisai",
+    "kanji": "小さい",
+    "kana": "ちいさい",
+    "romaji": "chiisai",
+    "wordType": "adjective",
+    "group": "i"
+  },
+  {
+    "id": "takai",
+    "kanji": "高い",
+    "kana": "たかい",
+    "romaji": "takai",
+    "wordType": "adjective",
+    "group": "i"
+  },
+  {
+    "id": "yasui",
+    "kanji": "安い",
+    "kana": "やすい",
+    "romaji": "yasui",
+    "wordType": "adjective",
+    "group": "i"
+  },
+  {
+    "id": "atarashii",
+    "kanji": "新しい",
+    "kana": "あたらしい",
+    "romaji": "atarashii",
+    "wordType": "adjective",
+    "group": "i"
+  },
+  {
+    "id": "furui",
+    "kanji": "古い",
+    "kana": "ふるい",
+    "romaji": "furui",
+    "wordType": "adjective",
+    "group": "i"
+  },
+  {
+    "id": "muzukashii",
+    "kanji": "難しい",
+    "kana": "むずかしい",
+    "romaji": "muzukashii",
+    "wordType": "adjective",
+    "group": "i"
+  },
+  {
+    "id": "tanoshii",
+    "kanji": "楽しい",
+    "kana": "たのしい",
+    "romaji": "tanoshii",
+    "wordType": "adjective",
+    "group": "i"
+  },
+  {
+    "id": "nagai",
+    "kanji": "長い",
+    "kana": "ながい",
+    "romaji": "nagai",
+    "wordType": "adjective",
+    "group": "i"
+  },
+  {
+    "id": "mijikai",
+    "kanji": "短い",
+    "kana": "みじかい",
+    "romaji": "mijikai",
+    "wordType": "adjective",
+    "group": "i"
+  },
+  {
+    "id": "hayai",
+    "kanji": "速い",
+    "kana": "はやい",
+    "romaji": "hayai",
+    "wordType": "adjective",
+    "group": "i"
+  },
+  {
+    "id": "atsui",
+    "kanji": "暑い",
+    "kana": "あつい",
+    "romaji": "atsui",
+    "wordType": "adjective",
+    "group": "i"
+  },
+  {
+    "id": "samui",
+    "kanji": "寒い",
+    "kana": "さむい",
+    "romaji": "samui",
+    "wordType": "adjective",
+    "group": "i"
+  },
+  {
+    "id": "hiroi",
+    "kanji": "広い",
+    "kana": "ひろい",
+    "romaji": "hiroi",
+    "wordType": "adjective",
+    "group": "i"
+  },
+  {
+    "id": "isogashii",
+    "kanji": "忙しい",
+    "kana": "いそがしい",
+    "romaji": "isogashii",
+    "wordType": "adjective",
+    "group": "i"
+  },
+  {
+    "id": "tsuyoi",
+    "kanji": "強い",
+    "kana": "つよい",
+    "romaji": "tsuyoi",
+    "wordType": "adjective",
+    "group": "i"
+  },
+  {
+    "id": "wakai",
+    "kanji": "若い",
+    "kana": "わかい",
+    "romaji": "wakai",
+    "wordType": "adjective",
+    "group": "i"
+  },
+  {
+    "id": "suki",
+    "kanji": "好き",
+    "kana": "すき",
+    "romaji": "suki",
+    "wordType": "adjective",
+    "group": "na"
+  },
+  {
+    "id": "kirai",
+    "kanji": "嫌い",
+    "kana": "きらい",
+    "romaji": "kirai",
+    "wordType": "adjective",
+    "group": "na"
+  },
+  {
+    "id": "jouzu",
+    "kanji": "上手",
+    "kana": "じょうず",
+    "romaji": "jouzu",
+    "wordType": "adjective",
+    "group": "na"
+  },
+  {
+    "id": "heta",
+    "kanji": "下手",
+    "kana": "へた",
+    "romaji": "heta",
+    "wordType": "adjective",
+    "group": "na"
+  },
+  {
+    "id": "taisetsu",
+    "kanji": "大切",
+    "kana": "たいせつ",
+    "romaji": "taisetsu",
+    "wordType": "adjective",
+    "group": "na"
+  },
+  {
+    "id": "shizuka",
+    "kanji": "静か",
+    "kana": "しずか",
+    "romaji": "shizuka",
+    "wordType": "adjective",
+    "group": "na"
+  },
+  {
+    "id": "genki",
+    "kanji": "元気",
+    "kana": "げんき",
+    "romaji": "genki",
+    "wordType": "adjective",
+    "group": "na"
+  },
+  {
+    "id": "kirei",
+    "kanji": "綺麗",
+    "kana": "きれい",
+    "romaji": "kirei",
+    "wordType": "adjective",
+    "group": "na"
+  },
+  {
+    "id": "benri",
+    "kanji": "便利",
+    "kana": "べんり",
+    "romaji": "benri",
+    "wordType": "adjective",
+    "group": "na"
+  },
+  {
+    "id": "shinsetsu",
+    "kanji": "親切",
+    "kana": "しんせつ",
+    "romaji": "shinsetsu",
+    "wordType": "adjective",
+    "group": "na"
+  },
+  {
+    "id": "teinei",
+    "kanji": "丁寧",
+    "kana": "ていねい",
+    "romaji": "teinei",
+    "wordType": "adjective",
+    "group": "na"
+  },
+  {
+    "id": "kantan",
+    "kanji": "簡単",
+    "kana": "かんたん",
+    "romaji": "kantan",
+    "wordType": "adjective",
+    "group": "na"
+  },
+  {
+    "id": "hima",
+    "kanji": "暇",
+    "kana": "ひま",
+    "romaji": "hima",
+    "wordType": "adjective",
+    "group": "na"
+  },
+  {
+    "id": "hitsuyou",
+    "kanji": "必要",
+    "kana": "ひつよう",
+    "romaji": "hitsuyou",
+    "wordType": "adjective",
+    "group": "na"
+  },
+  {
+    "id": "yuumei",
+    "kanji": "有名",
+    "kana": "ゆうめい",
+    "romaji": "yuumei",
+    "wordType": "adjective",
+    "group": "na"
+  },
+  {
+    "id": "daijoubu",
+    "kanji": "大丈夫",
+    "kana": "だいじょうぶ",
+    "romaji": "daijoubu",
+    "wordType": "adjective",
+    "group": "na"
+  },
+  {
+    "id": "hon",
+    "kanji": "本",
+    "kana": "ほん",
+    "romaji": "hon",
+    "wordType": "noun",
+    "group": null
+  },
+  {
+    "id": "kuruma",
+    "kanji": "車",
+    "kana": "くるま",
+    "romaji": "kuruma",
+    "wordType": "noun",
+    "group": null
+  },
+  {
+    "id": "densha",
+    "kanji": "電車",
+    "kana": "でんしゃ",
+    "romaji": "densha",
+    "wordType": "noun",
+    "group": null
+  },
+  {
+    "id": "gakkou",
+    "kanji": "学校",
+    "kana": "がっこう",
+    "romaji": "gakkou",
+    "wordType": "noun",
+    "group": null
+  },
+  {
+    "id": "tomodachi",
+    "kanji": "友達",
+    "kana": "ともだち",
+    "romaji": "tomodachi",
+    "wordType": "noun",
+    "group": null
+  },
+  {
+    "id": "shigoto",
+    "kanji": "仕事",
+    "kana": "しごと",
+    "romaji": "shigoto",
+    "wordType": "noun",
+    "group": null
+  },
+  {
+    "id": "jikan",
+    "kanji": "時間",
+    "kana": "じかん",
+    "romaji": "jikan",
+    "wordType": "noun",
+    "group": null
+  },
+  {
+    "id": "eiga",
+    "kanji": "映画",
+    "kana": "えいが",
+    "romaji": "eiga",
+    "wordType": "noun",
+    "group": null
+  },
+  {
+    "id": "tabemono",
+    "kanji": "食べ物",
+    "kana": "たべもの",
+    "romaji": "tabemono",
+    "wordType": "noun",
+    "group": null
+  },
+  {
+    "id": "nomimono",
+    "kanji": "飲み物",
+    "kana": "のみもの",
+    "romaji": "nomimono",
+    "wordType": "noun",
+    "group": null
+  },
+  {
+    "id": "hito",
+    "kanji": "人",
+    "kana": "ひと",
+    "romaji": "hito",
+    "wordType": "noun",
+    "group": null
+  },
+  {
+    "id": "kazoku",
+    "kanji": "家族",
+    "kana": "かぞく",
+    "romaji": "kazoku",
+    "wordType": "noun",
+    "group": null
+  },
+  {
+    "id": "heya",
+    "kanji": "部屋",
+    "kana": "へや",
+    "romaji": "heya",
+    "wordType": "noun",
+    "group": null
+  },
+  {
+    "id": "kaisha",
+    "kanji": "会社",
+    "kana": "かいしゃ",
+    "romaji": "kaisha",
+    "wordType": "noun",
+    "group": null
+  },
+  {
+    "id": "byouin",
+    "kanji": "病院",
+    "kana": "びょういん",
+    "romaji": "byouin",
+    "wordType": "noun",
+    "group": null
+  },
+  {
+    "id": "eki",
+    "kanji": "駅",
+    "kana": "えき",
+    "romaji": "eki",
+    "wordType": "noun",
+    "group": null
+  },
+  {
+    "id": "okane",
+    "kanji": "お金",
+    "kana": "おかね",
+    "romaji": "okane",
+    "wordType": "noun",
+    "group": null
+  },
+  {
+    "id": "tenki",
+    "kanji": "天気",
+    "kana": "てんき",
+    "romaji": "tenki",
+    "wordType": "noun",
+    "group": null
+  },
+  {
+    "id": "ongaku",
+    "kanji": "音楽",
+    "kana": "おんがく",
+    "romaji": "ongaku",
+    "wordType": "noun",
+    "group": null
+  },
+  {
+    "id": "kotoba",
+    "kanji": "言葉",
+    "kana": "ことば",
+    "romaji": "kotoba",
+    "wordType": "noun",
+    "group": null
+  },
+  {
+    "id": "mondai",
+    "kanji": "問題",
+    "kana": "もんだい",
+    "romaji": "mondai",
+    "wordType": "noun",
+    "group": null
+  },
+  {
+    "id": "shashin",
+    "kanji": "写真",
+    "kana": "しゃしん",
+    "romaji": "shashin",
+    "wordType": "noun",
+    "group": null
+  },
+  {
+    "id": "ryouri",
+    "kanji": "料理",
+    "kana": "りょうり",
+    "romaji": "ryouri",
+    "wordType": "noun",
+    "group": null
+  },
+  {
+    "id": "tsuzuku",
+    "kanji": "続く",
+    "kana": "つづく",
+    "romaji": "tsuzuku",
+    "wordType": "verb",
+    "group": 1
+  },
+  {
+    "id": "kizuku",
+    "kanji": "気づく",
+    "kana": "きづく",
+    "romaji": "kizuku",
+    "wordType": "verb",
+    "group": 1
+  },
+  {
+    "id": "kasegu",
+    "kanji": "稼ぐ",
+    "kana": "かせぐ",
+    "romaji": "kasegu",
+    "wordType": "verb",
+    "group": 1
+  },
+  {
+    "id": "sawagu",
+    "kanji": "騒ぐ",
+    "kana": "さわぐ",
+    "romaji": "sawagu",
+    "wordType": "verb",
+    "group": 1
+  },
+  {
+    "id": "tamesu",
+    "kanji": "試す",
+    "kana": "ためす",
+    "romaji": "tamesu",
+    "wordType": "verb",
+    "group": 1
+  },
+  {
+    "id": "arawasu",
+    "kanji": "表す",
+    "kana": "あらわす",
+    "romaji": "arawasu",
+    "wordType": "verb",
+    "group": 1
+  },
+  {
+    "id": "sodatsu",
+    "kanji": "育つ",
+    "kana": "そだつ",
+    "romaji": "sodatsu",
+    "wordType": "verb",
+    "group": 1
+  },
+  {
+    "id": "tamotsu",
+    "kanji": "保つ",
+    "kana": "たもつ",
+    "romaji": "tamotsu",
+    "wordType": "verb",
+    "group": 1
+  },
+  {
+    "id": "sasou",
+    "kanji": "誘う",
+    "kana": "さそう",
+    "romaji": "sasou",
+    "wordType": "verb",
+    "group": 1
+  },
+  {
+    "id": "shitagau",
+    "kanji": "従う",
+    "kana": "したがう",
+    "romaji": "shitagau",
+    "wordType": "verb",
+    "group": 1
+  },
+  {
+    "id": "kotowaru",
+    "kanji": "断る",
+    "kana": "ことわる",
+    "romaji": "kotowaru",
+    "wordType": "verb",
+    "group": 1
+  },
+  {
+    "id": "wataru",
+    "kanji": "渡る",
+    "kana": "わたる",
+    "romaji": "wataru",
+    "wordType": "verb",
+    "group": 1
+  },
+  {
+    "id": "yorokobu",
+    "kanji": "喜ぶ",
+    "kana": "よろこぶ",
+    "romaji": "yorokobu",
+    "wordType": "verb",
+    "group": 1
+  },
+  {
+    "id": "korobu",
+    "kanji": "転ぶ",
+    "kana": "ころぶ",
+    "romaji": "korobu",
+    "wordType": "verb",
+    "group": 1
+  },
+  {
+    "id": "nayamu",
+    "kanji": "悩む",
+    "kana": "なやむ",
+    "romaji": "nayamu",
+    "wordType": "verb",
+    "group": 1
+  },
+  {
+    "id": "nozomu",
+    "kanji": "望む",
+    "kana": "のぞむ",
+    "romaji": "nozomu",
+    "wordType": "verb",
+    "group": 1
+  },
+  {
+    "id": "tsutsumu",
+    "kanji": "包む",
+    "kana": "つつむ",
+    "romaji": "tsutsumu",
+    "wordType": "verb",
+    "group": 1
+  },
+  {
+    "id": "nusumu",
+    "kanji": "盗む",
+    "kana": "ぬすむ",
+    "romaji": "nusumu",
+    "wordType": "verb",
+    "group": 1
+  },
+  {
+    "id": "nareru",
+    "kanji": "慣れる",
+    "kana": "なれる",
+    "romaji": "nareru",
+    "wordType": "verb",
+    "group": 2
+  },
+  {
+    "id": "kuraberu",
+    "kanji": "比べる",
+    "kana": "くらべる",
+    "romaji": "kuraberu",
+    "wordType": "verb",
+    "group": 2
+  },
+  {
+    "id": "tsutaeru",
+    "kanji": "伝える",
+    "kana": "つたえる",
+    "romaji": "tsutaeru",
+    "wordType": "verb",
+    "group": 2
+  },
+  {
+    "id": "mukaeru",
+    "kanji": "迎える",
+    "kana": "むかえる",
+    "romaji": "mukaeru",
+    "wordType": "verb",
+    "group": 2
+  },
+  {
+    "id": "nigeru",
+    "kanji": "逃げる",
+    "kana": "にげる",
+    "romaji": "nigeru",
+    "wordType": "verb",
+    "group": 2
+  },
+  {
+    "id": "nageru",
+    "kanji": "投げる",
+    "kana": "なげる",
+    "romaji": "nageru",
+    "wordType": "verb",
+    "group": 2
+  },
+  {
+    "id": "akirameru",
+    "kanji": "諦める",
+    "kana": "あきらめる",
+    "romaji": "akirameru",
+    "wordType": "verb",
+    "group": 2
+  },
+  {
+    "id": "motomeru",
+    "kanji": "求める",
+    "kana": "もとめる",
+    "romaji": "motomeru",
+    "wordType": "verb",
+    "group": 2
+  },
+  {
+    "id": "homeru",
+    "kanji": "褒める",
+    "kana": "ほめる",
+    "romaji": "homeru",
+    "wordType": "verb",
+    "group": 2
+  },
+  {
+    "id": "nagameru",
+    "kanji": "眺める",
+    "kana": "ながめる",
+    "romaji": "nagameru",
+    "wordType": "verb",
+    "group": 2
+  },
+  {
+    "id": "furueru",
+    "kanji": "震える",
+    "kana": "ふるえる",
+    "romaji": "furueru",
+    "wordType": "verb",
+    "group": 2
+  },
+  {
+    "id": "taoreru",
+    "kanji": "倒れる",
+    "kana": "たおれる",
+    "romaji": "taoreru",
+    "wordType": "verb",
+    "group": 2
+  },
+  {
+    "id": "hanareru",
+    "kanji": "離れる",
+    "kana": "はなれる",
+    "romaji": "hanareru",
+    "wordType": "verb",
+    "group": 2
+  },
+  {
+    "id": "tashikameru",
+    "kanji": "確かめる",
+    "kana": "たしかめる",
+    "romaji": "tashikameru",
+    "wordType": "verb",
+    "group": 2
+  },
+  {
+    "id": "setsumeisuru",
+    "kanji": "説明する",
+    "kana": "せつめいする",
+    "romaji": "setsumeisuru",
+    "wordType": "verb",
+    "group": 3
+  },
+  {
+    "id": "shoukaisuru",
+    "kanji": "紹介する",
+    "kana": "しょうかいする",
+    "romaji": "shoukaisuru",
+    "wordType": "verb",
+    "group": 3
+  },
+  {
+    "id": "shinpaisuru",
+    "kanji": "心配する",
+    "kana": "しんぱいする",
+    "romaji": "shinpaisuru",
+    "wordType": "verb",
+    "group": 3
+  },
+  {
+    "id": "renrakusuru",
+    "kanji": "連絡する",
+    "kana": "れんらくする",
+    "romaji": "renrakusuru",
+    "wordType": "verb",
+    "group": 3
+  },
+  {
+    "id": "fukai",
+    "kanji": "深い",
+    "kana": "ふかい",
+    "romaji": "fukai",
+    "wordType": "adjective",
+    "group": "i"
+  },
+  {
+    "id": "kanashii",
+    "kanji": "悲しい",
+    "kana": "かなしい",
+    "romaji": "kanashii",
+    "wordType": "adjective",
+    "group": "i"
+  },
+  {
+    "id": "ureshii",
+    "kanji": "嬉しい",
+    "kana": "うれしい",
+    "romaji": "ureshii",
+    "wordType": "adjective",
+    "group": "i"
+  },
+  {
+    "id": "kowai",
+    "kanji": "怖い",
+    "kana": "こわい",
+    "romaji": "kowai",
+    "wordType": "adjective",
+    "group": "i"
+  },
+  {
+    "id": "mezurashii",
+    "kanji": "珍しい",
+    "kana": "めずらしい",
+    "romaji": "mezurashii",
+    "wordType": "adjective",
+    "group": "i"
+  },
+  {
+    "id": "tadashii",
+    "kanji": "正しい",
+    "kana": "ただしい",
+    "romaji": "tadashii",
+    "wordType": "adjective",
+    "group": "i"
+  },
+  {
+    "id": "kibishii",
+    "kanji": "厳しい",
+    "kana": "きびしい",
+    "romaji": "kibishii",
+    "wordType": "adjective",
+    "group": "i"
+  },
+  {
+    "id": "hazukashii",
+    "kanji": "恥ずかしい",
+    "kana": "はずかしい",
+    "romaji": "hazukashii",
+    "wordType": "adjective",
+    "group": "i"
+  },
+  {
+    "id": "fukuzatsu",
+    "kanji": "複雑",
+    "kana": "ふくざつ",
+    "romaji": "fukuzatsu",
+    "wordType": "adjective",
+    "group": "na"
+  },
+  {
+    "id": "jiyuu",
+    "kanji": "自由",
+    "kana": "じゆう",
+    "romaji": "jiyuu",
+    "wordType": "adjective",
+    "group": "na"
+  },
+  {
+    "id": "fushigi",
+    "kanji": "不思議",
+    "kana": "ふしぎ",
+    "romaji": "fushigi",
+    "wordType": "adjective",
+    "group": "na"
+  },
+  {
+    "id": "tokubetsu",
+    "kanji": "特別",
+    "kana": "とくべつ",
+    "romaji": "tokubetsu",
+    "wordType": "adjective",
+    "group": "na"
+  },
+  {
+    "id": "anzen",
+    "kanji": "安全",
+    "kana": "あんぜん",
+    "romaji": "anzen",
+    "wordType": "adjective",
+    "group": "na"
+  },
+  {
+    "id": "kiken",
+    "kanji": "危険",
+    "kana": "きけん",
+    "romaji": "kiken",
+    "wordType": "adjective",
+    "group": "na"
+  },
+  {
+    "id": "shiawase",
+    "kanji": "幸せ",
+    "kana": "しあわせ",
+    "romaji": "shiawase",
+    "wordType": "adjective",
+    "group": "na"
+  },
+  {
+    "id": "zannen",
+    "kanji": "残念",
+    "kana": "ざんねん",
+    "romaji": "zannen",
+    "wordType": "adjective",
+    "group": "na"
+  },
+  {
+    "id": "keiken",
+    "kanji": "経験",
+    "kana": "けいけん",
+    "romaji": "keiken",
+    "wordType": "noun",
+    "group": null
+  },
+  {
+    "id": "kimochi",
+    "kanji": "気持ち",
+    "kana": "きもち",
+    "romaji": "kimochi",
+    "wordType": "noun",
+    "group": null
+  },
+  {
+    "id": "riyuu",
+    "kanji": "理由",
+    "kana": "りゆう",
+    "romaji": "riyuu",
+    "wordType": "noun",
+    "group": null
+  },
+  {
+    "id": "imi",
+    "kanji": "意味",
+    "kana": "いみ",
+    "romaji": "imi",
+    "wordType": "noun",
+    "group": null
+  },
+  {
+    "id": "mokuteki",
+    "kanji": "目的",
+    "kana": "もくてき",
+    "romaji": "mokuteki",
+    "wordType": "noun",
+    "group": null
+  },
+  {
+    "id": "kankei",
+    "kanji": "関係",
+    "kana": "かんけい",
+    "romaji": "kankei",
+    "wordType": "noun",
+    "group": null
+  },
+  {
+    "id": "junbi",
+    "kanji": "準備",
+    "kana": "じゅんび",
+    "romaji": "junbi",
+    "wordType": "noun",
+    "group": null
+  },
+  {
+    "id": "shuukan",
+    "kanji": "習慣",
+    "kana": "しゅうかん",
+    "romaji": "shuukan",
+    "wordType": "noun",
+    "group": null
+  },
+
+  { "id": "saku",        "kanji": "咲く",      "kana": "さく",        "romaji": "saku",       "wordType": "verb", "group": 1 },
+  { "id": "fuku",        "kanji": "吹く",      "kana": "ふく",        "romaji": "fuku",       "wordType": "verb", "group": 1 },
+  { "id": "haku",        "kanji": "掃く",      "kana": "はく",        "romaji": "haku",       "wordType": "verb", "group": 1 },
+  { "id": "hiku_2",      "kanji": "弾く",      "kana": "ひく",        "romaji": "hiku",       "wordType": "verb", "group": 1 },
+  { "id": "tsuku",       "kanji": "着く",      "kana": "つく",        "romaji": "tsuku",      "wordType": "verb", "group": 1 },
+  { "id": "naku",        "kanji": "鳴く",      "kana": "なく",        "romaji": "naku",       "wordType": "verb", "group": 1 },
+  { "id": "aku",         "kanji": "開く",      "kana": "あく",        "romaji": "aku",        "wordType": "verb", "group": 1 },
+  { "id": "haku_2",      "kanji": "履く",      "kana": "はく",        "romaji": "haku",       "wordType": "verb", "group": 1 },
+
+  { "id": "hikitsugu",   "kanji": "引き継ぐ",  "kana": "ひきつぐ",    "romaji": "hikitsugu",  "wordType": "verb", "group": 1 },
+  { "id": "totsugu",     "kanji": "嫁ぐ",      "kana": "とつぐ",      "romaji": "totsugu",    "wordType": "verb", "group": 1 },
+  { "id": "kutsurogu",   "kanji": "寛ぐ",      "kana": "くつろぐ",    "romaji": "kutsurogu",  "wordType": "verb", "group": 1 },
+  { "id": "aogu",        "kanji": "仰ぐ",      "kana": "あおぐ",      "romaji": "aogu",       "wordType": "verb", "group": 1 },
+
+  { "id": "sasu",        "kanji": "差す",      "kana": "さす",        "romaji": "sasu",       "wordType": "verb", "group": 1 },
+  { "id": "nakusu",      "kanji": "無くす",    "kana": "なくす",      "romaji": "nakusu",     "wordType": "verb", "group": 1 },
+  { "id": "hikkosu",     "kanji": "引っ越す",  "kana": "ひっこす",    "romaji": "hikkosu",    "wordType": "verb", "group": 1 },
+  { "id": "kowasu",      "kanji": "壊す",      "kana": "こわす",      "romaji": "kowasu",     "wordType": "verb", "group": 1 },
+  { "id": "omoidasu",    "kanji": "思い出す",  "kana": "おもいだす",  "romaji": "omoidasu",   "wordType": "verb", "group": 1 },
+  { "id": "tasu",        "kanji": "足す",      "kana": "たす",        "romaji": "tasu",       "wordType": "verb", "group": 1 },
+  { "id": "wakasu",      "kanji": "沸かす",    "kana": "わかす",      "romaji": "wakasu",     "wordType": "verb", "group": 1 },
+
+  { "id": "yakunitatsu", "kanji": "役に立つ",  "kana": "やくにたつ",  "romaji": "yakunitatsu","wordType": "verb", "group": 1 },
+  { "id": "tatsu_2",     "kanji": "経つ",      "kana": "たつ",        "romaji": "tatsu",      "wordType": "verb", "group": 1 },
+  { "id": "utsu_2",      "kanji": "撃つ",      "kana": "うつ",        "romaji": "utsu",       "wordType": "verb", "group": 1 },
+
+  { "id": "suu",         "kanji": "吸う",      "kana": "すう",        "romaji": "suu",        "wordType": "verb", "group": 1 },
+  { "id": "narau",       "kanji": "習う",      "kana": "ならう",      "romaji": "narau",      "wordType": "verb", "group": 1 },
+  { "id": "arau",        "kanji": "洗う",      "kana": "あらう",      "romaji": "arau",       "wordType": "verb", "group": 1 },
+  { "id": "kamau",       "kanji": "構う",      "kana": "かまう",      "romaji": "kamau",      "wordType": "verb", "group": 1 },
+
+  { "id": "yaru",        "kanji": "やる",      "kana": "やる",        "romaji": "yaru",       "wordType": "verb", "group": 1 },
+  { "id": "kakaru",      "kanji": "掛かる",    "kana": "かかる",      "romaji": "kakaru",     "wordType": "verb", "group": 1 },
+  { "id": "furu",        "kanji": "降る",      "kana": "ふる",        "romaji": "furu",       "wordType": "verb", "group": 1 },
+  { "id": "komaru",      "kanji": "困る",      "kana": "こまる",      "romaji": "komaru",     "wordType": "verb", "group": 1 },
+
+  { "id": "narabu",      "kanji": "並ぶ",      "kana": "ならぶ",      "romaji": "narabu",     "wordType": "verb", "group": 1 },
+  { "id": "sakebu",      "kanji": "叫ぶ",      "kana": "さけぶ",      "romaji": "sakebu",     "wordType": "verb", "group": 1 },
+  { "id": "musubu",      "kanji": "結ぶ",      "kana": "むすぶ",      "romaji": "musubu",     "wordType": "verb", "group": 1 },
+
+  { "id": "kamu",        "kanji": "噛む",      "kana": "かむ",        "romaji": "kamu",       "wordType": "verb", "group": 1 },
+  { "id": "sumu_2",      "kanji": "済む",      "kana": "すむ",        "romaji": "sumu",       "wordType": "verb", "group": 1 },
+  { "id": "yamu",        "kanji": "止む",      "kana": "やむ",        "romaji": "yamu",       "wordType": "verb", "group": 1 },
+
+  { "id": "hirakeru",    "kanji": "開ける",    "kana": "ひらける",    "romaji": "hirakeru",   "wordType": "verb", "group": 2 },
+  { "id": "tsutomeru",   "kanji": "勤める",    "kana": "つとめる",    "romaji": "tsutomeru",  "wordType": "verb", "group": 2 },
+  { "id": "kakeru",      "kanji": "駆ける",    "kana": "かける",      "romaji": "kakeru",     "wordType": "verb", "group": 2 },
+  { "id": "kakeru_2",    "kanji": "欠ける",    "kana": "かける",      "romaji": "kakeru",     "wordType": "verb", "group": 2 },
+  { "id": "dekiru",      "kanji": "出来る",    "kana": "できる",      "romaji": "dekiru",     "wordType": "verb", "group": 2 },
+  { "id": "kieru",       "kanji": "消える",    "kana": "きえる",      "romaji": "kieru",      "wordType": "verb", "group": 2 },
+  { "id": "hareru",      "kanji": "晴れる",    "kana": "はれる",      "romaji": "hareru",     "wordType": "verb", "group": 2 },
+  { "id": "shimeru_2",   "kanji": "締める",    "kana": "しめる",      "romaji": "shimeru",    "wordType": "verb", "group": 2 },
+  { "id": "kakeru_3",    "kanji": "賭ける",    "kana": "かける",      "romaji": "kakeru",     "wordType": "verb", "group": 2 },
+  { "id": "tsukeru",     "kanji": "付ける",    "kana": "つける",      "romaji": "tsukeru",    "wordType": "verb", "group": 2 },
+  { "id": "naraberu",    "kanji": "並べる",    "kana": "ならべる",    "romaji": "naraberu",   "wordType": "verb", "group": 2 },
+  { "id": "oriru",       "kanji": "降りる",    "kana": "おりる",      "romaji": "oriru",      "wordType": "verb", "group": 2 },
+  { "id": "dekakeru",    "kanji": "出かける",  "kana": "でかける",    "romaji": "dekakeru",   "wordType": "verb", "group": 2 },
+  { "id": "tsukeru_2",   "kanji": "点ける",    "kana": "つける",      "romaji": "tsukeru",    "wordType": "verb", "group": 2 },
+  { "id": "sodateru",    "kanji": "育てる",    "kana": "そだてる",    "romaji": "sodateru",   "wordType": "verb", "group": 2 },
+  { "id": "yogoreru",    "kanji": "汚れる",    "kana": "よごれる",    "romaji": "yogoreru",   "wordType": "verb", "group": 2 },
+  { "id": "sageru",      "kanji": "下げる",    "kana": "さげる",      "romaji": "sageru",     "wordType": "verb", "group": 2 },
+  { "id": "ijimeru",     "kanji": "苛める",    "kana": "いじめる",    "romaji": "ijimeru",    "wordType": "verb", "group": 2 },
+  { "id": "sugiru",      "kanji": "過ぎる",    "kana": "すぎる",      "romaji": "sugiru",     "wordType": "verb", "group": 2 },
+  { "id": "kowareru",    "kanji": "壊れる",    "kana": "こわれる",    "romaji": "kowareru",   "wordType": "verb", "group": 2 },
+  { "id": "kakeru_4",    "kanji": "掛ける",    "kana": "かける",      "romaji": "kakeru",     "wordType": "verb", "group": 2 },
+
+  { "id": "omairisuru",  "kanji": "お参りする","kana": "おまいりする", "romaji": "omairi",     "wordType": "verb", "group": 3 },
+  { "id": "ojigisuru",   "kanji": "お辞儀する","kana": "おじぎする",   "romaji": "ojigi",      "wordType": "verb", "group": 3 },
+  { "id": "ochasuru",    "kanji": "お茶する",  "kana": "おちゃする",  "romaji": "ocha",       "wordType": "verb", "group": 3 },
+
+  { "id": "warui",       "kanji": "悪い",      "kana": "わるい",      "romaji": "warui",      "wordType": "adjective", "group": "i" },
+  { "id": "kurai",       "kanji": "暗い",      "kana": "くらい",      "romaji": "kurai",      "wordType": "adjective", "group": "i" },
+  { "id": "yasashii_2",  "kanji": "易しい",    "kana": "やさしい",    "romaji": "yasashii",   "wordType": "adjective", "group": "i" },
+  { "id": "tooi",        "kanji": "遠い",      "kana": "とおい",      "romaji": "tooi",       "wordType": "adjective", "group": "i" },
+  { "id": "kitanai",     "kanji": "汚い",      "kana": "きたない",    "romaji": "kitanai",    "wordType": "adjective", "group": "i" },
+  { "id": "kiiroi",      "kanji": "黄色い",    "kana": "きいろい",    "romaji": "kiiroi",     "wordType": "adjective", "group": "i" },
+  { "id": "nurui",       "kanji": "温い",      "kana": "ぬるい",      "romaji": "nurui",      "wordType": "adjective", "group": "i" },
+  { "id": "amai",        "kanji": "甘い",      "kana": "あまい",      "romaji": "amai",       "wordType": "adjective", "group": "i" },
+  { "id": "abunai",      "kanji": "危ない",    "kana": "あぶない",    "romaji": "abunai",     "wordType": "adjective", "group": "i" },
+
+  { "id": "kekkou",      "kanji": "結構",      "kana": "けっこう",    "romaji": "kekkou",     "wordType": "adjective", "group": "na" },
+  { "id": "daisuki",     "kanji": "大好き",    "kana": "だいすき",    "romaji": "daisuki",    "wordType": "adjective", "group": "na" },
+  { "id": "taihen",      "kanji": "大変",      "kana": "たいへん",    "romaji": "taihen",     "wordType": "adjective", "group": "na" },
+  { "id": "onaji",       "kanji": "同じ",      "kana": "おなじ",      "romaji": "onaji",      "wordType": "adjective", "group": "na" },
+  { "id": "nigiyaka",    "kanji": "賑やか",    "kana": "にぎやか",    "romaji": "nigiyaka",   "wordType": "adjective", "group": "na" },
+  { "id": "hontou",      "kanji": "本当",      "kana": "ほんとう",    "romaji": "hontou",     "wordType": "adjective", "group": "na" },
+  { "id": "rippa",       "kanji": "立派",      "kana": "りっぱ",      "romaji": "rippa",      "wordType": "adjective", "group": "na" },
+
+  { "id": "asoko",       "kanji": "あそこ",    "kana": "あそこ",      "romaji": "asoko",      "wordType": "noun", "group": null },
+  { "id": "are",         "kanji": "あれ",      "kana": "あれ",        "romaji": "are",        "wordType": "noun", "group": null },
+  { "id": "okashi",      "kanji": "お菓子",    "kana": "おかし",      "romaji": "okashi",     "wordType": "noun", "group": null },
+  { "id": "oniisan",     "kanji": "お兄さん",  "kana": "おにいさん",  "romaji": "oniisan",    "wordType": "noun", "group": null },
+  { "id": "oneesan",     "kanji": "お姉さん",  "kana": "おねえさん",  "romaji": "oneesan",    "wordType": "noun", "group": null },
+  { "id": "otearai",     "kanji": "お手洗い",  "kana": "おてあらい",  "romaji": "otearai",    "wordType": "noun", "group": null },
+  { "id": "omawarisan",  "kanji": "お巡りさん","kana": "おまわりさん", "romaji": "omawarisan", "wordType": "noun", "group": null },
+  { "id": "obaasan",     "kanji": "お祖母さん","kana": "おばあさん",   "romaji": "obaasan",    "wordType": "noun", "group": null },
+  { "id": "ocha",        "kanji": "お茶",      "kana": "おちゃ",      "romaji": "ocha",       "wordType": "noun", "group": null },
+  { "id": "otousan",     "kanji": "お父さん",  "kana": "おとうさん",  "romaji": "otousan",    "wordType": "noun", "group": null },
+  { "id": "onaka",       "kanji": "お腹",      "kana": "おなか",      "romaji": "onaka",      "wordType": "noun", "group": null },
+  { "id": "okaasan",     "kanji": "お母さん",  "kana": "おかあさん",  "romaji": "okaasan",    "wordType": "noun", "group": null },
+  { "id": "apaato",      "kanji": "アパート",  "kana": "アパート",    "romaji": "apaato",     "wordType": "noun", "group": null },
+  { "id": "erebeetaa",   "kanji": "エレベーター","kana": "エレベーター","romaji": "erebeetaa",  "wordType": "noun", "group": null },
+  { "id": "kappu",       "kanji": "カップ",    "kana": "カップ",      "romaji": "kappu",      "wordType": "noun", "group": null },
+  { "id": "kamera",      "kanji": "カメラ",    "kana": "カメラ",      "romaji": "kamera",     "wordType": "noun", "group": null },
+  { "id": "karee",       "kanji": "カレー",    "kana": "カレー",      "romaji": "karee",      "wordType": "noun", "group": null },
+  { "id": "karendaa",    "kanji": "カレンダー","kana": "カレンダー",   "romaji": "karendaa",   "wordType": "noun", "group": null },
+  { "id": "kiro",        "kanji": "キロ",      "kana": "キロ",        "romaji": "kiro",       "wordType": "noun", "group": null },
+
+  { "id": "kawaku",      "kanji": "乾く",      "kana": "かわく",      "romaji": "kawaku",     "wordType": "verb", "group": 1 },
+  { "id": "naku_2",      "kanji": "泣く",      "kana": "なく",        "romaji": "naku",       "wordType": "verb", "group": 1 },
+  { "id": "odoroku",     "kanji": "驚く",      "kana": "おどろく",    "romaji": "odoroku",    "wordType": "verb", "group": 1 },
+  { "id": "yaku",        "kanji": "焼く",      "kana": "やく",        "romaji": "yaku",       "wordType": "verb", "group": 1 },
+  { "id": "ugoku",       "kanji": "動く",      "kana": "うごく",      "romaji": "ugoku",      "wordType": "verb", "group": 1 },
+  { "id": "tsuku_2",     "kanji": "付く",      "kana": "つく",        "romaji": "tsuku",      "wordType": "verb", "group": 1 },
+  { "id": "suku",        "kanji": "空く",      "kana": "すく",        "romaji": "suku",       "wordType": "verb", "group": 1 },
+  { "id": "waku",        "kanji": "沸く",      "kana": "わく",        "romaji": "waku",       "wordType": "verb", "group": 1 },
+
+  { "id": "tsugu",       "kanji": "継ぐ",      "kana": "つぐ",        "romaji": "tsugu",      "wordType": "verb", "group": 1 },
+  { "id": "tsunagu",     "kanji": "繋ぐ",      "kana": "つなぐ",      "romaji": "tsunagu",    "wordType": "verb", "group": 1 },
+
+  { "id": "utsusu",      "kanji": "写す",      "kana": "うつす",      "romaji": "utsusu",     "wordType": "verb", "group": 1 },
+  { "id": "utsusu_2",    "kanji": "移す",      "kana": "うつす",      "romaji": "utsusu",     "wordType": "verb", "group": 1 },
+  { "id": "nasu",        "kanji": "成す",      "kana": "なす",        "romaji": "nasu",       "wordType": "verb", "group": 1 },
+  { "id": "sorasu",      "kanji": "逸らす",    "kana": "そらす",      "romaji": "sorasu",     "wordType": "verb", "group": 1 },
+  { "id": "zurasu",      "kanji": "ずらす",    "kana": "ずらす",      "romaji": "zurasu",     "wordType": "verb", "group": 1 },
+
+  { "id": "tatsu_3",     "kanji": "裁つ",      "kana": "たつ",        "romaji": "tatsu",      "wordType": "verb", "group": 1 },
+  { "id": "butsu",       "kanji": "ぶつ",      "kana": "ぶつ",        "romaji": "butsu",      "wordType": "verb", "group": 1 },
+  { "id": "wakatsu",     "kanji": "分かつ",    "kana": "わかつ",      "romaji": "wakatsu",    "wordType": "verb", "group": 1 },
+
+  { "id": "sou",         "kanji": "沿う",      "kana": "そう",        "romaji": "sou",        "wordType": "verb", "group": 1 },
+  { "id": "au_2",        "kanji": "合う",      "kana": "あう",        "romaji": "au",         "wordType": "verb", "group": 1 },
+  { "id": "tetsudau",    "kanji": "手伝う",    "kana": "てつだう",    "romaji": "tetsudau",   "wordType": "verb", "group": 1 },
+  { "id": "hirou",       "kanji": "拾う",      "kana": "ひろう",      "romaji": "hirou",      "wordType": "verb", "group": 1 },
+  { "id": "kayou",       "kanji": "通う",      "kana": "かよう",      "romaji": "kayou",      "wordType": "verb", "group": 1 },
+  { "id": "morau",       "kanji": "貰う",      "kana": "もらう",      "romaji": "morau",      "wordType": "verb", "group": 1 },
+  { "id": "okonau",      "kanji": "行う",      "kana": "おこなう",    "romaji": "okonau",     "wordType": "verb", "group": 1 },
+  { "id": "omou",        "kanji": "思う",      "kana": "おもう",      "romaji": "omou",       "wordType": "verb", "group": 1 },
+
+  { "id": "suwaru",      "kanji": "座る",      "kana": "すわる",      "romaji": "suwaru",     "wordType": "verb", "group": 1 },
+  { "id": "toru",        "kanji": "撮る",      "kana": "とる",        "romaji": "toru",       "wordType": "verb", "group": 1 },
+  { "id": "hajimaru",    "kanji": "始まる",    "kana": "はじまる",    "romaji": "hajimaru",   "wordType": "verb", "group": 1 },
+  { "id": "tomaru",      "kanji": "止まる",    "kana": "とまる",      "romaji": "tomaru",     "wordType": "verb", "group": 1 },
+  { "id": "toru_2",      "kanji": "取る",      "kana": "とる",        "romaji": "toru",       "wordType": "verb", "group": 1 },
+  { "id": "naru",        "kanji": "成る",      "kana": "なる",        "romaji": "naru",       "wordType": "verb", "group": 1 },
+
+  { "id": "ukabu",       "kanji": "浮かぶ",    "kana": "うかぶ",      "romaji": "ukabu",      "wordType": "verb", "group": 1 },
+  { "id": "oyobu",       "kanji": "及ぶ",      "kana": "およぶ",      "romaji": "oyobu",      "wordType": "verb", "group": 1 },
+
+  { "id": "fumu",        "kanji": "踏む",      "kana": "ふむ",        "romaji": "fumu",       "wordType": "verb", "group": 1 },
+  { "id": "komu",        "kanji": "込む",      "kana": "こむ",        "romaji": "komu",       "wordType": "verb", "group": 1 },
+  { "id": "shagamu",     "kanji": "しゃがむ",  "kana": "しゃがむ",    "romaji": "shagamu",    "wordType": "verb", "group": 1 },
+  { "id": "kakomu",      "kanji": "囲む",      "kana": "かこむ",      "romaji": "kakomu",     "wordType": "verb", "group": 1 },
+
+  { "id": "wareru",      "kanji": "割れる",    "kana": "われる",      "romaji": "wareru",     "wordType": "verb", "group": 2 },
+  { "id": "machigaeru",  "kanji": "間違える",  "kana": "まちがえる",  "romaji": "machigaeru", "wordType": "verb", "group": 2 },
+  { "id": "tateru",      "kanji": "建てる",    "kana": "たてる",      "romaji": "tateru",     "wordType": "verb", "group": 2 },
+  { "id": "mieru",       "kanji": "見える",    "kana": "みえる",      "romaji": "mieru",      "wordType": "verb", "group": 2 },
+  { "id": "yameru",      "kanji": "止める",    "kana": "やめる",      "romaji": "yameru",     "wordType": "verb", "group": 2 },
+  { "id": "niru",        "kanji": "似る",      "kana": "にる",        "romaji": "niru",       "wordType": "verb", "group": 2 },
+  { "id": "yakeru",      "kanji": "焼ける",    "kana": "やける",      "romaji": "yakeru",     "wordType": "verb", "group": 2 },
+  { "id": "ueru",        "kanji": "植える",    "kana": "うえる",      "romaji": "ueru",       "wordType": "verb", "group": 2 },
+  { "id": "tazuneru",    "kanji": "尋ねる",    "kana": "たずねる",    "romaji": "tazuneru",   "wordType": "verb", "group": 2 },
+  { "id": "ikiru",       "kanji": "生きる",    "kana": "いきる",      "romaji": "ikiru",      "wordType": "verb", "group": 2 },
+  { "id": "oreru",       "kanji": "折れる",    "kana": "おれる",      "romaji": "oreru",      "wordType": "verb", "group": 2 },
+  { "id": "tariru",      "kanji": "足りる",    "kana": "たりる",      "romaji": "tariru",     "wordType": "verb", "group": 2 },
+  { "id": "shiraseru",   "kanji": "知らせる",  "kana": "しらせる",    "romaji": "shiraseru",  "wordType": "verb", "group": 2 },
+  { "id": "tsukeru_3",   "kanji": "漬ける",    "kana": "つける",      "romaji": "tsukeru",    "wordType": "verb", "group": 2 },
+  { "id": "todokeru",    "kanji": "届ける",    "kana": "とどける",    "romaji": "todokeru",   "wordType": "verb", "group": 2 },
+  { "id": "nureru",      "kanji": "濡れる",    "kana": "ぬれる",      "romaji": "nureru",     "wordType": "verb", "group": 2 },
+  { "id": "makeru",      "kanji": "負ける",    "kana": "まける",      "romaji": "makeru",     "wordType": "verb", "group": 2 },
+  { "id": "katadukeru",  "kanji": "片付ける",  "kana": "かたづける",  "romaji": "katadukeru", "wordType": "verb", "group": 2 },
+  { "id": "yureru",      "kanji": "揺れる",    "kana": "ゆれる",      "romaji": "yureru",     "wordType": "verb", "group": 2 },
+  { "id": "kureru_2",    "kanji": "暮れる",    "kana": "くれる",      "romaji": "kureru",     "wordType": "verb", "group": 2 },
+  { "id": "hieru",       "kanji": "冷える",    "kana": "ひえる",      "romaji": "hieru",      "wordType": "verb", "group": 2 },
+  { "id": "tsureru",     "kanji": "連れる",    "kana": "つれる",      "romaji": "tsureru",    "wordType": "verb", "group": 2 },
+  { "id": "okureru",     "kanji": "遅れる",    "kana": "おくれる",    "romaji": "okureru",    "wordType": "verb", "group": 2 },
+  { "id": "kikoeru",     "kanji": "聞こえる",  "kana": "きこえる",    "romaji": "kikoeru",    "wordType": "verb", "group": 2 },
+  { "id": "tsukamaeru",  "kanji": "捕まえる",  "kana": "つかまえる",  "romaji": "tsukamaeru", "wordType": "verb", "group": 2 },
+  { "id": "fueru",       "kanji": "増える",    "kana": "ふえる",      "romaji": "fueru",      "wordType": "verb", "group": 2 },
+  { "id": "yaseru",      "kanji": "痩せる",    "kana": "やせる",      "romaji": "yaseru",     "wordType": "verb", "group": 2 },
+  { "id": "zureru",      "kanji": "ずれる",    "kana": "ずれる",      "romaji": "zureru",     "wordType": "verb", "group": 2 },
+
+  { "id": "oshare_suru",   "kanji": "お洒落する", "kana": "おしゃれする",   "romaji": "oshare",   "wordType": "verb", "group": 3 },
+  { "id": "oshaberi_suru", "kanji": "お喋りする", "kana": "おしゃべりする", "romaji": "oshaberi", "wordType": "verb", "group": 3 },
+
+  { "id": "akai",        "kanji": "赤い",      "kana": "あかい",      "romaji": "akai",       "wordType": "adjective", "group": "i" },
+  { "id": "aoi",         "kanji": "青い",      "kana": "あおい",      "romaji": "aoi",        "wordType": "adjective", "group": "i" },
+  { "id": "kuroi",       "kanji": "黒い",      "kana": "くろい",      "romaji": "kuroi",      "wordType": "adjective", "group": "i" },
+  { "id": "chikai",      "kanji": "近い",      "kana": "ちかい",      "romaji": "chikai",     "wordType": "adjective", "group": "i" },
+  { "id": "omoi",        "kanji": "重い",      "kana": "おもい",      "romaji": "omoi",       "wordType": "adjective", "group": "i" },
+  { "id": "karui",       "kanji": "軽い",      "kana": "かるい",      "romaji": "karui",      "wordType": "adjective", "group": "i" },
+  { "id": "hikui",       "kanji": "低い",      "kana": "ひくい",      "romaji": "hikui",      "wordType": "adjective", "group": "i" },
+  { "id": "ooi",         "kanji": "多い",      "kana": "おおい",      "romaji": "ooi",        "wordType": "adjective", "group": "i" },
+  { "id": "sukunai",     "kanji": "少ない",    "kana": "すくない",    "romaji": "sukunai",    "wordType": "adjective", "group": "i" },
+  { "id": "itai",        "kanji": "痛い",      "kana": "いたい",      "romaji": "itai",       "wordType": "adjective", "group": "i" },
+  { "id": "yowai",       "kanji": "弱い",      "kana": "よわい",      "romaji": "yowai",      "wordType": "adjective", "group": "i" },
+  { "id": "hosoi",       "kanji": "細い",      "kana": "ほそい",      "romaji": "hosoi",      "wordType": "adjective", "group": "i" },
+  { "id": "karai",       "kanji": "辛い",      "kana": "からい",      "romaji": "karai",      "wordType": "adjective", "group": "i" },
+  { "id": "tsurai",      "kanji": "辛い",      "kana": "つらい",      "romaji": "tsurai",     "wordType": "adjective", "group": "i" },
+  { "id": "osoi",        "kanji": "遅い",      "kana": "おそい",      "romaji": "osoi",       "wordType": "adjective", "group": "i" },
+  { "id": "atsui_2",     "kanji": "厚い",      "kana": "あつい",      "romaji": "atsui",      "wordType": "adjective", "group": "i" },
+
+  { "id": "iya",         "kanji": "嫌",        "kana": "いや",        "romaji": "iya",        "wordType": "adjective", "group": "na" },
+  { "id": "joubu",       "kanji": "丈夫",      "kana": "じょうぶ",    "romaji": "joubu",      "wordType": "adjective", "group": "na" },
+  { "id": "kiiro",       "kanji": "黄色",      "kana": "きいろ",      "romaji": "kiiro",      "wordType": "adjective", "group": "na" },
+  { "id": "shinpai",     "kanji": "心配",      "kana": "しんぱい",    "romaji": "shinpai",    "wordType": "adjective", "group": "na" },
+  { "id": "majime",      "kanji": "真面目",    "kana": "まじめ",      "romaji": "majime",     "wordType": "adjective", "group": "na" },
+  { "id": "jama",        "kanji": "邪魔",      "kana": "じゃま",      "romaji": "jama",       "wordType": "adjective", "group": "na" },
+  { "id": "kyuu",        "kanji": "急",        "kana": "きゅう",      "romaji": "kyuu",       "wordType": "adjective", "group": "na" },
+
+  { "id": "terebi",      "kanji": "テレビ",    "kana": "テレビ",      "romaji": "terebi",     "wordType": "noun", "group": null },
+  { "id": "toire",       "kanji": "トイレ",    "kana": "トイレ",      "romaji": "toire",      "wordType": "noun", "group": null },
+  { "id": "doa",         "kanji": "ドア",      "kana": "ドア",        "romaji": "doa",        "wordType": "noun", "group": null },
+  { "id": "takushii",    "kanji": "タクシー",  "kana": "タクシー",    "romaji": "takushii",   "wordType": "noun", "group": null },
+  { "id": "tesuto",      "kanji": "テスト",    "kana": "テスト",      "romaji": "tesuto",     "wordType": "noun", "group": null },
+  { "id": "shawaa",      "kanji": "シャワー",  "kana": "シャワー",    "romaji": "shawaa",     "wordType": "noun", "group": null },
+  { "id": "teeburu",     "kanji": "テーブル",  "kana": "テーブル",    "romaji": "teeburu",    "wordType": "noun", "group": null },
+  { "id": "koohii",      "kanji": "コーヒー",  "kana": "コーヒー",    "romaji": "koohii",     "wordType": "noun", "group": null },
+  { "id": "sukaato",     "kanji": "スカート",  "kana": "スカート",    "romaji": "sukaato",    "wordType": "noun", "group": null },
+  { "id": "seetaa",      "kanji": "セーター",  "kana": "セーター",    "romaji": "seetaa",     "wordType": "noun", "group": null },
+  { "id": "kooto",       "kanji": "コート",    "kana": "コート",      "romaji": "kooto",      "wordType": "noun", "group": null },
+  { "id": "shatsu",      "kanji": "シャツ",    "kana": "シャツ",      "romaji": "shatsu",     "wordType": "noun", "group": null },
+  { "id": "supootsu",    "kanji": "スポーツ",  "kana": "スポーツ",    "romaji": "supootsu",   "wordType": "noun", "group": null },
+  { "id": "nyuusu",      "kanji": "ニュース",  "kana": "ニュース",    "romaji": "nyuusu",     "wordType": "noun", "group": null },
+  { "id": "depaato",     "kanji": "デパート",  "kana": "デパート",    "romaji": "depaato",    "wordType": "noun", "group": null }
+]

@@ -12,7 +12,6 @@
  *   polarity.*    — polarity option labels
  *   ui.*          — general interface copy
  *   wordTypes.*   — word type labels (verb, adjective, noun)
- *   jlpt.*        — JLPT level labels
  *   card.*        — text that appears on or near drill cards
  *   settings.*    — settings drawer copy
  *   errors.*      — error states
@@ -96,17 +95,6 @@ const en = {
     adj_short:    'Adjectives',
   },
 
-  // ── JLPT levels ───────────────────────────────────────────────────────────
-  jlpt: {
-    n5: 'N5',
-    n4: 'N4',
-    n3: 'N3',
-    n2: 'N2',
-    n1: 'N1',
-    unlisted:   'Unlisted',
-    all_levels: 'all levels',
-  },
-
   // ── Card-face copy ────────────────────────────────────────────────────────
   card: {
     tap_to_reveal:   'Tap to reveal',
@@ -159,6 +147,14 @@ const en = {
   },
 
   // ── Settings drawer ───────────────────────────────────────────────────────
+  // ── Difficulty levels ─────────────────────────────────────────────────────
+  difficulty: {
+    beginner:       'Beginner',        // N5
+    upper_beginner: 'Upper beginner',  // N4
+    common:         'Intermediate',     // JMdict common, unlevelled
+    all:            'all levels',
+  },
+
   settings: {
     heading:              'Options',
     words_section:        'Words',
@@ -171,8 +167,8 @@ const en = {
     tts_short:            'Text to speech',
     show_romaji:          'Show rōmaji',
     show_english:         'Show English meaning',
-    filter_jlpt:          'JLPT level',
     filter_word_type:     'Word type',
+    filter_difficulty:    'Difficulty',
     show_streak:          'Show streak',
     show_furigana:        'Show furigana',
     show_visual_effects:  'Show visual effects',

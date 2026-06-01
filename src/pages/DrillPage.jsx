@@ -10,7 +10,7 @@ import SelectionError from '../components/SelectionError.jsx'
 import { WORD_TYPES, REGISTERS, GRAMMAR_FORMS, TENSES, POLARITIES } from '../data/options.js'
 import { CATEGORIES } from '../data/categories.js'
 import { FONT, TRACKING } from '../data/theme.js'
-import { buildPool } from '../data/drill.js'
+import { buildPool, filterWords } from '../data/drill.js'
 import { useDrill, ENGINES } from '../hooks/useDrill.js'
 import { useTTS, useJaVoices } from '../hooks/useTTS.js'
 import { useSFX } from '../hooks/useSFX.js'
@@ -495,21 +495,25 @@ function DoneScreen({ totalCorrect, totalWrong, onRestart }) {
 
 // ── Main page ────────────────────────────────────────────────────────────────
 
-const JLPT_LEVELS = [5, 4, 3]
+const DIFFICULTIES = [
+  { key: 'beginner',       labelKey: 'difficulty.beginner' },
+  { key: 'upper_beginner', labelKey: 'difficulty.upper_beginner' },
+  { key: 'common',         labelKey: 'difficulty.common' },
+]
 
-function jlptLabel(levels, t) {
-  if (!levels.length) return t('jlpt.all_levels')
-  return levels.slice().sort((a, b) => b - a).map(n => `N${n}`).join(', ')
+function difficultyLabel(selected, t) {
+  if (!selected.length || selected.length === DIFFICULTIES.length) return t('difficulty.all')
+  return DIFFICULTIES.filter(d => selected.includes(d.key)).map(d => t(d.labelKey)).join(', ')
 }
 
 const DEFAULTS = {
-  wordTypes:  ['u-verb', 'ru-verb', 'irregular'],
-  registers:  ['polite'],
-  forms:      ['default'],
-  tenses:     ['present'],
-  polarities: ['positive'],
-  engine:     'simpleQueue',
-  jlpt:       [5],
+  wordTypes:    ['u-verb', 'ru-verb', 'irregular'],
+  registers:    ['polite'],
+  forms:        ['default'],
+  tenses:       ['present'],
+  polarities:   ['positive'],
+  difficulties: ['beginner'],
+  engine:       'simpleQueue',
 }
 
 export default function DrillPage() {
@@ -519,13 +523,13 @@ export default function DrillPage() {
   const [selectedRegisters,  setSelectedRegisters]  = useState(DEFAULTS.registers)
   const [selectedForms,      setSelectedForms]      = useState(DEFAULTS.forms)
   const [selectedTenses,     setSelectedTenses]     = useState(DEFAULTS.tenses)
-  const [selectedPolarities, setSelectedPolarities] = useState(DEFAULTS.polarities)
-  const [selectedEngine] = useState(DEFAULTS.engine)
-  const [selectedJlpt,       setSelectedJlpt]       = useState(() => {
-    const stored = safeLocalStorageGet('selected-jlpt')
-    return stored ? JSON.parse(stored) : DEFAULTS.jlpt
+  const [selectedPolarities,   setSelectedPolarities]   = useState(DEFAULTS.polarities)
+  const [selectedDifficulties, setSelectedDifficulties] = useState(() => {
+    const stored = safeLocalStorageGet('selected-difficulty')
+    return stored ? JSON.parse(stored) : DEFAULTS.difficulties
   })
-  const [jlptExpanded,       setJlptExpanded]       = useState(false)
+  const [difficultyExpanded,   setDifficultyExpanded]   = useState(false)
+  const [selectedEngine] = useState(DEFAULTS.engine)
   const [seekCardId,         setSeekCardId]         = useState(null)
   const [audioEnabled,       setAudioEnabled]       = useState(() => {
     const stored = safeLocalStorageGet('audio-enabled')
@@ -585,8 +589,8 @@ export default function DrillPage() {
   useEffect(() => { safeLocalStorageSet('show-visual-effects', showVisualEffects) }, [showVisualEffects])
   useEffect(() => { safeLocalStorageSet('pixel-font', pixelFont) }, [pixelFont])
   useEffect(() => { safeLocalStorageSet('show-translation', showTranslation) }, [showTranslation])
-  useEffect(() => { safeLocalStorageSet('selected-jlpt', JSON.stringify(selectedJlpt)) }, [selectedJlpt])
   useEffect(() => { safeLocalStorageSet('input-mode', inputMode) }, [inputMode])
+  useEffect(() => { safeLocalStorageSet('selected-difficulty', JSON.stringify(selectedDifficulties)) }, [selectedDifficulties])
 
   useEffect(() => {
     const el = headerRef.current
@@ -613,14 +617,14 @@ export default function DrillPage() {
   const hideHeader = isMobile && inputMode === 'input' && keyboardOpen
   const inKeyboardMode = hideHeader
 
-  function seek(newWordTypes, newForms, newRegs, newTenses, newPols, axis, value, newJlpt) {
+  function seek(newWordTypes, newForms, newRegs, newTenses, newPols, newDiffs, axis, value) {
     const newPool = buildPool({
-      selectedWordTypes:  newWordTypes,
-      selectedForms:      newForms,
-      selectedRegisters:  newRegs,
-      selectedTenses:     newTenses,
-      selectedPolarities: newPols,
-      selectedJlpt:       newJlpt ?? selectedJlpt,
+      selectedWordTypes:    newWordTypes,
+      selectedForms:        newForms,
+      selectedRegisters:    newRegs,
+      selectedTenses:       newTenses,
+      selectedPolarities:   newPols,
+      selectedDifficulties: newDiffs,
     })
     setSeekCardId(findSeekCard(newPool, drill.currentCard, axis, value)?.id ?? null)
   }
@@ -643,12 +647,16 @@ export default function DrillPage() {
   const activeWordTypes      = new Set(selectedWordTypes.map(k => CATEGORIES.find(c => c.key === k)?.wordType).filter(Boolean))
   const availableGrammarForms = GRAMMAR_FORMS.filter(f => f.validWordTypes.some(wt => activeWordTypes.has(wt)))
 
-  const poolKey = [selectedWordTypes, selectedForms, selectedRegisters, selectedTenses, selectedPolarities, selectedJlpt]
+  const poolKey = [selectedWordTypes, selectedForms, selectedRegisters, selectedTenses, selectedPolarities, selectedDifficulties]
     .map(a => [...a].sort().join(','))
     .join('|')
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const pool = useMemo(() => buildPool({ selectedWordTypes, selectedForms, selectedRegisters, selectedTenses, selectedPolarities, selectedJlpt }), [poolKey])
+  const pool = useMemo(() => buildPool({ selectedWordTypes, selectedForms, selectedRegisters, selectedTenses, selectedPolarities, selectedDifficulties }), [poolKey])
+
+  const wordCountKey = `${selectedWordTypes.join(',')}|${selectedDifficulties.join(',')}`
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const wordCount = useMemo(() => filterWords(selectedWordTypes, selectedDifficulties).length, [wordCountKey])
 
   const engine = ENGINES[selectedEngine]
   const drill  = useDrill(pool, { engine, seekCardId })
@@ -695,7 +703,7 @@ export default function DrillPage() {
                   const f = GRAMMAR_FORMS.find(gf => gf.key === fk)
                   return f && f.validWordTypes.some(wt => nextWordTypes.has(wt))
                 })
-                seek(next, nextForms, selectedRegisters, selectedTenses, selectedPolarities, adding ? 'wordType' : null, adding ? key : null)
+                seek(next, nextForms, selectedRegisters, selectedTenses, selectedPolarities, selectedDifficulties, adding ? 'wordType' : null, adding ? key : null)
                 setSelectedWordTypes(next)
                 if (nextForms.length !== selectedForms.length) setSelectedForms(nextForms)
               }}
@@ -707,36 +715,41 @@ export default function DrillPage() {
         </div>
         <SelectionError visible={selectedWordTypes.length === 0} />
 
-        {/* ── JLPT filter ── */}
-        <div style={{ marginTop: 10, fontSize: 13, color: 'rgba(255,255,255,0.4)', lineHeight: 1.4 }}>
-          {t('ui.vocabulary_from')}{' '}
-          <span
-            role="button"
-            tabIndex={0}
-            className="jlpt-toggle"
-            onClick={() => setJlptExpanded(v => !v)}
-            onKeyDown={e => { if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); setJlptExpanded(v => !v) } }}
-            onMouseEnter={e => { e.currentTarget.style.color = 'rgba(255,255,255,0.9)' }}
-            onMouseLeave={e => { e.currentTarget.style.color = 'rgba(255,255,255,0.65)' }}
-            onFocus={e => { e.currentTarget.style.color = 'rgba(255,255,255,0.9)' }}
-            onBlur={e => { e.currentTarget.style.color = 'rgba(255,255,255,0.65)' }}
-            style={{ color: 'rgba(255,255,255,0.65)', textDecoration: 'underline', textUnderlineOffset: 3, cursor: 'pointer' }}
-          >
-            JLPT {jlptLabel(selectedJlpt, t)}
-          </span>
+        {/* ── Difficulty ── */}
+        <div style={{ marginTop: 10, display: 'flex', alignItems: 'center', gap: 8 }}>
+          <div style={{ flex: 1, fontSize: 13, color: 'rgba(255,255,255,0.4)', lineHeight: 1.4 }}>
+            {t('ui.vocabulary_from')}{' '}
+            <span
+              role="button"
+              tabIndex={0}
+              className="jlpt-toggle"
+              onClick={() => setDifficultyExpanded(v => !v)}
+              onKeyDown={e => { if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); setDifficultyExpanded(v => !v) } }}
+              onMouseEnter={e => { e.currentTarget.style.color = 'rgba(255,255,255,0.9)' }}
+              onMouseLeave={e => { e.currentTarget.style.color = 'rgba(255,255,255,0.65)' }}
+              onFocus={e => { e.currentTarget.style.color = 'rgba(255,255,255,0.9)' }}
+              onBlur={e => { e.currentTarget.style.color = 'rgba(255,255,255,0.65)' }}
+              style={{ color: 'rgba(255,255,255,0.65)', textDecoration: 'underline', textUnderlineOffset: 3, cursor: 'pointer' }}
+            >
+              {difficultyLabel(selectedDifficulties, t)}
+            </span>
+          </div>
+          <div style={{ flexShrink: 0, fontSize: 13, color: 'rgba(255,255,255,0.35)' }}>
+            {wordCount} words
+          </div>
         </div>
-        {jlptExpanded && (
+        {difficultyExpanded && (
           <div style={{ display: 'flex', flexDirection: 'column', gap: 6, marginTop: 8 }}>
-            {JLPT_LEVELS.map(level => (
+            {DIFFICULTIES.map(d => (
               <DrawerCheckbox
-                key={level}
-                checked={selectedJlpt.includes(level)}
+                key={d.key}
+                checked={selectedDifficulties.includes(d.key)}
                 onChange={() => {
-                  const next = toggle(selectedJlpt, level)
-                  seek(selectedWordTypes, selectedForms, selectedRegisters, selectedTenses, selectedPolarities, null, null, next)
-                  setSelectedJlpt(next)
+                  const next = toggle(selectedDifficulties, d.key)
+                  seek(selectedWordTypes, selectedForms, selectedRegisters, selectedTenses, selectedPolarities, next, null, null)
+                  setSelectedDifficulties(next)
                 }}
-                label={`JLPT N${level}`}
+                label={t(d.labelKey)}
               />
             ))}
           </div>
@@ -753,7 +766,7 @@ export default function DrillPage() {
             selected={selectedPolarities}
             axis="polarity"
             onChange={(newSel, axis, val) => {
-              seek(selectedWordTypes, selectedForms, selectedRegisters, selectedTenses, newSel, axis, val)
+              seek(selectedWordTypes, selectedForms, selectedRegisters, selectedTenses, newSel, selectedDifficulties, axis, val)
               setSelectedPolarities(newSel)
             }}
           />
@@ -763,7 +776,7 @@ export default function DrillPage() {
             selected={selectedTenses}
             axis="tense"
             onChange={(newSel, axis, val) => {
-              seek(selectedWordTypes, selectedForms, selectedRegisters, newSel, selectedPolarities, axis, val)
+              seek(selectedWordTypes, selectedForms, selectedRegisters, newSel, selectedPolarities, selectedDifficulties, axis, val)
               setSelectedTenses(newSel)
             }}
           />
@@ -773,7 +786,7 @@ export default function DrillPage() {
             selected={selectedRegisters}
             axis="register"
             onChange={(newSel, axis, val) => {
-              seek(selectedWordTypes, selectedForms, newSel, selectedTenses, selectedPolarities, axis, val)
+              seek(selectedWordTypes, selectedForms, newSel, selectedTenses, selectedPolarities, selectedDifficulties, axis, val)
               setSelectedRegisters(newSel)
             }}
           />
@@ -787,7 +800,7 @@ export default function DrillPage() {
               title={t('settings.forms_section')}
               hasSelections={selectedForms.length > 0}
               onClearAll={() => {
-                seek(selectedWordTypes, [], selectedRegisters, selectedTenses, selectedPolarities, null, null)
+                seek(selectedWordTypes, [], selectedRegisters, selectedTenses, selectedPolarities, selectedDifficulties, null, null)
                 setSelectedForms([])
               }}
               fontSize={META_FONT}
@@ -803,7 +816,7 @@ export default function DrillPage() {
                   onClick={() => {
                     const next = toggle(selectedForms, key)
                     const adding = !selectedForms.includes(key)
-                    seek(selectedWordTypes, next, selectedRegisters, selectedTenses, selectedPolarities, adding ? 'form' : null, adding ? key : null)
+                    seek(selectedWordTypes, next, selectedRegisters, selectedTenses, selectedPolarities, selectedDifficulties, adding ? 'form' : null, adding ? key : null)
                     setSelectedForms(next)
                   }}
                 >
