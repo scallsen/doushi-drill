@@ -63,14 +63,14 @@ export default function CardContent({ label, n, past, word, kana = null, wordKan
             if (!f) return word
             return (
               <span>
+                {f.prefix}
                 <span style={{ position: 'relative', display: 'inline-block' }}>
                   <span style={{
                     position: 'absolute',
                     bottom: '100%',
                     marginBottom: 2,
-                    left: 0,
-                    right: 0,
-                    textAlign: 'center',
+                    left: '50%',
+                    transform: 'translateX(-50%)',
                     fontSize: '0.45em',
                     fontFamily: jaFont,
                     letterSpacing: '0.05em',
