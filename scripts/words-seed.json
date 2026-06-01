@@ -5,10 +5,7 @@
     "kana": "かく",
     "romaji": "kaku",
     "wordType": "verb",
-    "group": 1,
-    "english": "to write",
-    "transitive": true,
-    "common": true
+    "group": 1
   },
   {
     "id": "kiku",
@@ -16,10 +13,7 @@
     "kana": "きく",
     "romaji": "kiku",
     "wordType": "verb",
-    "group": 1,
-    "english": "to hear",
-    "transitive": true,
-    "common": true
+    "group": 1
   },
   {
     "id": "hanasu",
@@ -27,10 +21,7 @@
     "kana": "はなす",
     "romaji": "hanasu",
     "wordType": "verb",
-    "group": 1,
-    "english": "to talk",
-    "transitive": true,
-    "common": true
+    "group": 1
   },
   {
     "id": "matsu",
@@ -38,10 +29,7 @@
     "kana": "まつ",
     "romaji": "matsu",
     "wordType": "verb",
-    "group": 1,
-    "english": "to wait",
-    "transitive": null,
-    "common": true
+    "group": 1
   },
   {
     "id": "nomu",
@@ -49,10 +37,7 @@
     "kana": "のむ",
     "romaji": "nomu",
     "wordType": "verb",
-    "group": 1,
-    "english": "to drink",
-    "transitive": true,
-    "common": true
+    "group": 1
   },
   {
     "id": "kau",
@@ -60,10 +45,7 @@
     "kana": "かう",
     "romaji": "kau",
     "wordType": "verb",
-    "group": 1,
-    "english": "to buy",
-    "transitive": true,
-    "common": true
+    "group": 1
   },
   {
     "id": "kaeru",
@@ -71,10 +53,7 @@
     "kana": "かえる",
     "romaji": "kaeru",
     "wordType": "verb",
-    "group": 1,
-    "english": "to return",
-    "transitive": false,
-    "common": true
+    "group": 1
   },
   {
     "id": "iku",
@@ -82,10 +61,7 @@
     "kana": "いく",
     "romaji": "iku",
     "wordType": "verb",
-    "group": 1,
-    "english": "to go",
-    "transitive": false,
-    "common": true
+    "group": 1
   },
   {
     "id": "aruku",
@@ -93,10 +69,7 @@
     "kana": "あるく",
     "romaji": "aruku",
     "wordType": "verb",
-    "group": 1,
-    "english": "to walk",
-    "transitive": false,
-    "common": true
+    "group": 1
   },
   {
     "id": "hataraku",
@@ -104,10 +77,7 @@
     "kana": "はたらく",
     "romaji": "hataraku",
     "wordType": "verb",
-    "group": 1,
-    "english": "to work",
-    "transitive": false,
-    "common": true
+    "group": 1
   },
   {
     "id": "oku",
@@ -115,10 +85,7 @@
     "kana": "おく",
     "romaji": "oku",
     "wordType": "verb",
-    "group": 1,
-    "english": "to put",
-    "transitive": true,
-    "common": true
+    "group": 1
   },
   {
     "id": "hiraku",
@@ -126,10 +93,7 @@
     "kana": "ひらく",
     "romaji": "hiraku",
     "wordType": "verb",
-    "group": 1,
-    "english": "to open",
-    "transitive": null,
-    "common": true
+    "group": 1
   },
   {
     "id": "hiku",
@@ -137,10 +101,7 @@
     "kana": "ひく",
     "romaji": "hiku",
     "wordType": "verb",
-    "group": 1,
-    "english": "to pull",
-    "transitive": null,
-    "common": true
+    "group": 1
   },
   {
     "id": "migaku",
@@ -148,10 +109,7 @@
     "kana": "みがく",
     "romaji": "migaku",
     "wordType": "verb",
-    "group": 1,
-    "english": "to polish",
-    "transitive": true,
-    "common": true
+    "group": 1
   },
   {
     "id": "oyogu",
@@ -159,10 +117,7 @@
     "kana": "およぐ",
     "romaji": "oyogu",
     "wordType": "verb",
-    "group": 1,
-    "english": "to swim",
-    "transitive": false,
-    "common": true
+    "group": 1
   },
   {
     "id": "nugu",
@@ -170,10 +125,7 @@
     "kana": "ぬぐ",
     "romaji": "nugu",
     "wordType": "verb",
-    "group": 1,
-    "english": "to take off (clothes, shoes, etc.)",
-    "transitive": true,
-    "common": true
+    "group": 1
   },
   {
     "id": "isogu",
@@ -181,10 +133,7 @@
     "kana": "いそぐ",
     "romaji": "isogu",
     "wordType": "verb",
-    "group": 1,
-    "english": "to hurry",
-    "transitive": null,
-    "common": true
+    "group": 1
   },
   {
     "id": "sosogu",
@@ -192,10 +141,7 @@
     "kana": "そそぐ",
     "romaji": "sosogu",
     "wordType": "verb",
-    "group": 1,
-    "english": "to pour (into)",
-    "transitive": null,
-    "common": true
+    "group": 1
   },
   {
     "id": "kasu",
@@ -203,10 +149,7 @@
     "kana": "かす",
     "romaji": "kasu",
     "wordType": "verb",
-    "group": 1,
-    "english": "to lend",
-    "transitive": true,
-    "common": true
+    "group": 1
   },
   {
     "id": "kaesu",
@@ -214,10 +157,7 @@
     "kana": "かえす",
     "romaji": "kaesu",
     "wordType": "verb",
-    "group": 1,
-    "english": "to return (something)",
-    "transitive": true,
-    "common": true
+    "group": 1
   },
   {
     "id": "dasu",
@@ -225,10 +165,7 @@
     "kana": "だす",
     "romaji": "dasu",
     "wordType": "verb",
-    "group": 1,
-    "english": "to take out",
-    "transitive": true,
-    "common": true
+    "group": 1
   },
   {
     "id": "kesu",
@@ -236,10 +173,7 @@
     "kana": "けす",
     "romaji": "kesu",
     "wordType": "verb",
-    "group": 1,
-    "english": "to erase",
-    "transitive": true,
-    "common": true
+    "group": 1
   },
   {
     "id": "osu",
@@ -247,10 +181,7 @@
     "kana": "おす",
     "romaji": "osu",
     "wordType": "verb",
-    "group": 1,
-    "english": "to push",
-    "transitive": null,
-    "common": true
+    "group": 1
   },
   {
     "id": "watasu",
@@ -258,10 +189,7 @@
     "kana": "わたす",
     "romaji": "watasu",
     "wordType": "verb",
-    "group": 1,
-    "english": "to ferry across (e.g. a river)",
-    "transitive": true,
-    "common": true
+    "group": 1
   },
   {
     "id": "sagasu",
@@ -269,10 +197,7 @@
     "kana": "さがす",
     "romaji": "sagasu",
     "wordType": "verb",
-    "group": 1,
-    "english": "to search for",
-    "transitive": true,
-    "common": true
+    "group": 1
   },
   {
     "id": "naosu",
@@ -280,10 +205,7 @@
     "kana": "なおす",
     "romaji": "naosu",
     "wordType": "verb",
-    "group": 1,
-    "english": "to repair",
-    "transitive": true,
-    "common": true
+    "group": 1
   },
   {
     "id": "tatsu",
@@ -291,10 +213,7 @@
     "kana": "たつ",
     "romaji": "tatsu",
     "wordType": "verb",
-    "group": 1,
-    "english": "to stand (up)",
-    "transitive": false,
-    "common": true
+    "group": 1
   },
   {
     "id": "motsu",
@@ -302,10 +221,7 @@
     "kana": "もつ",
     "romaji": "motsu",
     "wordType": "verb",
-    "group": 1,
-    "english": "to hold (in one's hand)",
-    "transitive": null,
-    "common": true
+    "group": 1
   },
   {
     "id": "utsu",
@@ -313,10 +229,7 @@
     "kana": "うつ",
     "romaji": "utsu",
     "wordType": "verb",
-    "group": 1,
-    "english": "to hit",
-    "transitive": true,
-    "common": true
+    "group": 1
   },
   {
     "id": "katsu",
@@ -324,10 +237,7 @@
     "kana": "かつ",
     "romaji": "katsu",
     "wordType": "verb",
-    "group": 1,
-    "english": "to win",
-    "transitive": false,
-    "common": true
+    "group": 1
   },
   {
     "id": "iu",
@@ -335,10 +245,7 @@
     "kana": "いう",
     "romaji": "iu",
     "wordType": "verb",
-    "group": 1,
-    "english": "to say",
-    "transitive": null,
-    "common": true
+    "group": 1
   },
   {
     "id": "au",
@@ -346,10 +253,7 @@
     "kana": "あう",
     "romaji": "au",
     "wordType": "verb",
-    "group": 1,
-    "english": "to meet",
-    "transitive": false,
-    "common": true
+    "group": 1
   },
   {
     "id": "tsukau",
@@ -357,10 +261,7 @@
     "kana": "つかう",
     "romaji": "tsukau",
     "wordType": "verb",
-    "group": 1,
-    "english": "to use (a tool, method, etc.)",
-    "transitive": true,
-    "common": true
+    "group": 1
   },
   {
     "id": "utau",
@@ -368,10 +269,7 @@
     "kana": "うたう",
     "romaji": "utau",
     "wordType": "verb",
-    "group": 1,
-    "english": "to sing",
-    "transitive": null,
-    "common": true
+    "group": 1
   },
   {
     "id": "harau",
@@ -379,10 +277,7 @@
     "kana": "はらう",
     "romaji": "harau",
     "wordType": "verb",
-    "group": 1,
-    "english": "to pay (e.g. money, bill)",
-    "transitive": true,
-    "common": true
+    "group": 1
   },
   {
     "id": "chigau",
@@ -390,10 +285,7 @@
     "kana": "ちがう",
     "romaji": "chigau",
     "wordType": "verb",
-    "group": 1,
-    "english": "to differ (from)",
-    "transitive": false,
-    "common": true
+    "group": 1
   },
   {
     "id": "warau",
@@ -401,10 +293,7 @@
     "kana": "わらう",
     "romaji": "warau",
     "wordType": "verb",
-    "group": 1,
-    "english": "to laugh",
-    "transitive": null,
-    "common": true
+    "group": 1
   },
   {
     "id": "noru",
@@ -412,10 +301,7 @@
     "kana": "のる",
     "romaji": "noru",
     "wordType": "verb",
-    "group": 1,
-    "english": "to get on (train, plane, bus, ship, etc.)",
-    "transitive": false,
-    "common": true
+    "group": 1
   },
   {
     "id": "hashiru",
@@ -423,10 +309,7 @@
     "kana": "はしる",
     "romaji": "hashiru",
     "wordType": "verb",
-    "group": 1,
-    "english": "to run",
-    "transitive": false,
-    "common": true
+    "group": 1
   },
   {
     "id": "shiru",
@@ -434,10 +317,7 @@
     "kana": "しる",
     "romaji": "shiru",
     "wordType": "verb",
-    "group": 1,
-    "english": "to know",
-    "transitive": true,
-    "common": true
+    "group": 1
   },
   {
     "id": "kiru_cut",
@@ -445,10 +325,7 @@
     "kana": "きる",
     "romaji": "kiru",
     "wordType": "verb",
-    "group": 1,
-    "english": "to cut",
-    "transitive": true,
-    "common": true
+    "group": 1
   },
   {
     "id": "okuru",
@@ -456,10 +333,7 @@
     "kana": "おくる",
     "romaji": "okuru",
     "wordType": "verb",
-    "group": 1,
-    "english": "to send",
-    "transitive": true,
-    "common": true
+    "group": 1
   },
   {
     "id": "shinu",
@@ -467,10 +341,7 @@
     "kana": "しぬ",
     "romaji": "shinu",
     "wordType": "verb",
-    "group": 1,
-    "english": "to die",
-    "transitive": false,
-    "common": true
+    "group": 1
   },
   {
     "id": "asobu",
@@ -478,10 +349,7 @@
     "kana": "あそぶ",
     "romaji": "asobu",
     "wordType": "verb",
-    "group": 1,
-    "english": "to play (games, sports)",
-    "transitive": false,
-    "common": true
+    "group": 1
   },
   {
     "id": "tobu",
@@ -489,10 +357,7 @@
     "kana": "とぶ",
     "romaji": "tobu",
     "wordType": "verb",
-    "group": 1,
-    "english": "to fly",
-    "transitive": false,
-    "common": true
+    "group": 1
   },
   {
     "id": "yobu",
@@ -500,10 +365,7 @@
     "kana": "よぶ",
     "romaji": "yobu",
     "wordType": "verb",
-    "group": 1,
-    "english": "to call out (to)",
-    "transitive": true,
-    "common": true
+    "group": 1
   },
   {
     "id": "manabu",
@@ -511,10 +373,7 @@
     "kana": "まなぶ",
     "romaji": "manabu",
     "wordType": "verb",
-    "group": 1,
-    "english": "to learn",
-    "transitive": true,
-    "common": true
+    "group": 1
   },
   {
     "id": "hakobu",
@@ -522,10 +381,7 @@
     "kana": "はこぶ",
     "romaji": "hakobu",
     "wordType": "verb",
-    "group": 1,
-    "english": "to carry",
-    "transitive": null,
-    "common": true
+    "group": 1
   },
   {
     "id": "erabu",
@@ -533,10 +389,7 @@
     "kana": "えらぶ",
     "romaji": "erabu",
     "wordType": "verb",
-    "group": 1,
-    "english": "to choose",
-    "transitive": true,
-    "common": true
+    "group": 1
   },
   {
     "id": "yomu",
@@ -544,10 +397,7 @@
     "kana": "よむ",
     "romaji": "yomu",
     "wordType": "verb",
-    "group": 1,
-    "english": "to read",
-    "transitive": true,
-    "common": true
+    "group": 1
   },
   {
     "id": "yasumu",
@@ -555,10 +405,7 @@
     "kana": "やすむ",
     "romaji": "yasumu",
     "wordType": "verb",
-    "group": 1,
-    "english": "to be absent",
-    "transitive": false,
-    "common": true
+    "group": 1
   },
   {
     "id": "sumu",
@@ -566,10 +413,7 @@
     "kana": "すむ",
     "romaji": "sumu",
     "wordType": "verb",
-    "group": 1,
-    "english": "to live (of humans)",
-    "transitive": false,
-    "common": true
+    "group": 1
   },
   {
     "id": "tanomu",
@@ -577,10 +421,7 @@
     "kana": "たのむ",
     "romaji": "tanomu",
     "wordType": "verb",
-    "group": 1,
-    "english": "to request",
-    "transitive": true,
-    "common": true
+    "group": 1
   },
   {
     "id": "tanoshimu",
@@ -588,10 +429,7 @@
     "kana": "たのしむ",
     "romaji": "tanoshimu",
     "wordType": "verb",
-    "group": 1,
-    "english": "to enjoy",
-    "transitive": true,
-    "common": true
+    "group": 1
   },
   {
     "id": "susumu",
@@ -599,10 +437,7 @@
     "kana": "すすむ",
     "romaji": "susumu",
     "wordType": "verb",
-    "group": 1,
-    "english": "to advance",
-    "transitive": false,
-    "common": true
+    "group": 1
   },
   {
     "id": "miru",
@@ -610,10 +445,7 @@
     "kana": "みる",
     "romaji": "miru",
     "wordType": "verb",
-    "group": 2,
-    "english": "to see",
-    "transitive": true,
-    "common": true
+    "group": 2
   },
   {
     "id": "okiru",
@@ -621,10 +453,7 @@
     "kana": "おきる",
     "romaji": "okiru",
     "wordType": "verb",
-    "group": 2,
-    "english": "to get up",
-    "transitive": false,
-    "common": true
+    "group": 2
   },
   {
     "id": "neru",
@@ -632,10 +461,7 @@
     "kana": "ねる",
     "romaji": "neru",
     "wordType": "verb",
-    "group": 2,
-    "english": "to sleep (lying down)",
-    "transitive": false,
-    "common": true
+    "group": 2
   },
   {
     "id": "oshieru",
@@ -643,10 +469,7 @@
     "kana": "おしえる",
     "romaji": "oshieru",
     "wordType": "verb",
-    "group": 2,
-    "english": "to teach",
-    "transitive": true,
-    "common": true
+    "group": 2
   },
   {
     "id": "oboeru",
@@ -654,10 +477,7 @@
     "kana": "おぼえる",
     "romaji": "oboeru",
     "wordType": "verb",
-    "group": 2,
-    "english": "to memorize",
-    "transitive": true,
-    "common": true
+    "group": 2
   },
   {
     "id": "wasureru",
@@ -665,10 +485,7 @@
     "kana": "わすれる",
     "romaji": "wasureru",
     "wordType": "verb",
-    "group": 2,
-    "english": "to forget",
-    "transitive": true,
-    "common": true
+    "group": 2
   },
   {
     "id": "taberu",
@@ -676,10 +493,7 @@
     "kana": "たべる",
     "romaji": "taberu",
     "wordType": "verb",
-    "group": 2,
-    "english": "to eat",
-    "transitive": true,
-    "common": true
+    "group": 2
   },
   {
     "id": "kiru_wear",
@@ -687,10 +501,7 @@
     "kana": "きる",
     "romaji": "kiru",
     "wordType": "verb",
-    "group": 2,
-    "english": "to wear (from the shoulders down)",
-    "transitive": true,
-    "common": true
+    "group": 2
   },
   {
     "id": "deru",
@@ -698,10 +509,7 @@
     "kana": "でる",
     "romaji": "deru",
     "wordType": "verb",
-    "group": 2,
-    "english": "to leave",
-    "transitive": false,
-    "common": true
+    "group": 2
   },
   {
     "id": "ireru",
@@ -709,10 +517,7 @@
     "kana": "いれる",
     "romaji": "ireru",
     "wordType": "verb",
-    "group": 2,
-    "english": "to put in",
-    "transitive": true,
-    "common": true
+    "group": 2
   },
   {
     "id": "ageru",
@@ -720,10 +525,7 @@
     "kana": "あげる",
     "romaji": "ageru",
     "wordType": "verb",
-    "group": 2,
-    "english": "to raise",
-    "transitive": null,
-    "common": true
+    "group": 2
   },
   {
     "id": "akeru",
@@ -731,10 +533,7 @@
     "kana": "あける",
     "romaji": "akeru",
     "wordType": "verb",
-    "group": 2,
-    "english": "to open (a door, etc.)",
-    "transitive": null,
-    "common": true
+    "group": 2
   },
   {
     "id": "shimeru",
@@ -742,10 +541,7 @@
     "kana": "しめる",
     "romaji": "shimeru",
     "wordType": "verb",
-    "group": 2,
-    "english": "to close",
-    "transitive": true,
-    "common": true
+    "group": 2
   },
   {
     "id": "miseru",
@@ -753,10 +549,7 @@
     "kana": "みせる",
     "romaji": "miseru",
     "wordType": "verb",
-    "group": 2,
-    "english": "to show",
-    "transitive": true,
-    "common": true
+    "group": 2
   },
   {
     "id": "kangaeru",
@@ -764,10 +557,7 @@
     "kana": "かんがえる",
     "romaji": "kangaeru",
     "wordType": "verb",
-    "group": 2,
-    "english": "to think (about, of)",
-    "transitive": true,
-    "common": true
+    "group": 2
   },
   {
     "id": "hajimeru",
@@ -775,10 +565,7 @@
     "kana": "はじめる",
     "romaji": "hajimeru",
     "wordType": "verb",
-    "group": 2,
-    "english": "to start",
-    "transitive": true,
-    "common": true
+    "group": 2
   },
   {
     "id": "tsuzukeru",
@@ -786,10 +573,7 @@
     "kana": "つづける",
     "romaji": "tsuzukeru",
     "wordType": "verb",
-    "group": 2,
-    "english": "to continue",
-    "transitive": true,
-    "common": true
+    "group": 2
   },
   {
     "id": "shiraberu",
@@ -797,10 +581,7 @@
     "kana": "しらべる",
     "romaji": "shiraberu",
     "wordType": "verb",
-    "group": 2,
-    "english": "to examine",
-    "transitive": true,
-    "common": true
+    "group": 2
   },
   {
     "id": "ukeru",
@@ -808,10 +589,7 @@
     "kana": "うける",
     "romaji": "ukeru",
     "wordType": "verb",
-    "group": 2,
-    "english": "to receive",
-    "transitive": null,
-    "common": true
+    "group": 2
   },
   {
     "id": "atsumeru",
@@ -819,10 +597,7 @@
     "kana": "あつめる",
     "romaji": "atsumeru",
     "wordType": "verb",
-    "group": 2,
-    "english": "to collect",
-    "transitive": true,
-    "common": true
+    "group": 2
   },
   {
     "id": "kaeru_change",
@@ -830,10 +605,7 @@
     "kana": "かえる",
     "romaji": "kaeru",
     "wordType": "verb",
-    "group": 2,
-    "english": "to change",
-    "transitive": true,
-    "common": true
+    "group": 2
   },
   {
     "id": "kimeru",
@@ -841,10 +613,7 @@
     "kana": "きめる",
     "romaji": "kimeru",
     "wordType": "verb",
-    "group": 2,
-    "english": "to decide",
-    "transitive": true,
-    "common": true
+    "group": 2
   },
   {
     "id": "kotaeru",
@@ -852,10 +621,7 @@
     "kana": "こたえる",
     "romaji": "kotaeru",
     "wordType": "verb",
-    "group": 2,
-    "english": "to answer",
-    "transitive": false,
-    "common": true
+    "group": 2
   },
   {
     "id": "shinjiru",
@@ -863,10 +629,7 @@
     "kana": "しんじる",
     "romaji": "shinjiru",
     "wordType": "verb",
-    "group": 2,
-    "english": "to believe",
-    "transitive": true,
-    "common": true
+    "group": 2
   },
   {
     "id": "umareru",
@@ -874,10 +637,7 @@
     "kana": "うまれる",
     "romaji": "umareru",
     "wordType": "verb",
-    "group": 2,
-    "english": "to be born",
-    "transitive": false,
-    "common": true
+    "group": 2
   },
   {
     "id": "tasukeru",
@@ -885,10 +645,7 @@
     "kana": "たすける",
     "romaji": "tasukeru",
     "wordType": "verb",
-    "group": 2,
-    "english": "to save",
-    "transitive": true,
-    "common": true
+    "group": 2
   },
   {
     "id": "suteru",
@@ -896,10 +653,7 @@
     "kana": "すてる",
     "romaji": "suteru",
     "wordType": "verb",
-    "group": 2,
-    "english": "to throw away",
-    "transitive": true,
-    "common": true
+    "group": 2
   },
   {
     "id": "tomeru",
@@ -907,10 +661,7 @@
     "kana": "とめる",
     "romaji": "tomeru",
     "wordType": "verb",
-    "group": 2,
-    "english": "to stop",
-    "transitive": true,
-    "common": true
+    "group": 2
   },
   {
     "id": "abiru",
@@ -918,10 +669,7 @@
     "kana": "あびる",
     "romaji": "abiru",
     "wordType": "verb",
-    "group": 2,
-    "english": "to dash over oneself (e.g. water)",
-    "transitive": true,
-    "common": true
+    "group": 2
   },
   {
     "id": "kariru",
@@ -929,10 +677,7 @@
     "kana": "かりる",
     "romaji": "kariru",
     "wordType": "verb",
-    "group": 2,
-    "english": "to borrow",
-    "transitive": true,
-    "common": true
+    "group": 2
   },
   {
     "id": "ochiru",
@@ -940,10 +685,7 @@
     "kana": "おちる",
     "romaji": "ochiru",
     "wordType": "verb",
-    "group": 2,
-    "english": "to fall",
-    "transitive": false,
-    "common": true
+    "group": 2
   },
   {
     "id": "tsukareru",
@@ -951,10 +693,7 @@
     "kana": "つかれる",
     "romaji": "tsukareru",
     "wordType": "verb",
-    "group": 2,
-    "english": "to get tired",
-    "transitive": false,
-    "common": true
+    "group": 2
   },
   {
     "id": "kanjiru",
@@ -962,10 +701,7 @@
     "kana": "かんじる",
     "romaji": "kanjiru",
     "wordType": "verb",
-    "group": 2,
-    "english": "to feel",
-    "transitive": null,
-    "common": true
+    "group": 2
   },
   {
     "id": "wakareru",
@@ -973,10 +709,7 @@
     "kana": "わかれる",
     "romaji": "wakareru",
     "wordType": "verb",
-    "group": 2,
-    "english": "to part (usu. of people)",
-    "transitive": false,
-    "common": true
+    "group": 2
   },
   {
     "id": "mitsukeru",
@@ -984,10 +717,7 @@
     "kana": "みつける",
     "romaji": "mitsukeru",
     "wordType": "verb",
-    "group": 2,
-    "english": "to find",
-    "transitive": true,
-    "common": true
+    "group": 2
   },
   {
     "id": "kuru",
@@ -995,10 +725,7 @@
     "kana": "くる",
     "romaji": "kuru",
     "wordType": "verb",
-    "group": 3,
-    "english": "to come (spatially or temporally)",
-    "transitive": false,
-    "common": true
+    "group": 3
   },
   {
     "id": "suru",
@@ -1006,10 +733,7 @@
     "kana": "する",
     "romaji": "suru",
     "wordType": "verb",
-    "group": 3,
-    "english": "to do",
-    "transitive": null,
-    "common": true
+    "group": 3
   },
   {
     "id": "benkyousuru",
@@ -1017,10 +741,7 @@
     "kana": "べんきょうする",
     "romaji": "benkyousuru",
     "wordType": "verb",
-    "group": 3,
-    "english": "study",
-    "transitive": null,
-    "common": true
+    "group": 3
   },
   {
     "id": "undousuru",
@@ -1028,10 +749,7 @@
     "kana": "うんどうする",
     "romaji": "undousuru",
     "wordType": "verb",
-    "group": 3,
-    "english": "exercise",
-    "transitive": false,
-    "common": true
+    "group": 3
   },
   {
     "id": "renshuusuru",
@@ -1039,10 +757,7 @@
     "kana": "れんしゅうする",
     "romaji": "renshuusuru",
     "wordType": "verb",
-    "group": 3,
-    "english": "practice",
-    "transitive": true,
-    "common": true
+    "group": 3
   },
   {
     "id": "ryokousuru",
@@ -1050,10 +765,7 @@
     "kana": "りょこうする",
     "romaji": "ryokousuru",
     "wordType": "verb",
-    "group": 3,
-    "english": "travel",
-    "transitive": false,
-    "common": true
+    "group": 3
   },
   {
     "id": "ryourisuru",
@@ -1061,10 +773,7 @@
     "kana": "りょうりする",
     "romaji": "ryourisuru",
     "wordType": "verb",
-    "group": 3,
-    "english": "cooking",
-    "transitive": true,
-    "common": true
+    "group": 3
   },
   {
     "id": "ookii",
@@ -1072,10 +781,7 @@
     "kana": "おおきい",
     "romaji": "ookii",
     "wordType": "adjective",
-    "group": "i",
-    "english": "big",
-    "transitive": null,
-    "common": true
+    "group": "i"
   },
   {
     "id": "chiisai",
@@ -1083,10 +789,7 @@
     "kana": "ちいさい",
     "romaji": "chiisai",
     "wordType": "adjective",
-    "group": "i",
-    "english": "small",
-    "transitive": null,
-    "common": true
+    "group": "i"
   },
   {
     "id": "takai",
@@ -1094,10 +797,7 @@
     "kana": "たかい",
     "romaji": "takai",
     "wordType": "adjective",
-    "group": "i",
-    "english": "high",
-    "transitive": null,
-    "common": true
+    "group": "i"
   },
   {
     "id": "yasui",
@@ -1105,10 +805,7 @@
     "kana": "やすい",
     "romaji": "yasui",
     "wordType": "adjective",
-    "group": "i",
-    "english": "cheap",
-    "transitive": null,
-    "common": true
+    "group": "i"
   },
   {
     "id": "atarashii",
@@ -1116,10 +813,7 @@
     "kana": "あたらしい",
     "romaji": "atarashii",
     "wordType": "adjective",
-    "group": "i",
-    "english": "new",
-    "transitive": null,
-    "common": true
+    "group": "i"
   },
   {
     "id": "furui",
@@ -1127,10 +821,7 @@
     "kana": "ふるい",
     "romaji": "furui",
     "wordType": "adjective",
-    "group": "i",
-    "english": "old",
-    "transitive": null,
-    "common": true
+    "group": "i"
   },
   {
     "id": "muzukashii",
@@ -1138,10 +829,7 @@
     "kana": "むずかしい",
     "romaji": "muzukashii",
     "wordType": "adjective",
-    "group": "i",
-    "english": "difficult",
-    "transitive": null,
-    "common": true
+    "group": "i"
   },
   {
     "id": "tanoshii",
@@ -1149,10 +837,7 @@
     "kana": "たのしい",
     "romaji": "tanoshii",
     "wordType": "adjective",
-    "group": "i",
-    "english": "enjoyable",
-    "transitive": null,
-    "common": true
+    "group": "i"
   },
   {
     "id": "nagai",
@@ -1160,10 +845,7 @@
     "kana": "ながい",
     "romaji": "nagai",
     "wordType": "adjective",
-    "group": "i",
-    "english": "long (distance, length)",
-    "transitive": null,
-    "common": true
+    "group": "i"
   },
   {
     "id": "mijikai",
@@ -1171,10 +853,7 @@
     "kana": "みじかい",
     "romaji": "mijikai",
     "wordType": "adjective",
-    "group": "i",
-    "english": "short",
-    "transitive": null,
-    "common": true
+    "group": "i"
   },
   {
     "id": "hayai",
@@ -1182,10 +861,7 @@
     "kana": "はやい",
     "romaji": "hayai",
     "wordType": "adjective",
-    "group": "i",
-    "english": "fast",
-    "transitive": null,
-    "common": true
+    "group": "i"
   },
   {
     "id": "atsui",
@@ -1193,10 +869,7 @@
     "kana": "あつい",
     "romaji": "atsui",
     "wordType": "adjective",
-    "group": "i",
-    "english": "hot",
-    "transitive": null,
-    "common": true
+    "group": "i"
   },
   {
     "id": "samui",
@@ -1204,10 +877,7 @@
     "kana": "さむい",
     "romaji": "samui",
     "wordType": "adjective",
-    "group": "i",
-    "english": "cold (e.g. weather)",
-    "transitive": null,
-    "common": true
+    "group": "i"
   },
   {
     "id": "hiroi",
@@ -1215,10 +885,7 @@
     "kana": "ひろい",
     "romaji": "hiroi",
     "wordType": "adjective",
-    "group": "i",
-    "english": "spacious",
-    "transitive": null,
-    "common": true
+    "group": "i"
   },
   {
     "id": "isogashii",
@@ -1226,10 +893,7 @@
     "kana": "いそがしい",
     "romaji": "isogashii",
     "wordType": "adjective",
-    "group": "i",
-    "english": "busy",
-    "transitive": null,
-    "common": true
+    "group": "i"
   },
   {
     "id": "tsuyoi",
@@ -1237,10 +901,7 @@
     "kana": "つよい",
     "romaji": "tsuyoi",
     "wordType": "adjective",
-    "group": "i",
-    "english": "strong",
-    "transitive": null,
-    "common": true
+    "group": "i"
   },
   {
     "id": "wakai",
@@ -1248,10 +909,7 @@
     "kana": "わかい",
     "romaji": "wakai",
     "wordType": "adjective",
-    "group": "i",
-    "english": "young",
-    "transitive": null,
-    "common": true
+    "group": "i"
   },
   {
     "id": "suki",
@@ -1259,10 +917,7 @@
     "kana": "すき",
     "romaji": "suki",
     "wordType": "adjective",
-    "group": "na",
-    "english": "liking",
-    "transitive": null,
-    "common": true
+    "group": "na"
   },
   {
     "id": "kirai",
@@ -1270,10 +925,7 @@
     "kana": "きらい",
     "romaji": "kirai",
     "wordType": "adjective",
-    "group": "na",
-    "english": "disliked",
-    "transitive": null,
-    "common": true
+    "group": "na"
   },
   {
     "id": "jouzu",
@@ -1281,10 +933,7 @@
     "kana": "じょうず",
     "romaji": "jouzu",
     "wordType": "adjective",
-    "group": "na",
-    "english": "skillful",
-    "transitive": null,
-    "common": true
+    "group": "na"
   },
   {
     "id": "heta",
@@ -1292,10 +941,7 @@
     "kana": "へた",
     "romaji": "heta",
     "wordType": "adjective",
-    "group": "na",
-    "english": "unskillful",
-    "transitive": null,
-    "common": true
+    "group": "na"
   },
   {
     "id": "taisetsu",
@@ -1303,10 +949,7 @@
     "kana": "たいせつ",
     "romaji": "taisetsu",
     "wordType": "adjective",
-    "group": "na",
-    "english": "important",
-    "transitive": null,
-    "common": true
+    "group": "na"
   },
   {
     "id": "shizuka",
@@ -1314,10 +957,7 @@
     "kana": "しずか",
     "romaji": "shizuka",
     "wordType": "adjective",
-    "group": "na",
-    "english": "quiet",
-    "transitive": null,
-    "common": true
+    "group": "na"
   },
   {
     "id": "genki",
@@ -1325,10 +965,7 @@
     "kana": "げんき",
     "romaji": "genki",
     "wordType": "adjective",
-    "group": "na",
-    "english": "lively",
-    "transitive": null,
-    "common": true
+    "group": "na"
   },
   {
     "id": "kirei",
@@ -1336,10 +973,7 @@
     "kana": "きれい",
     "romaji": "kirei",
     "wordType": "adjective",
-    "group": "na",
-    "english": "pretty",
-    "transitive": null,
-    "common": true
+    "group": "na"
   },
   {
     "id": "benri",
@@ -1347,10 +981,7 @@
     "kana": "べんり",
     "romaji": "benri",
     "wordType": "adjective",
-    "group": "na",
-    "english": "convenient",
-    "transitive": null,
-    "common": true
+    "group": "na"
   },
   {
     "id": "shinsetsu",
@@ -1358,10 +989,7 @@
     "kana": "しんせつ",
     "romaji": "shinsetsu",
     "wordType": "adjective",
-    "group": "na",
-    "english": "kind",
-    "transitive": null,
-    "common": true
+    "group": "na"
   },
   {
     "id": "teinei",
@@ -1369,10 +997,7 @@
     "kana": "ていねい",
     "romaji": "teinei",
     "wordType": "adjective",
-    "group": "na",
-    "english": "polite",
-    "transitive": null,
-    "common": true
+    "group": "na"
   },
   {
     "id": "kantan",
@@ -1380,10 +1005,7 @@
     "kana": "かんたん",
     "romaji": "kantan",
     "wordType": "adjective",
-    "group": "na",
-    "english": "simple",
-    "transitive": null,
-    "common": true
+    "group": "na"
   },
   {
     "id": "hima",
@@ -1391,10 +1013,7 @@
     "kana": "ひま",
     "romaji": "hima",
     "wordType": "adjective",
-    "group": "na",
-    "english": "spare time",
-    "transitive": null,
-    "common": true
+    "group": "na"
   },
   {
     "id": "hitsuyou",
@@ -1402,10 +1021,7 @@
     "kana": "ひつよう",
     "romaji": "hitsuyou",
     "wordType": "adjective",
-    "group": "na",
-    "english": "necessary",
-    "transitive": null,
-    "common": true
+    "group": "na"
   },
   {
     "id": "yuumei",
@@ -1413,10 +1029,7 @@
     "kana": "ゆうめい",
     "romaji": "yuumei",
     "wordType": "adjective",
-    "group": "na",
-    "english": "famous",
-    "transitive": null,
-    "common": true
+    "group": "na"
   },
   {
     "id": "daijoubu",
@@ -1424,10 +1037,7 @@
     "kana": "だいじょうぶ",
     "romaji": "daijoubu",
     "wordType": "adjective",
-    "group": "na",
-    "english": "safe",
-    "transitive": null,
-    "common": true
+    "group": "na"
   },
   {
     "id": "hon",
@@ -1435,10 +1045,7 @@
     "kana": "ほん",
     "romaji": "hon",
     "wordType": "noun",
-    "group": null,
-    "english": "book",
-    "transitive": null,
-    "common": true
+    "group": null
   },
   {
     "id": "kuruma",
@@ -1446,10 +1053,7 @@
     "kana": "くるま",
     "romaji": "kuruma",
     "wordType": "noun",
-    "group": null,
-    "english": "car",
-    "transitive": null,
-    "common": true
+    "group": null
   },
   {
     "id": "densha",
@@ -1457,10 +1061,7 @@
     "kana": "でんしゃ",
     "romaji": "densha",
     "wordType": "noun",
-    "group": null,
-    "english": "train",
-    "transitive": null,
-    "common": true
+    "group": null
   },
   {
     "id": "gakkou",
@@ -1468,10 +1069,7 @@
     "kana": "がっこう",
     "romaji": "gakkou",
     "wordType": "noun",
-    "group": null,
-    "english": "school",
-    "transitive": null,
-    "common": true
+    "group": null
   },
   {
     "id": "tomodachi",
@@ -1479,10 +1077,7 @@
     "kana": "ともだち",
     "romaji": "tomodachi",
     "wordType": "noun",
-    "group": null,
-    "english": "friend",
-    "transitive": null,
-    "common": true
+    "group": null
   },
   {
     "id": "shigoto",
@@ -1490,10 +1085,7 @@
     "kana": "しごと",
     "romaji": "shigoto",
     "wordType": "noun",
-    "group": null,
-    "english": "work",
-    "transitive": null,
-    "common": true
+    "group": null
   },
   {
     "id": "jikan",
@@ -1501,10 +1093,7 @@
     "kana": "じかん",
     "romaji": "jikan",
     "wordType": "noun",
-    "group": null,
-    "english": "time",
-    "transitive": null,
-    "common": true
+    "group": null
   },
   {
     "id": "eiga",
@@ -1512,10 +1101,7 @@
     "kana": "えいが",
     "romaji": "eiga",
     "wordType": "noun",
-    "group": null,
-    "english": "movie",
-    "transitive": null,
-    "common": true
+    "group": null
   },
   {
     "id": "tabemono",
@@ -1523,10 +1109,7 @@
     "kana": "たべもの",
     "romaji": "tabemono",
     "wordType": "noun",
-    "group": null,
-    "english": "food",
-    "transitive": null,
-    "common": true
+    "group": null
   },
   {
     "id": "nomimono",
@@ -1534,10 +1117,7 @@
     "kana": "のみもの",
     "romaji": "nomimono",
     "wordType": "noun",
-    "group": null,
-    "english": "drink",
-    "transitive": null,
-    "common": true
+    "group": null
   },
   {
     "id": "hito",
@@ -1545,10 +1125,7 @@
     "kana": "ひと",
     "romaji": "hito",
     "wordType": "noun",
-    "group": null,
-    "english": "person",
-    "transitive": null,
-    "common": true
+    "group": null
   },
   {
     "id": "kazoku",
@@ -1556,10 +1133,7 @@
     "kana": "かぞく",
     "romaji": "kazoku",
     "wordType": "noun",
-    "group": null,
-    "english": "family",
-    "transitive": null,
-    "common": true
+    "group": null
   },
   {
     "id": "heya",
@@ -1567,10 +1141,7 @@
     "kana": "へや",
     "romaji": "heya",
     "wordType": "noun",
-    "group": null,
-    "english": "room",
-    "transitive": null,
-    "common": true
+    "group": null
   },
   {
     "id": "kaisha",
@@ -1578,10 +1149,7 @@
     "kana": "かいしゃ",
     "romaji": "kaisha",
     "wordType": "noun",
-    "group": null,
-    "english": "company",
-    "transitive": null,
-    "common": true
+    "group": null
   },
   {
     "id": "byouin",
@@ -1589,10 +1157,7 @@
     "kana": "びょういん",
     "romaji": "byouin",
     "wordType": "noun",
-    "group": null,
-    "english": "hospital",
-    "transitive": null,
-    "common": true
+    "group": null
   },
   {
     "id": "eki",
@@ -1600,10 +1165,7 @@
     "kana": "えき",
     "romaji": "eki",
     "wordType": "noun",
-    "group": null,
-    "english": "railway station",
-    "transitive": null,
-    "common": true
+    "group": null
   },
   {
     "id": "okane",
@@ -1611,10 +1173,7 @@
     "kana": "おかね",
     "romaji": "okane",
     "wordType": "noun",
-    "group": null,
-    "english": "money",
-    "transitive": null,
-    "common": true
+    "group": null
   },
   {
     "id": "tenki",
@@ -1622,10 +1181,7 @@
     "kana": "てんき",
     "romaji": "tenki",
     "wordType": "noun",
-    "group": null,
-    "english": "weather",
-    "transitive": null,
-    "common": true
+    "group": null
   },
   {
     "id": "ongaku",
@@ -1633,10 +1189,7 @@
     "kana": "おんがく",
     "romaji": "ongaku",
     "wordType": "noun",
-    "group": null,
-    "english": "music",
-    "transitive": null,
-    "common": true
+    "group": null
   },
   {
     "id": "kotoba",
@@ -1644,10 +1197,7 @@
     "kana": "ことば",
     "romaji": "kotoba",
     "wordType": "noun",
-    "group": null,
-    "english": "language",
-    "transitive": null,
-    "common": true
+    "group": null
   },
   {
     "id": "mondai",
@@ -1655,10 +1205,7 @@
     "kana": "もんだい",
     "romaji": "mondai",
     "wordType": "noun",
-    "group": null,
-    "english": "question (e.g. on a test)",
-    "transitive": null,
-    "common": true
+    "group": null
   },
   {
     "id": "shashin",
@@ -1666,10 +1213,7 @@
     "kana": "しゃしん",
     "romaji": "shashin",
     "wordType": "noun",
-    "group": null,
-    "english": "photograph",
-    "transitive": null,
-    "common": true
+    "group": null
   },
   {
     "id": "ryouri",
@@ -1677,10 +1221,7 @@
     "kana": "りょうり",
     "romaji": "ryouri",
     "wordType": "noun",
-    "group": null,
-    "english": "cooking",
-    "transitive": null,
-    "common": true
+    "group": null
   },
   {
     "id": "tsuzuku",
@@ -1688,10 +1229,7 @@
     "kana": "つづく",
     "romaji": "tsuzuku",
     "wordType": "verb",
-    "group": 1,
-    "english": "to continue",
-    "transitive": false,
-    "common": true
+    "group": 1
   },
   {
     "id": "kizuku",
@@ -1699,10 +1237,7 @@
     "kana": "きづく",
     "romaji": "kizuku",
     "wordType": "verb",
-    "group": 1,
-    "english": "to notice",
-    "transitive": false,
-    "common": true
+    "group": 1
   },
   {
     "id": "kasegu",
@@ -1710,10 +1245,7 @@
     "kana": "かせぐ",
     "romaji": "kasegu",
     "wordType": "verb",
-    "group": 1,
-    "english": "to earn (income)",
-    "transitive": null,
-    "common": true
+    "group": 1
   },
   {
     "id": "sawagu",
@@ -1721,10 +1253,7 @@
     "kana": "さわぐ",
     "romaji": "sawagu",
     "wordType": "verb",
-    "group": 1,
-    "english": "to make noise",
-    "transitive": false,
-    "common": true
+    "group": 1
   },
   {
     "id": "tamesu",
@@ -1732,10 +1261,7 @@
     "kana": "ためす",
     "romaji": "tamesu",
     "wordType": "verb",
-    "group": 1,
-    "english": "to try (out)",
-    "transitive": true,
-    "common": true
+    "group": 1
   },
   {
     "id": "arawasu",
@@ -1743,10 +1269,7 @@
     "kana": "あらわす",
     "romaji": "arawasu",
     "wordType": "verb",
-    "group": 1,
-    "english": "to represent",
-    "transitive": true,
-    "common": true
+    "group": 1
   },
   {
     "id": "sodatsu",
@@ -1754,10 +1277,7 @@
     "kana": "そだつ",
     "romaji": "sodatsu",
     "wordType": "verb",
-    "group": 1,
-    "english": "to be raised (e.g. child)",
-    "transitive": false,
-    "common": true
+    "group": 1
   },
   {
     "id": "tamotsu",
@@ -1765,10 +1285,7 @@
     "kana": "たもつ",
     "romaji": "tamotsu",
     "wordType": "verb",
-    "group": 1,
-    "english": "to keep",
-    "transitive": null,
-    "common": true
+    "group": 1
   },
   {
     "id": "sasou",
@@ -1776,10 +1293,7 @@
     "kana": "さそう",
     "romaji": "sasou",
     "wordType": "verb",
-    "group": 1,
-    "english": "to invite",
-    "transitive": true,
-    "common": true
+    "group": 1
   },
   {
     "id": "shitagau",
@@ -1787,10 +1301,7 @@
     "kana": "したがう",
     "romaji": "shitagau",
     "wordType": "verb",
-    "group": 1,
-    "english": "to obey (an order, law, etc.)",
-    "transitive": false,
-    "common": true
+    "group": 1
   },
   {
     "id": "kotowaru",
@@ -1798,10 +1309,7 @@
     "kana": "ことわる",
     "romaji": "kotowaru",
     "wordType": "verb",
-    "group": 1,
-    "english": "to refuse",
-    "transitive": true,
-    "common": true
+    "group": 1
   },
   {
     "id": "wataru",
@@ -1809,10 +1317,7 @@
     "kana": "わたる",
     "romaji": "wataru",
     "wordType": "verb",
-    "group": 1,
-    "english": "to cross over",
-    "transitive": false,
-    "common": true
+    "group": 1
   },
   {
     "id": "yorokobu",
@@ -1820,10 +1325,7 @@
     "kana": "よろこぶ",
     "romaji": "yorokobu",
     "wordType": "verb",
-    "group": 1,
-    "english": "to be delighted",
-    "transitive": null,
-    "common": true
+    "group": 1
   },
   {
     "id": "korobu",
@@ -1831,10 +1333,7 @@
     "kana": "ころぶ",
     "romaji": "korobu",
     "wordType": "verb",
-    "group": 1,
-    "english": "to fall down",
-    "transitive": false,
-    "common": true
+    "group": 1
   },
   {
     "id": "nayamu",
@@ -1842,10 +1341,7 @@
     "kana": "なやむ",
     "romaji": "nayamu",
     "wordType": "verb",
-    "group": 1,
-    "english": "to be worried",
-    "transitive": false,
-    "common": true
+    "group": 1
   },
   {
     "id": "nozomu",
@@ -1853,10 +1349,7 @@
     "kana": "のぞむ",
     "romaji": "nozomu",
     "wordType": "verb",
-    "group": 1,
-    "english": "to desire",
-    "transitive": true,
-    "common": true
+    "group": 1
   },
   {
     "id": "tsutsumu",
@@ -1864,10 +1357,7 @@
     "kana": "つつむ",
     "romaji": "tsutsumu",
     "wordType": "verb",
-    "group": 1,
-    "english": "to wrap up",
-    "transitive": true,
-    "common": true
+    "group": 1
   },
   {
     "id": "nusumu",
@@ -1875,10 +1365,7 @@
     "kana": "ぬすむ",
     "romaji": "nusumu",
     "wordType": "verb",
-    "group": 1,
-    "english": "to steal",
-    "transitive": true,
-    "common": true
+    "group": 1
   },
   {
     "id": "nareru",
@@ -1886,10 +1373,7 @@
     "kana": "なれる",
     "romaji": "nareru",
     "wordType": "verb",
-    "group": 2,
-    "english": "to get used to",
-    "transitive": false,
-    "common": true
+    "group": 2
   },
   {
     "id": "kuraberu",
@@ -1897,10 +1381,7 @@
     "kana": "くらべる",
     "romaji": "kuraberu",
     "wordType": "verb",
-    "group": 2,
-    "english": "to compare",
-    "transitive": true,
-    "common": true
+    "group": 2
   },
   {
     "id": "tsutaeru",
@@ -1908,10 +1389,7 @@
     "kana": "つたえる",
     "romaji": "tsutaeru",
     "wordType": "verb",
-    "group": 2,
-    "english": "to convey",
-    "transitive": true,
-    "common": true
+    "group": 2
   },
   {
     "id": "mukaeru",
@@ -1919,10 +1397,7 @@
     "kana": "むかえる",
     "romaji": "mukaeru",
     "wordType": "verb",
-    "group": 2,
-    "english": "to go out to meet",
-    "transitive": true,
-    "common": true
+    "group": 2
   },
   {
     "id": "nigeru",
@@ -1930,10 +1405,7 @@
     "kana": "にげる",
     "romaji": "nigeru",
     "wordType": "verb",
-    "group": 2,
-    "english": "to run away",
-    "transitive": false,
-    "common": true
+    "group": 2
   },
   {
     "id": "nageru",
@@ -1941,10 +1413,7 @@
     "kana": "なげる",
     "romaji": "nageru",
     "wordType": "verb",
-    "group": 2,
-    "english": "to throw",
-    "transitive": true,
-    "common": true
+    "group": 2
   },
   {
     "id": "akirameru",
@@ -1952,10 +1421,7 @@
     "kana": "あきらめる",
     "romaji": "akirameru",
     "wordType": "verb",
-    "group": 2,
-    "english": "to give up",
-    "transitive": true,
-    "common": true
+    "group": 2
   },
   {
     "id": "motomeru",
@@ -1963,10 +1429,7 @@
     "kana": "もとめる",
     "romaji": "motomeru",
     "wordType": "verb",
-    "group": 2,
-    "english": "to want",
-    "transitive": true,
-    "common": true
+    "group": 2
   },
   {
     "id": "homeru",
@@ -1974,10 +1437,7 @@
     "kana": "ほめる",
     "romaji": "homeru",
     "wordType": "verb",
-    "group": 2,
-    "english": "to praise",
-    "transitive": true,
-    "common": true
+    "group": 2
   },
   {
     "id": "nagameru",
@@ -1985,10 +1445,7 @@
     "kana": "ながめる",
     "romaji": "nagameru",
     "wordType": "verb",
-    "group": 2,
-    "english": "to look at",
-    "transitive": true,
-    "common": true
+    "group": 2
   },
   {
     "id": "furueru",
@@ -1996,10 +1453,7 @@
     "kana": "ふるえる",
     "romaji": "furueru",
     "wordType": "verb",
-    "group": 2,
-    "english": "to shiver",
-    "transitive": false,
-    "common": true
+    "group": 2
   },
   {
     "id": "taoreru",
@@ -2007,10 +1461,7 @@
     "kana": "たおれる",
     "romaji": "taoreru",
     "wordType": "verb",
-    "group": 2,
-    "english": "to fall (over, down)",
-    "transitive": false,
-    "common": true
+    "group": 2
   },
   {
     "id": "hanareru",
@@ -2018,10 +1469,7 @@
     "kana": "はなれる",
     "romaji": "hanareru",
     "wordType": "verb",
-    "group": 2,
-    "english": "to be separated",
-    "transitive": false,
-    "common": true
+    "group": 2
   },
   {
     "id": "tashikameru",
@@ -2029,10 +1477,7 @@
     "kana": "たしかめる",
     "romaji": "tashikameru",
     "wordType": "verb",
-    "group": 2,
-    "english": "to make sure",
-    "transitive": true,
-    "common": true
+    "group": 2
   },
   {
     "id": "setsumeisuru",
@@ -2040,10 +1485,7 @@
     "kana": "せつめいする",
     "romaji": "setsumeisuru",
     "wordType": "verb",
-    "group": 3,
-    "english": "explanation",
-    "transitive": true,
-    "common": true
+    "group": 3
   },
   {
     "id": "shoukaisuru",
@@ -2051,10 +1493,7 @@
     "kana": "しょうかいする",
     "romaji": "shoukaisuru",
     "wordType": "verb",
-    "group": 3,
-    "english": "introduction",
-    "transitive": true,
-    "common": true
+    "group": 3
   },
   {
     "id": "shinpaisuru",
@@ -2062,10 +1501,7 @@
     "kana": "しんぱいする",
     "romaji": "shinpaisuru",
     "wordType": "verb",
-    "group": 3,
-    "english": "worry",
-    "transitive": true,
-    "common": true
+    "group": 3
   },
   {
     "id": "renrakusuru",
@@ -2073,10 +1509,7 @@
     "kana": "れんらくする",
     "romaji": "renrakusuru",
     "wordType": "verb",
-    "group": 3,
-    "english": "contacting",
-    "transitive": null,
-    "common": true
+    "group": 3
   },
   {
     "id": "fukai",
@@ -2084,10 +1517,7 @@
     "kana": "ふかい",
     "romaji": "fukai",
     "wordType": "adjective",
-    "group": "i",
-    "english": "deep",
-    "transitive": null,
-    "common": true
+    "group": "i"
   },
   {
     "id": "kanashii",
@@ -2095,10 +1525,7 @@
     "kana": "かなしい",
     "romaji": "kanashii",
     "wordType": "adjective",
-    "group": "i",
-    "english": "sad",
-    "transitive": null,
-    "common": true
+    "group": "i"
   },
   {
     "id": "ureshii",
@@ -2106,10 +1533,7 @@
     "kana": "うれしい",
     "romaji": "ureshii",
     "wordType": "adjective",
-    "group": "i",
-    "english": "happy",
-    "transitive": null,
-    "common": true
+    "group": "i"
   },
   {
     "id": "kowai",
@@ -2117,10 +1541,7 @@
     "kana": "こわい",
     "romaji": "kowai",
     "wordType": "adjective",
-    "group": "i",
-    "english": "scary",
-    "transitive": null,
-    "common": true
+    "group": "i"
   },
   {
     "id": "mezurashii",
@@ -2128,10 +1549,7 @@
     "kana": "めずらしい",
     "romaji": "mezurashii",
     "wordType": "adjective",
-    "group": "i",
-    "english": "rare",
-    "transitive": null,
-    "common": true
+    "group": "i"
   },
   {
     "id": "tadashii",
@@ -2139,10 +1557,7 @@
     "kana": "ただしい",
     "romaji": "tadashii",
     "wordType": "adjective",
-    "group": "i",
-    "english": "right",
-    "transitive": null,
-    "common": true
+    "group": "i"
   },
   {
     "id": "kibishii",
@@ -2150,10 +1565,7 @@
     "kana": "きびしい",
     "romaji": "kibishii",
     "wordType": "adjective",
-    "group": "i",
-    "english": "severe",
-    "transitive": null,
-    "common": true
+    "group": "i"
   },
   {
     "id": "hazukashii",
@@ -2161,10 +1573,7 @@
     "kana": "はずかしい",
     "romaji": "hazukashii",
     "wordType": "adjective",
-    "group": "i",
-    "english": "embarrassing",
-    "transitive": null,
-    "common": true
+    "group": "i"
   },
   {
     "id": "fukuzatsu",
@@ -2172,10 +1581,7 @@
     "kana": "ふくざつ",
     "romaji": "fukuzatsu",
     "wordType": "adjective",
-    "group": "na",
-    "english": "complex",
-    "transitive": null,
-    "common": true
+    "group": "na"
   },
   {
     "id": "jiyuu",
@@ -2183,10 +1589,7 @@
     "kana": "じゆう",
     "romaji": "jiyuu",
     "wordType": "adjective",
-    "group": "na",
-    "english": "freedom",
-    "transitive": null,
-    "common": true
+    "group": "na"
   },
   {
     "id": "fushigi",
@@ -2194,10 +1597,7 @@
     "kana": "ふしぎ",
     "romaji": "fushigi",
     "wordType": "adjective",
-    "group": "na",
-    "english": "wonderful",
-    "transitive": null,
-    "common": true
+    "group": "na"
   },
   {
     "id": "tokubetsu",
@@ -2205,10 +1605,7 @@
     "kana": "とくべつ",
     "romaji": "tokubetsu",
     "wordType": "adjective",
-    "group": "na",
-    "english": "special",
-    "transitive": null,
-    "common": true
+    "group": "na"
   },
   {
     "id": "anzen",
@@ -2216,10 +1613,7 @@
     "kana": "あんぜん",
     "romaji": "anzen",
     "wordType": "adjective",
-    "group": "na",
-    "english": "safety",
-    "transitive": null,
-    "common": true
+    "group": "na"
   },
   {
     "id": "kiken",
@@ -2227,10 +1621,7 @@
     "kana": "きけん",
     "romaji": "kiken",
     "wordType": "adjective",
-    "group": "na",
-    "english": "danger",
-    "transitive": null,
-    "common": true
+    "group": "na"
   },
   {
     "id": "shiawase",
@@ -2238,10 +1629,7 @@
     "kana": "しあわせ",
     "romaji": "shiawase",
     "wordType": "adjective",
-    "group": "na",
-    "english": "happiness",
-    "transitive": null,
-    "common": true
+    "group": "na"
   },
   {
     "id": "zannen",
@@ -2249,10 +1637,7 @@
     "kana": "ざんねん",
     "romaji": "zannen",
     "wordType": "adjective",
-    "group": "na",
-    "english": "regrettable",
-    "transitive": null,
-    "common": true
+    "group": "na"
   },
   {
     "id": "keiken",
@@ -2260,10 +1645,7 @@
     "kana": "けいけん",
     "romaji": "keiken",
     "wordType": "noun",
-    "group": null,
-    "english": "experience",
-    "transitive": null,
-    "common": true
+    "group": null
   },
   {
     "id": "kimochi",
@@ -2271,10 +1653,7 @@
     "kana": "きもち",
     "romaji": "kimochi",
     "wordType": "noun",
-    "group": null,
-    "english": "feeling",
-    "transitive": null,
-    "common": true
+    "group": null
   },
   {
     "id": "riyuu",
@@ -2282,10 +1661,7 @@
     "kana": "りゆう",
     "romaji": "riyuu",
     "wordType": "noun",
-    "group": null,
-    "english": "reason",
-    "transitive": null,
-    "common": true
+    "group": null
   },
   {
     "id": "imi",
@@ -2293,10 +1669,7 @@
     "kana": "いみ",
     "romaji": "imi",
     "wordType": "noun",
-    "group": null,
-    "english": "meaning",
-    "transitive": null,
-    "common": true
+    "group": null
   },
   {
     "id": "mokuteki",
@@ -2304,10 +1677,7 @@
     "kana": "もくてき",
     "romaji": "mokuteki",
     "wordType": "noun",
-    "group": null,
-    "english": "purpose",
-    "transitive": null,
-    "common": true
+    "group": null
   },
   {
     "id": "kankei",
@@ -2315,10 +1685,7 @@
     "kana": "かんけい",
     "romaji": "kankei",
     "wordType": "noun",
-    "group": null,
-    "english": "relation",
-    "transitive": null,
-    "common": true
+    "group": null
   },
   {
     "id": "junbi",
@@ -2326,10 +1693,7 @@
     "kana": "じゅんび",
     "romaji": "junbi",
     "wordType": "noun",
-    "group": null,
-    "english": "preparation",
-    "transitive": null,
-    "common": true
+    "group": null
   },
   {
     "id": "shuukan",
@@ -2337,9 +1701,6 @@
     "kana": "しゅうかん",
     "romaji": "shuukan",
     "wordType": "noun",
-    "group": null,
-    "english": "habit",
-    "transitive": null,
-    "common": true
+    "group": null
   }
 ]

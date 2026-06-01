@@ -72,9 +72,64 @@ export const ENGINES = {
 
 It will automatically appear as a selectable option in the options drawer.
 
-## Word list distribution targets (`src/data/words.json`)
+## Word list — how it works
 
-Target counts to maintain when adding new words. Prioritise N5 then N4; only go to N3 if a group can't reach its target with N5/N4 alone (mainly affects ぬ and ぐ).
+`src/data/words.json` is **generated** — do not edit it directly. The source of truth is:
+
+- **`scripts/words-seed.json`** — curated list of `{ id, kanji, kana, romaji, wordType, group, jlpt }`. Edit this to add/remove/change words.
+- **`scripts/build-words.js`** — reads the seed, looks up each word in JMdict, fills in the `english` field, writes `src/data/words.json`.
+
+### Adding a new word
+
+1. Add an entry to `scripts/words-seed.json` — only add words that are marked common in JMdict (the build script will warn if not). Do not add the `english` field — that comes from JMdict.
+2. Download the latest `jmdict-eng-*.json` from https://github.com/scriptin/jmdict-simplified/releases/latest, unzip, and place it at `scripts/data/jmdict-eng.json` (gitignored).
+3. Run `npm run build:words` to regenerate `src/data/words.json`.
+4. Verify the entry got a sensible English gloss, correct transitivity, and `common: true`; the script warns on any missing or non-common entries.
+
+### Seed entry schema
+
+```json
+{
+  "id": "kaku",
+  "kanji": "書く",
+  "kana": "かく",
+  "romaji": "kaku",
+  "wordType": "verb",
+  "group": 1
+}
+```
+
+- `id` — romaji of the kana reading. Append a suffix to disambiguate homophones: `kiru_cut` (切る, godan) vs `kiru_wear` (着る, ichidan). The `romaji` field always holds the bare pronunciation without the suffix.
+- `wordType` — `"verb"`, `"adjective"`, or `"noun"`.
+- `group` — `1`/`2`/`3` for verbs; `"i"`/`"na"` for adjectives; `null` for nouns.
+
+No `jlpt` — JMdict dropped JLPT data. No `english` — that comes from JMdict. No `source`/`listId` — those fields were removed.
+
+### Generated fields (added by build-words.js)
+
+| Field | Type | Notes |
+|---|---|---|
+| `english` | `string` | First English gloss from the relevant sense in JMdict |
+| `transitive` | `boolean \| null` | `true` = transitive (`vt`), `false` = intransitive (`vi`), `null` = both, neither, or non-verb |
+| `common` | `boolean` | `true` if the matched kanji/kana element is marked common in JMdict; build script warns if `false` |
+
+### JMdict POS tags → group mapping
+
+| JMdict tag | group |
+|---|---|
+| `v5k`, `v5g`, `v5s`, `v5t`, `v5u`, `v5r`, `v5n`, `v5b`, `v5m` | `1` (godan) |
+| `v1` | `2` (ichidan) |
+| `vk` | `3` (来る) |
+| `vs-i`, `vs-s`, `vs` | `3` (する / compound する) |
+| `adj-i` | `"i"` |
+| `adj-na` | `"na"` |
+| `n` | `null` |
+
+For compound する verbs (e.g. 勉強する), the kanji field is the full compound (`"勉強する"`) and JMdict will have it as its own entry with `vs-i` POS.
+
+### Distribution targets
+
+Prioritise N5 then N4; only go to N3 if a group can't reach its target with N5/N4 alone (mainly affects ぬ and ぐ).
 
 **Group 1 verbs (~55 total)** — distribute by conjugation-behaviour ending, not evenly:
 | Ending | Target | Notes |
@@ -99,8 +154,6 @@ Target counts to maintain when adding new words. Prioritise N5 then N4; only go 
 
 **Nouns — 20–25 total**
 
-IDs use the romaji of the kana reading. Disambiguate homophones with a suffix: `kiru_cut` (切る, godan) vs `kiru_wear` (着る, ichidan); `kaeru` (帰る, godan) vs `kaeru_change` (変える, ichidan). The `romaji` field always holds the bare pronunciation without the suffix.
-
 ## Key files
 
 | File | Purpose |
@@ -109,7 +162,9 @@ IDs use the romaji of the kana reading. Disambiguate homophones with a suffix: `
 | `src/data/drill.js` | `buildPool`, `filterWords`, `resolveVariant` |
 | `src/data/illegalCombos.js` | Declarative list of card combos to suppress (e.g. trivial/duplicate answers); checked in `buildPool()` |
 | `src/data/forms.js` | `FORMS` — all form/register definitions with axes and colors |
-| `src/data/words.json` | Word entries — id, kanji, kana, wordType, group, jlpt; no conjugation tables (computed at runtime) |
+| `scripts/words-seed.json` | Curated word list (id, kanji, kana, romaji, wordType, group, jlpt) — edit this, not words.json |
+| `scripts/build-words.js` | Generates `src/data/words.json` from the seed + JMdict (`npm run build:words`) |
+| `src/data/words.json` | **Generated** — word entries with `english`, `transitive`, `common` from JMdict; do not edit directly |
 | `src/engines/simpleQueue.js` | Default engine — float + wrong-card reinsertion |
 | `src/hooks/useDrill.js` | React wrapper for any engine; `ENGINES` registry; seek-on-reinit |
 | `src/hooks/useTTS.js` | Web Speech API wrapper; speaks `conjugation` on card flip-to-back; `ttsEnabled` persisted in localStorage |

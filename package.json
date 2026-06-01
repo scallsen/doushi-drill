@@ -9,6 +9,7 @@
     "preview": "vite preview",
     "lint": "eslint .",
     "test": "vitest run",
+    "build:words": "node scripts/build-words.js",
     "prepare": "husky"
   },
   "lint-staged": {
@@ -21,6 +22,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.39.4",
+    "@scriptin/jmdict-simplified-loader": "^3.6.1",
     "@types/react": "^18.3.1",
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^4.3.1",

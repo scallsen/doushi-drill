@@ -94,17 +94,6 @@ const ja = {
     adj_short:    '形容詞',
   },
 
-  // ── JLPT ──────────────────────────────────────────────────────────────────
-  jlpt: {
-    n5:         'N5',
-    n4:         'N4',
-    n3:         'N3',
-    n2:         'N2',
-    n1:         'N1',
-    unlisted:   '未分類',         // みぶんるい — unclassified
-    all_levels: 'すべてのレベル',
-  },
-
   // ── カード上のテキスト ─────────────────────────────────────────────────────
   card: {
     tap_to_reveal:  'タップして答えを見る',
@@ -169,7 +158,6 @@ const ja = {
     tts_short:         '音声読み上げ',
     show_romaji:       'ローマ字を表示',
     show_english:      '英語の意味を表示',
-    filter_jlpt:       'JLPTレベル',
     filter_word_type:  '品詞',
     show_streak:          'ストリークを表示',
     show_furigana:        'ふりがなを表示',

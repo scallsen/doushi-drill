@@ -495,13 +495,6 @@ function DoneScreen({ totalCorrect, totalWrong, onRestart }) {
 
 // ── Main page ────────────────────────────────────────────────────────────────
 
-const JLPT_LEVELS = [5, 4, 3]
-
-function jlptLabel(levels, t) {
-  if (!levels.length) return t('jlpt.all_levels')
-  return levels.slice().sort((a, b) => b - a).map(n => `N${n}`).join(', ')
-}
-
 const DEFAULTS = {
   wordTypes:  ['u-verb', 'ru-verb', 'irregular'],
   registers:  ['polite'],
@@ -509,7 +502,6 @@ const DEFAULTS = {
   tenses:     ['present'],
   polarities: ['positive'],
   engine:     'simpleQueue',
-  jlpt:       [5],
 }
 
 export default function DrillPage() {
@@ -521,11 +513,6 @@ export default function DrillPage() {
   const [selectedTenses,     setSelectedTenses]     = useState(DEFAULTS.tenses)
   const [selectedPolarities, setSelectedPolarities] = useState(DEFAULTS.polarities)
   const [selectedEngine] = useState(DEFAULTS.engine)
-  const [selectedJlpt,       setSelectedJlpt]       = useState(() => {
-    const stored = safeLocalStorageGet('selected-jlpt')
-    return stored ? JSON.parse(stored) : DEFAULTS.jlpt
-  })
-  const [jlptExpanded,       setJlptExpanded]       = useState(false)
   const [seekCardId,         setSeekCardId]         = useState(null)
   const [audioEnabled,       setAudioEnabled]       = useState(() => {
     const stored = safeLocalStorageGet('audio-enabled')
@@ -585,7 +572,6 @@ export default function DrillPage() {
   useEffect(() => { safeLocalStorageSet('show-visual-effects', showVisualEffects) }, [showVisualEffects])
   useEffect(() => { safeLocalStorageSet('pixel-font', pixelFont) }, [pixelFont])
   useEffect(() => { safeLocalStorageSet('show-translation', showTranslation) }, [showTranslation])
-  useEffect(() => { safeLocalStorageSet('selected-jlpt', JSON.stringify(selectedJlpt)) }, [selectedJlpt])
   useEffect(() => { safeLocalStorageSet('input-mode', inputMode) }, [inputMode])
 
   useEffect(() => {
@@ -613,14 +599,13 @@ export default function DrillPage() {
   const hideHeader = isMobile && inputMode === 'input' && keyboardOpen
   const inKeyboardMode = hideHeader
 
-  function seek(newWordTypes, newForms, newRegs, newTenses, newPols, axis, value, newJlpt) {
+  function seek(newWordTypes, newForms, newRegs, newTenses, newPols, axis, value) {
     const newPool = buildPool({
       selectedWordTypes:  newWordTypes,
       selectedForms:      newForms,
       selectedRegisters:  newRegs,
       selectedTenses:     newTenses,
       selectedPolarities: newPols,
-      selectedJlpt:       newJlpt ?? selectedJlpt,
     })
     setSeekCardId(findSeekCard(newPool, drill.currentCard, axis, value)?.id ?? null)
   }
@@ -643,12 +628,12 @@ export default function DrillPage() {
   const activeWordTypes      = new Set(selectedWordTypes.map(k => CATEGORIES.find(c => c.key === k)?.wordType).filter(Boolean))
   const availableGrammarForms = GRAMMAR_FORMS.filter(f => f.validWordTypes.some(wt => activeWordTypes.has(wt)))
 
-  const poolKey = [selectedWordTypes, selectedForms, selectedRegisters, selectedTenses, selectedPolarities, selectedJlpt]
+  const poolKey = [selectedWordTypes, selectedForms, selectedRegisters, selectedTenses, selectedPolarities]
     .map(a => [...a].sort().join(','))
     .join('|')
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const pool = useMemo(() => buildPool({ selectedWordTypes, selectedForms, selectedRegisters, selectedTenses, selectedPolarities, selectedJlpt }), [poolKey])
+  const pool = useMemo(() => buildPool({ selectedWordTypes, selectedForms, selectedRegisters, selectedTenses, selectedPolarities }), [poolKey])
 
   const engine = ENGINES[selectedEngine]
   const drill  = useDrill(pool, { engine, seekCardId })
@@ -706,41 +691,6 @@ export default function DrillPage() {
           ))}
         </div>
         <SelectionError visible={selectedWordTypes.length === 0} />
-
-        {/* ── JLPT filter ── */}
-        <div style={{ marginTop: 10, fontSize: 13, color: 'rgba(255,255,255,0.4)', lineHeight: 1.4 }}>
-          {t('ui.vocabulary_from')}{' '}
-          <span
-            role="button"
-            tabIndex={0}
-            className="jlpt-toggle"
-            onClick={() => setJlptExpanded(v => !v)}
-            onKeyDown={e => { if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); setJlptExpanded(v => !v) } }}
-            onMouseEnter={e => { e.currentTarget.style.color = 'rgba(255,255,255,0.9)' }}
-            onMouseLeave={e => { e.currentTarget.style.color = 'rgba(255,255,255,0.65)' }}
-            onFocus={e => { e.currentTarget.style.color = 'rgba(255,255,255,0.9)' }}
-            onBlur={e => { e.currentTarget.style.color = 'rgba(255,255,255,0.65)' }}
-            style={{ color: 'rgba(255,255,255,0.65)', textDecoration: 'underline', textUnderlineOffset: 3, cursor: 'pointer' }}
-          >
-            JLPT {jlptLabel(selectedJlpt, t)}
-          </span>
-        </div>
-        {jlptExpanded && (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 6, marginTop: 8 }}>
-            {JLPT_LEVELS.map(level => (
-              <DrawerCheckbox
-                key={level}
-                checked={selectedJlpt.includes(level)}
-                onChange={() => {
-                  const next = toggle(selectedJlpt, level)
-                  seek(selectedWordTypes, selectedForms, selectedRegisters, selectedTenses, selectedPolarities, null, null, next)
-                  setSelectedJlpt(next)
-                }}
-                label={`JLPT N${level}`}
-              />
-            ))}
-          </div>
-        )}
 
         {/* ── Separator ── */}
         <div style={hairline} />
