@@ -20,7 +20,7 @@ import DrawerSelect from '../components/DrawerSelect.jsx'
 import DrawerRadio from '../components/DrawerRadio.jsx'
 import VolumeOnIcon from '../icons/volume-on.svg?react'
 import VolumeOffIcon from '../icons/volume-off.svg?react'
-import logoMain from '../icons/logo-main.png'
+import logoIcon from '../icons/logo.svg'
 import Wordmark from '../icons/wordmark.svg?react'
 import ModeToggle from '../components/ModeToggle.jsx'
 import SpeedModeControls from '../components/SpeedModeControls.jsx'
@@ -972,7 +972,7 @@ export default function DrillPage() {
             padding: `${isNarrow ? 12 : 20}px ${isNarrow ? 12 : 24}px`, gap: '8px 0',
           }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-              <img src={logoMain} alt="" width={36} height={32} style={{ display: 'block' }} />
+              <img src={logoIcon} alt="" width={30} height={25} style={{ display: 'block', imageRendering: 'pixelated' }} />
               {!hideWordmark && <Wordmark height={17} />}
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginLeft: 'auto' }}>
