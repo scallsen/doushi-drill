@@ -1,29 +1,29 @@
-<svg width="30" height="25" viewBox="0 0 30 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g clip-path="url(#clip0_152_2323)">
-<rect x="3" y="18" width="24" height="5" fill="black" fill-opacity="0.5"/>
-<rect x="2.5" y="2.5" width="25" height="18" fill="#F8F8F8" stroke="#D0D0D0"/>
-<rect x="21" y="6" width="1" height="9" fill="#353535"/>
-<rect x="20" y="15" width="1" height="1" fill="#353535"/>
-<rect x="10" y="14" width="1" height="1" fill="#353535"/>
-<rect x="11" y="14" width="1" height="1" fill="#353535"/>
-<rect x="12" y="15" width="1" height="1" fill="#353535"/>
-<rect x="13" y="16" width="1" height="1" fill="#353535"/>
-<rect x="19" y="10" width="2" height="1" fill="#353535"/>
-<rect x="18" y="11" width="1" height="2" fill="#353535"/>
-<rect x="5" y="14" width="1" height="2" fill="#353535"/>
-<rect x="9" y="6" width="1" height="11" fill="#353535"/>
-<rect x="19" y="13" width="2" height="1" fill="#353535"/>
-<rect x="16" y="8" width="5" height="1" fill="#353535"/>
-<rect x="5" y="8" width="9" height="1" fill="#353535"/>
-<rect x="5" y="10" width="9" height="1" fill="#353535"/>
-<rect x="6" y="13" width="3" height="1" fill="#353535"/>
-<rect x="6" y="16" width="3" height="1" fill="#353535"/>
-<rect x="22" y="8" width="3" height="1" fill="#353535"/>
-<rect x="18" y="16" width="2" height="1" fill="#353535"/>
+<svg width="32" height="25" viewBox="0 0 32 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_152_3235)">
+<path d="M3 3H29V22H3V3Z" fill="#F8F8F8"/>
+<path d="M29 3V22H3V3H29ZM4 21H28V4H4V21Z" fill="#D0D0D0"/>
+<rect x="22" y="7" width="1" height="9" fill="black"/>
+<rect x="21" y="16" width="1" height="1" fill="black"/>
+<rect x="11" y="15" width="1" height="1" fill="black"/>
+<rect x="12" y="15" width="1" height="1" fill="black"/>
+<rect x="13" y="16" width="1" height="1" fill="black"/>
+<rect x="14" y="17" width="1" height="1" fill="black"/>
+<rect x="20" y="11" width="2" height="1" fill="black"/>
+<rect x="19" y="12" width="1" height="2" fill="black"/>
+<rect x="6" y="15" width="1" height="2" fill="black"/>
+<rect x="10" y="7" width="1" height="11" fill="black"/>
+<rect x="20" y="14" width="2" height="1" fill="black"/>
+<rect x="17" y="9" width="5" height="1" fill="black"/>
+<rect x="6" y="9" width="9" height="1" fill="black"/>
+<rect x="6" y="11" width="9" height="1" fill="black"/>
+<rect x="7" y="14" width="3" height="1" fill="black"/>
+<rect x="7" y="17" width="3" height="1" fill="black"/>
+<rect x="23" y="9" width="3" height="1" fill="black"/>
+<rect x="19" y="17" width="2" height="1" fill="black"/>
 </g>
 <defs>
-<clipPath id="clip0_152_2323">
-<rect width="30" height="25" fill="white"/>
+<clipPath id="clip0_152_3235">
+<rect width="32" height="25" fill="white"/>
 </clipPath>
 </defs>
 </svg>

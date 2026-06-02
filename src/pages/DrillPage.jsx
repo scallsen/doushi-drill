@@ -968,11 +968,11 @@ export default function DrillPage() {
         {/* Header */}
         <div ref={headerRef} style={{ position: 'absolute', top: 0, left: 0, right: 0, zIndex: 10, visibility: hideHeader ? 'hidden' : 'visible', pointerEvents: hideHeader ? 'none' : 'auto' }}>
           <div style={{
-            display: 'flex', alignItems: 'flex-start', flexWrap: 'wrap',
+            display: 'flex', alignItems: 'center', flexWrap: 'wrap',
             padding: `${isNarrow ? 12 : 20}px ${isNarrow ? 12 : 24}px`, gap: '8px 0',
           }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-              <img src={logoIcon} alt="" width={30} height={25} style={{ display: 'block', imageRendering: 'pixelated' }} />
+              <img src={logoIcon} alt="" width={32} height={25} style={{ display: 'block', imageRendering: 'pixelated' }} />
               {!hideWordmark && <Wordmark height={17} />}
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginLeft: 'auto' }}>
