@@ -115,7 +115,7 @@ function findSeekCard(newPool, currentCard, axis, value) {
 
 // ── Sub-views ────────────────────────────────────────────────────────────────
 
-function ActiveDrill({ drill, ttsEnabled, sfxEnabled, ttsVoice, showStreak, showFurigana, pixelFont, showVisualEffects, showTranslation, onPulse, onFirstVerdict, inputMode, isShort, inKeyboardMode, vpH }) {
+function ActiveDrill({ drill, ttsEnabled, sfxEnabled, ttsVoice, showStreak, showFurigana, pixelFont, showVisualEffects, showTranslation, onPulse, inputMode, isShort, inKeyboardMode, vpH }) {
   const { t } = useTranslation()
   const [flippedCardId, setFlippedCardId] = useState(null)
   const [transitioning, setTransitioning] = useState(false)
@@ -200,7 +200,7 @@ function ActiveDrill({ drill, ttsEnabled, sfxEnabled, ttsVoice, showStreak, show
       setHintPhase('done')
       clearInterval(typewriterTimer.current)
       setDisplayedHint('')
-      onFirstVerdict?.()
+
     }
     const action = isCorrect ? drill.onCorrect : drill.onWrong
     const breaksBest = !isCorrect && localStreak > 0 && localStreak === localBestStreak
@@ -571,7 +571,6 @@ export default function DrillPage() {
   const [audioHovered,       setAudioHovered]       = useState(false)
   const [optionsHovered,     setOptionsHovered]     = useState(false)
   const [chevronHovered,     setChevronHovered]     = useState(false)
-  const [showMobileMenuHint, setShowMobileMenuHint] = useState(false)
   const [keyboardOpen,       setKeyboardOpen]       = useState(false)
   const [vpH,                setVpH]                = useState(() => window.visualViewport?.height ?? window.innerHeight)
   const isMobile       = useIsMobile()
@@ -628,19 +627,6 @@ export default function DrillPage() {
     })
     setSeekCardId(findSeekCard(newPool, drill.currentCard, axis, value)?.id ?? null)
   }
-
-  function handleFirstVerdict() {
-    if (!isMobile) return
-    if (safeLocalStorageGet('menu-hint-shown') === 'true') return
-    if (showOptions) return
-    safeLocalStorageSet('menu-hint-shown', 'true')
-    setShowMobileMenuHint(true)
-    setTimeout(() => setShowMobileMenuHint(false), 6000)
-  }
-
-  useEffect(() => {
-    if (showOptions) setShowMobileMenuHint(false)
-  }, [showOptions])
 
   const drillMode    = selectedWordTypes.length > 0
 
@@ -1030,21 +1016,6 @@ export default function DrillPage() {
           {isNarrow && <ModeToggle value={inputMode} onChange={setInputMode} fullWidth />}
         </div>
 
-        {/* Mobile menu hint */}
-        {showMobileMenuHint && (
-          <div style={{
-            position: 'absolute', top: 74, right: 24,
-            color: 'rgba(255,255,255,0.5)',
-            fontSize: 13,
-            fontFamily: 'inherit',
-            letterSpacing: '0.04em',
-            pointerEvents: 'none',
-            zIndex: 10,
-          }}>
-            {t('ui.explore_hint')}
-          </div>
-        )}
-
         {/* Center + Footer scroll container */}
         <div style={{
           position: 'absolute', top: hideHeader ? 0 : headerHeight, left: 0, right: 0, height: `calc(var(--vp-height, 100dvh) - ${hideHeader ? 0 : headerHeight}px)`,
@@ -1065,7 +1036,7 @@ export default function DrillPage() {
             ) : drill.done ? (
               <DoneScreen totalCorrect={drill.totalCorrect} totalWrong={drill.totalWrong} onRestart={drill.restart} />
             ) : (
-              <ActiveDrill drill={drill} ttsEnabled={audioEnabled && ttsEnabled} sfxEnabled={audioEnabled && sfxEnabled} ttsVoice={ttsVoice} showStreak={showStreak} showFurigana={showFurigana} pixelFont={pixelFont} showVisualEffects={showVisualEffects} showTranslation={effectiveShowTranslation} onPulse={setPulseColor} onFirstVerdict={handleFirstVerdict} inputMode={inputMode} isShort={isShort} inKeyboardMode={inKeyboardMode} vpH={vpH} />
+              <ActiveDrill drill={drill} ttsEnabled={audioEnabled && ttsEnabled} sfxEnabled={audioEnabled && sfxEnabled} ttsVoice={ttsVoice} showStreak={showStreak} showFurigana={showFurigana} pixelFont={pixelFont} showVisualEffects={showVisualEffects} showTranslation={effectiveShowTranslation} onPulse={setPulseColor} inputMode={inputMode} isShort={isShort} inKeyboardMode={inKeyboardMode} vpH={vpH} />
             )}
           </div>
 
