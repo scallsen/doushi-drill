@@ -571,7 +571,7 @@ export default function DrillPage() {
   const [audioHovered,       setAudioHovered]       = useState(false)
   const [optionsHovered,     setOptionsHovered]     = useState(false)
   const [chevronHovered,     setChevronHovered]     = useState(false)
-  const [showMobileMenuHint, setShowMobileMenuHint] = useState(false)
+  const [pulseOptionsButton, setPulseOptionsButton] = useState(false)
   const [keyboardOpen,       setKeyboardOpen]       = useState(false)
   const [vpH,                setVpH]                = useState(() => window.visualViewport?.height ?? window.innerHeight)
   const isMobile       = useIsMobile()
@@ -634,12 +634,12 @@ export default function DrillPage() {
     if (safeLocalStorageGet('menu-hint-shown') === 'true') return
     if (showOptions) return
     safeLocalStorageSet('menu-hint-shown', 'true')
-    setShowMobileMenuHint(true)
-    setTimeout(() => setShowMobileMenuHint(false), 6000)
+    setPulseOptionsButton(true)
+    setTimeout(() => setPulseOptionsButton(false), 2400)
   }
 
   useEffect(() => {
-    if (showOptions) setShowMobileMenuHint(false)
+    if (showOptions) setPulseOptionsButton(false)
   }, [showOptions])
 
   const drillMode    = selectedWordTypes.length > 0
@@ -1007,6 +1007,7 @@ export default function DrillPage() {
               onMouseEnter={() => setOptionsHovered(true)}
               onMouseLeave={() => setOptionsHovered(false)}
               title={showOptions ? 'Hide options' : 'Show options'}
+              className={pulseOptionsButton ? 'options-btn-pulse' : undefined}
               style={{
                 display: 'flex',
                 alignItems: 'center',
@@ -1029,21 +1030,6 @@ export default function DrillPage() {
           </div>
           {isNarrow && <ModeToggle value={inputMode} onChange={setInputMode} fullWidth />}
         </div>
-
-        {/* Mobile menu hint */}
-        {showMobileMenuHint && (
-          <div style={{
-            position: 'absolute', top: headerHeight + 8, right: 24,
-            color: 'rgba(255,255,255,0.5)',
-            fontSize: 13,
-            fontFamily: 'inherit',
-            letterSpacing: '0.04em',
-            pointerEvents: 'none',
-            zIndex: 10,
-          }}>
-            {t('ui.explore_hint')}
-          </div>
-        )}
 
         {/* Center + Footer scroll container */}
         <div style={{
