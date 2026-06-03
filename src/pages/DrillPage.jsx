@@ -1033,7 +1033,7 @@ export default function DrillPage() {
         {/* Mobile menu hint */}
         {showMobileMenuHint && (
           <div style={{
-            position: 'absolute', top: 74, right: 24,
+            position: 'absolute', top: headerHeight + 8, right: 24,
             color: 'rgba(255,255,255,0.5)',
             fontSize: 13,
             fontFamily: 'inherit',
