@@ -115,7 +115,7 @@ function findSeekCard(newPool, currentCard, axis, value) {
 
 // ── Sub-views ────────────────────────────────────────────────────────────────
 
-function ActiveDrill({ drill, ttsEnabled, sfxEnabled, ttsVoice, showStreak, showFurigana, pixelFont, showVisualEffects, showTranslation, onPulse, onFirstVerdict, inputMode, isShort, inKeyboardMode, vpH }) {
+function ActiveDrill({ drill, ttsEnabled, sfxEnabled, ttsVoice, showStreak, showFurigana, pixelFont, showVisualEffects, showTranslation, onPulse, inputMode, isShort, inKeyboardMode, vpH }) {
   const { t } = useTranslation()
   const [flippedCardId, setFlippedCardId] = useState(null)
   const [transitioning, setTransitioning] = useState(false)
@@ -200,7 +200,7 @@ function ActiveDrill({ drill, ttsEnabled, sfxEnabled, ttsVoice, showStreak, show
       setHintPhase('done')
       clearInterval(typewriterTimer.current)
       setDisplayedHint('')
-      onFirstVerdict?.()
+
     }
     const action = isCorrect ? drill.onCorrect : drill.onWrong
     const breaksBest = !isCorrect && localStreak > 0 && localStreak === localBestStreak
@@ -571,7 +571,6 @@ export default function DrillPage() {
   const [audioHovered,       setAudioHovered]       = useState(false)
   const [optionsHovered,     setOptionsHovered]     = useState(false)
   const [chevronHovered,     setChevronHovered]     = useState(false)
-  const [pulseOptionsButton, setPulseOptionsButton] = useState(false)
   const [keyboardOpen,       setKeyboardOpen]       = useState(false)
   const [vpH,                setVpH]                = useState(() => window.visualViewport?.height ?? window.innerHeight)
   const isMobile       = useIsMobile()
@@ -628,19 +627,6 @@ export default function DrillPage() {
     })
     setSeekCardId(findSeekCard(newPool, drill.currentCard, axis, value)?.id ?? null)
   }
-
-  function handleFirstVerdict() {
-    if (!isMobile) return
-    if (safeLocalStorageGet('menu-hint-shown') === 'true') return
-    if (showOptions) return
-    safeLocalStorageSet('menu-hint-shown', 'true')
-    setPulseOptionsButton(true)
-    setTimeout(() => setPulseOptionsButton(false), 2400)
-  }
-
-  useEffect(() => {
-    if (showOptions) setPulseOptionsButton(false)
-  }, [showOptions])
 
   const drillMode    = selectedWordTypes.length > 0
 
@@ -1007,7 +993,6 @@ export default function DrillPage() {
               onMouseEnter={() => setOptionsHovered(true)}
               onMouseLeave={() => setOptionsHovered(false)}
               title={showOptions ? 'Hide options' : 'Show options'}
-              className={pulseOptionsButton ? 'options-btn-pulse' : undefined}
               style={{
                 display: 'flex',
                 alignItems: 'center',
@@ -1051,7 +1036,7 @@ export default function DrillPage() {
             ) : drill.done ? (
               <DoneScreen totalCorrect={drill.totalCorrect} totalWrong={drill.totalWrong} onRestart={drill.restart} />
             ) : (
-              <ActiveDrill drill={drill} ttsEnabled={audioEnabled && ttsEnabled} sfxEnabled={audioEnabled && sfxEnabled} ttsVoice={ttsVoice} showStreak={showStreak} showFurigana={showFurigana} pixelFont={pixelFont} showVisualEffects={showVisualEffects} showTranslation={effectiveShowTranslation} onPulse={setPulseColor} onFirstVerdict={handleFirstVerdict} inputMode={inputMode} isShort={isShort} inKeyboardMode={inKeyboardMode} vpH={vpH} />
+              <ActiveDrill drill={drill} ttsEnabled={audioEnabled && ttsEnabled} sfxEnabled={audioEnabled && sfxEnabled} ttsVoice={ttsVoice} showStreak={showStreak} showFurigana={showFurigana} pixelFont={pixelFont} showVisualEffects={showVisualEffects} showTranslation={effectiveShowTranslation} onPulse={setPulseColor} inputMode={inputMode} isShort={isShort} inKeyboardMode={inKeyboardMode} vpH={vpH} />
             )}
           </div>
 
