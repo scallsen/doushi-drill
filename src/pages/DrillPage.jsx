@@ -564,7 +564,7 @@ export default function DrillPage() {
     return safeLocalStorageGet('show-translation') ?? 'both'
   })
   const effectiveShowTranslation = locale === 'ja' ? 'off' : showTranslation
-  const [inputMode,          setInputMode]          = useState(() => safeLocalStorageGet('input-mode') ?? 'speed')
+  const [inputMode,          setInputMode]          = useState(() => safeLocalStorageGet('input-mode') ?? 'input')
   const [pulseColor,         setPulseColor]         = useState(null)
   const [headerHeight,       setHeaderHeight]       = useState(72)
   const headerRef = useRef(null)
